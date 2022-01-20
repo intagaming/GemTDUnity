@@ -170,7 +170,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -253,7 +253,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1038903237
 GameObject:
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAAA4IeyDbijIawIAACIFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVE1z2jAQ/SuMziVjE8chvbWEkB6SMCGdXHwR1hprkCWPPgIkw3/vShbYoSeWt293337IX4RL00JplV5ozp4UA/JzRLxNfox65yPs6UbJFf+EE+edM1t7Eg2cV2q5Qjz1YUY1YDUvf8mN8OQEQSd5pXQzZxuYKWMNwhUVBtCllfXREqGvEdnjz/jOhxzQmtx66xOtu2R0RLMEaUH31HQamcHwxI7nZClo0wLzont6dhPp2U2gSWwnMpKr4CyVENxEOcQe2tDuqq1Bg++XcYrdBQm+2Rr4prZe6TD2paoM2Ni6pod7rnFIXVLyW3WTa6jZdso+qHC+TJ4FUV3Op//c4zS4K62ax1PZNPElbM3L7Ss9lNTYwWSH8P133U7uqNjStYD3GuSzWmjlJEOn1c6HOgOT+/7vubNZDeW2xzupF6Br+4GfF3l1Pc3SaX6dz8fJbVyVb+gYJrGfCd6suy10wEqoMPpwCqBxT39QfTgUE/Mi6iX9NfBGN8OLio4Hro1FV2xZeq1r5bSnknkYoG/N2ZnSEgIcO2hBUmEPS0xjL9d54RuUvfA8UP92YvHoOz2Ji5AA9/wkuXAt1e68OVOr3ROY+sVZwSX0or3jGec0U1J21zacySls5XRFy0HYxnH2/c7I9Hqd5hN2k2brCcshG0/zPM0gTega4C5PEhIOkUvsk4plJzSOB7cm++QSj+70SRktNG3D5TNNdwv+2ajByLms1KrUAPKly3AWDhqL4Btlc8ZxQCuwlsuwb/JVEKHKLbDinKgInc73VtOiz1KQln8o65GCzMI3pCAePh/2UsMHh50vfkp2JMd/UEsDBBQAAAgIAAA4Iex9BO7HbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM011FQSi9KLMgoBooYgjilmSkgdrSShXGSoZlRiqmhSZJRilmqia6FmZmhSaqhQWJSaqqlmYGBUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAAA4IeyDbijIawIAACIFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAAA4Iex9BO7HbQAAAHgAAAAJACQAAAAAAAAAAAAAALgCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAcAMAAAAA
+    dataString: UEsDBBQAAAgIAAA4Iey4hrUMbgIAACYFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVE1z2jAQ/SuMziVjA3FIby0Q0kMSJqSTiy/CWmMNsuTRR4Bk+O/VygI79MTy9u3u2w/5i3BpGiis0kvN2ZNiQH4OCNrkx6BzPsKBbpVc8084c945sxWSaOC8UsuVx1MMM6oGq3nxS24FkhMPOslLpesF28JMGWs8XFJhwLu0shgtPfQ1IAf/M7zHkKO3RndofXrrPhmcvFmAtKA7ajqNzGAgseU5WQhaN8BQdEcfT29uYwCagSp9S5GV3IzRXSghuImSiD02oeV1U4EG7Jlx6jsMMrDhCvi2sqi2H/tSlgZsbF/T45xrP6g2Kfmt2unV1OxadR9UOCyTTYKoNufTf+5hGtylVvXjuWyaYAlb8WL3So8FNbY33T48/67byT0VO7oR8F6BfFZLrZxk3mm1w1BnYDTv/l46m1VQ7Dq8lXoFuqYb+mWZN+PpJJ1m42wxTO7iurChU5jEYSZ4vQlbmLTAWqgw+nAOoP2e/nj14VhMzOtRlPTXwBvd9q8qOh64Nta7YssStW6U00glizBAbM3ZmdISAhw7aEBSYY8rn8Zer/PK1yt75Xmg+H5i8eg7P4urkAB3/CS5cq3U/rI5U6n9E5jqxVnBJXSi0fHs5zRTUrbX1p/JOWztdEmLXtjWcfb9zsh0vEmzEbtNJ5sRy2AynGZZOoE0oRuA+yxJSDhELn2fVKxaoXE8fmuySy790Z0/K4Olpk24fKbpfsk/a9UbOZelWhcaQL60GS7CQfsi/o2yBeN+QGuwlsuwb/KVE6GKHbD8kigPnS4OVtO8y5KThn8oi0hOZuE7khOEL4e90vDBYY/Fz8lO5PQPUEsDBBQAAAgIAAA4Iex9BO7HbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM011FQSi9KLMgoBooYgjilmSkgdrSShXGSoZlRiqmhSZJRilmqia6FmZmhSaqhQWJSaqqlmYGBUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAAA4Iey4hrUMbgIAACYFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAAA4Iex9BO7HbQAAAHgAAAAJACQAAAAAAAAAAAAAALsCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAcwMAAAAA
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -339,5 +339,94 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1292064045
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1292064047}
+  - component: {fileID: 1292064046}
+  m_Layer: 0
+  m_Name: Spawn Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1292064046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292064045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3f7cf0425368864ebbf45ff7d51a314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemies:
+  - {fileID: 11400000, guid: cb47416180e42a445b129adb8f451cff, type: 2}
+--- !u!4 &1292064047
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292064045}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 19.92516, y: 13.134779, z: -60.395172}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2056120506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2056120508}
+  - component: {fileID: 2056120507}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2056120507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056120506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74a6816430e63164ca8e9319f077d71e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkpointPrefab: {fileID: 2411547547268769216, guid: 4321fa4d125b8dc40866e3c200734c76, type: 3}
+--- !u!4 &2056120508
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056120506}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 19.92516, y: 13.134779, z: -60.395172}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
