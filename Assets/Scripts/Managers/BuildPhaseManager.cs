@@ -23,14 +23,24 @@ public class BuildPhaseManager : MonoBehaviour
     {
       gemsToPlace = GEMS_EACH_WAVE;
 
+      // Test place gem
+      for (int x = 16; x <= 20; x++)
+      {
+        PlaceGem(x, 18);
+      }
+
       // TODO: SetState to Defense should be called when the player commits to their build instead.
       Debug.Log("Hard-starting the game.");
       GameManager.Instance.SetState(GameState.Defense);
     }
   }
 
-  public void PlaceGem()
+  public void PlaceGem(int x, int y)
   {
     gemsToPlace--;
+
+    ScriptableGemTower gemBlueprint = TowerManager.Instance.GenerateRandomGem();
+    var gemTower = Instantiate(gemBlueprint.towerPrefab, new Vector2(x, y), Quaternion.identity);
+    gemTower.SetTowerBlueprint(gemBlueprint);
   }
 }

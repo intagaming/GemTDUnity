@@ -16,6 +16,14 @@ public class GridManager : MonoBehaviour
   private Stone stonePrefab;
   private Dictionary<Vector2, Tile> tiles;
 
+  private static GridManager instance;
+  public GridManager Instance { get { return instance; } }
+
+  void Awake()
+  {
+    instance = this;
+  }
+
   // Start is called before the first frame update
   void Start()
   {

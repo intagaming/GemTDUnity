@@ -5,16 +5,18 @@ using UnityEngine;
 
 public class GemTower : BaseTower
 {
-  // The level needs to be initialized on creation.
-  private int level = 0;
-
-  public int Level { get => level; set => level = Math.Max(1, Math.Min(6, value)); }
-
-  protected override void Awake()
+  protected ScriptableGemTower GemTowerBlueprint
   {
-    base.Awake();
+    get { return (ScriptableGemTower)TowerBlueprint; }
+  }
 
-    if (Level == 0)
+  public int Level { get => GemTowerBlueprint.gemLevel; }
+
+  protected override void Start()
+  {
+    base.Start();
+
+    if (Level < 1 || Level > 6)
     {
       Debug.LogWarning("Invalid gem tower level");
     }
