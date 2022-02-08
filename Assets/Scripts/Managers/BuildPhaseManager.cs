@@ -35,12 +35,15 @@ public class BuildPhaseManager : MonoBehaviour
     }
   }
 
-  public void PlaceGem(int x, int y)
+  public GemTower PlaceGem(int x, int y)
   {
     gemsToPlace--;
 
     ScriptableGemTower gemBlueprint = TowerManager.Instance.GenerateRandomGem();
-    var gemTower = Instantiate(gemBlueprint.towerPrefab, new Vector2(x, y), Quaternion.identity);
+    var gemTower = GridManager.Instance.Place(gemBlueprint.towerPrefab, x, y);
+    if (gemTower == null) return null;
+
     gemTower.SetTowerBlueprint(gemBlueprint);
+    return gemTower;
   }
 }

@@ -16,8 +16,11 @@ public class GridManager : MonoBehaviour
   private Stone stonePrefab;
   private Dictionary<Vector2, Tile> tiles;
 
+  // This stores Stones and Towers and such.
+  private Dictionary<Vector2, GridImmobileEntity> immobileEntities;
+
   private static GridManager instance;
-  public GridManager Instance { get { return instance; } }
+  public static GridManager Instance { get { return instance; } }
 
   void Awake()
   {
@@ -28,7 +31,24 @@ public class GridManager : MonoBehaviour
   void Start()
   {
     GenerateTiles();
+
+    immobileEntities = new Dictionary<Vector2, GridImmobileEntity>();
+
     GenerateWallsAndStones();
+  }
+
+  // Returns the object if placed successfully; null if the tile is occupied.
+  public T Place<T>(T immobileEntityPrefab, int x, int y) where T : GridImmobileEntity
+  {
+    var key = new Vector2(x, y);
+    if (immobileEntities.ContainsKey(key))
+    {
+      Debug.Log("Tile occupied.");
+      return null;
+    }
+    var entityInstance = Instantiate(immobileEntityPrefab, new Vector2(x, y), Quaternion.identity);
+    immobileEntities[key] = entityInstance;
+    return entityInstance;
   }
 
   void GenerateTiles()
@@ -69,13 +89,13 @@ public class GridManager : MonoBehaviour
       // Skip the middle position for the checkpoint
       if (i == 4) continue;
       // Left 8 stones
-      Instantiate(stonePrefab, new Vector2(i, 18f), Quaternion.identity);
+      Place(stonePrefab, i, 18);
       // Right 8 stones
-      Instantiate(stonePrefab, new Vector2(width - 1 - i, 18f), Quaternion.identity);
+      Place(stonePrefab, width - 1 - i, 18);
       // Top 8 stones
-      Instantiate(stonePrefab, new Vector2(18f, height - 1 - i), Quaternion.identity);
+      Place(stonePrefab, 18, height - 1 - i);
       // Bottom 8 stones
-      Instantiate(stonePrefab, new Vector2(18f, i), Quaternion.identity);
+      Place(stonePrefab, 18, i);
     }
 
     AstarPath.active.Scan();
