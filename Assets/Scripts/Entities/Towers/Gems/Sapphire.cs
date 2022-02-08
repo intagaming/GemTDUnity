@@ -4,7 +4,4 @@ using UnityEngine;
 
 public class Sapphire : GemTower
 {
-  public Sapphire(int level) : base(level)
-  {
-  }
 }

@@ -4,7 +4,5 @@ using UnityEngine;
 
 public class Topaz : GemTower
 {
-  public Topaz(int level) : base(level)
-  {
-  }
+
 }

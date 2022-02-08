@@ -31,7 +31,7 @@ public class BaseEnemy : GridMobileEntity
     aiPath.maxSpeed = scriptableEnemy.movementSpeed;
   }
 
-  void Update()
+  protected override void Update()
   {
     if (Vector2.Distance(Checkpoint.position, transform.position) <= CheckpointRadius)
     {

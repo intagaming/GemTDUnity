@@ -4,7 +4,4 @@ using UnityEngine;
 
 public class Diamond : GemTower
 {
-  public Diamond(int level) : base(level)
-  {
-  }
 }

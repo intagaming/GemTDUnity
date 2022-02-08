@@ -4,7 +4,4 @@ using UnityEngine;
 
 public class Aquamarine : GemTower
 {
-  public Aquamarine(int level) : base(level)
-  {
-  }
 }

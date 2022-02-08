@@ -4,7 +4,4 @@ using UnityEngine;
 
 public class Opal : GemTower
 {
-  public Opal(int level) : base(level)
-  {
-  }
 }

@@ -4,7 +4,4 @@ using UnityEngine;
 
 public class Amethyst : GemTower
 {
-  public Amethyst(int level) : base(level)
-  {
-  }
 }
