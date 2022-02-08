@@ -17,6 +17,11 @@ public class EnemySpawnManager : MonoBehaviour
     GameManager.OnGameStateChanged += HandleOnGameStateChanged;
   }
 
+  void OnDestroy()
+  {
+    GameManager.OnGameStateChanged -= HandleOnGameStateChanged;
+  }
+
   void HandleOnGameStateChanged(GameState state)
   {
     if (state == GameState.Defense)
