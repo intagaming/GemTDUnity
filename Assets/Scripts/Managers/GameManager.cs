@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
   {
     get { return state; }
   }
-  private void SetState(GameState state)
+  public void SetState(GameState state)
   {
     this.state = state;
     OnGameStateChanged?.Invoke(state);
@@ -48,9 +48,10 @@ public class GameManager : MonoBehaviour
 
   void Start()
   {
-    // SetState(GameState.Building);
-    SetState(GameState.Defense);
+    SetState(GameState.Building);
+    // SetState(GameState.Defense);
 
+    // Initialize checkpoints
     checkpoints = new Transform[6] {
       Instantiate(checkpointPrefab, new Vector2(4f, 18f), Quaternion.identity).transform,
       Instantiate(checkpointPrefab, new Vector2(32f, 18f), Quaternion.identity).transform,
