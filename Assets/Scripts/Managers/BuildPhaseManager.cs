@@ -23,13 +23,13 @@ public class BuildPhaseManager : MonoBehaviour
     {
       gemsToPlace = GEMS_EACH_WAVE;
 
-      // Test place gem
+      // FIXME: Test place gem
       for (int x = 16; x <= 20; x++)
       {
         PlaceGem(x, 18);
       }
 
-      // TODO: SetState to Defense should be called when the player commits to their build instead.
+      // FIXME: SetState to Defense should be called when the player commits to their build instead.
       Debug.Log("Hard-starting the game.");
       GameManager.Instance.SetState(GameState.Defense);
     }
