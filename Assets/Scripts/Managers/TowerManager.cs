@@ -35,7 +35,7 @@ public class TowerManager : MonoBehaviour
   {
     int wave = GameManager.Instance.Wave;
 
-    ScriptableGemTower gem = gemTowers[Random.Range(0, gemTowers.Length)];
+    ScriptableGemTower gem = Instantiate(gemTowers[Random.Range(0, gemTowers.Length)]);
 
     // Determine gem level
     float[] changes = GetGemChance(wave);
