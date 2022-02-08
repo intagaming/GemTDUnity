@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Amethyst : BaseTower
+public class Sapphire : GemTower
 {
+  public Sapphire(int level) : base(level)
+  {
+  }
 }

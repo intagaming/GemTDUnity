@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Aquamarine : BaseTower
+public class Opal : GemTower
 {
+  public Opal(int level) : base(level)
+  {
+  }
 }
