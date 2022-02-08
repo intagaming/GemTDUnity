@@ -22,7 +22,7 @@ public class BaseEnemy : GridMobileEntity
   private AIDestinationSetter destinationSetter;
   private AIPath aiPath;
 
-  void Start()
+  protected override void Start()
   {
     destinationSetter = GetComponent<AIDestinationSetter>();
     destinationSetter.target = Checkpoint;
