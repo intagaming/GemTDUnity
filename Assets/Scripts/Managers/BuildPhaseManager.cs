@@ -5,7 +5,7 @@ using UnityEngine;
 public class BuildPhaseManager : MonoBehaviour
 {
   public const int GEMS_EACH_WAVE = 5;
-  int gemsToPlace = 0;
+  private int gemsToPlace = 0;
 
   void Awake()
   {
@@ -27,5 +27,10 @@ public class BuildPhaseManager : MonoBehaviour
       Debug.Log("Hard-starting the game.");
       GameManager.Instance.SetState(GameState.Defense);
     }
+  }
+
+  public void PlaceGem()
+  {
+    gemsToPlace--;
   }
 }
