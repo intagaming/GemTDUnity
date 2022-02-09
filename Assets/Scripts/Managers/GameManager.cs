@@ -21,16 +21,29 @@ public class GameManager : MonoBehaviour
   }
 
 
-  public static Action<GameState> OnGameStateChanged;
+  public static event Action<GameState> OnGameStateChanged;
 
-  private GameState state;
+  private GameState state = GameState.Initializing;
   public GameState State
   {
     get { return state; }
   }
   public void SetState(GameState state)
   {
+    if (
+      state == this.state ||
+      (state == GameState.Building && !(this.state == GameState.Initializing || this.state == GameState.Defense))
+      )
+    {
+      Debug.LogError("Invalid SetState. Currently " + this.state.ToString() + ", but setting " + state.ToString());
+      return;
+    }
+
+    var prevState = this.state;
     this.state = state;
+
+    HandleStateChanged(prevState, state);
+
     OnGameStateChanged?.Invoke(state);
   }
 
@@ -44,6 +57,15 @@ public class GameManager : MonoBehaviour
   public Transform[] Checkpoints
   {
     get { return checkpoints; }
+  }
+
+
+  private void HandleStateChanged(GameState prevState, GameState state)
+  {
+    if (prevState == GameState.Defense && state == GameState.Building)
+    {
+      wave++;
+    }
   }
 
   void Start()
@@ -66,6 +88,7 @@ public class GameManager : MonoBehaviour
 
 public enum GameState
 {
+  Initializing,
   Building,
   Defense
 }

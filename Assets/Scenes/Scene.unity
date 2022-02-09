@@ -352,7 +352,7 @@ GameObject:
   - component: {fileID: 1292064047}
   - component: {fileID: 1292064046}
   m_Layer: 0
-  m_Name: Spawn Manager
+  m_Name: Defense Phase Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -367,7 +367,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1292064045}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3f7cf0425368864ebbf45ff7d51a314, type: 3}
+  m_Script: {fileID: 11500000, guid: bcd32d18821a32640b7da483d3b48ce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemies:

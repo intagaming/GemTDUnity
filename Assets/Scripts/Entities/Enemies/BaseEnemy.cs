@@ -44,4 +44,9 @@ public class BaseEnemy : GridMobileEntity
       destinationSetter.target = Checkpoint;
     }
   }
+
+  void OnDestroy()
+  {
+    DefensePhaseManager.Instance.HandleEnemyDie(this);
+  }
 }

@@ -26,14 +26,17 @@ public class BuildPhaseManager : MonoBehaviour
     {
       gemsToPlace = GEMS_EACH_WAVE;
 
-      // FIXME: Test place gem
-      for (int x = 16; x <= 20; x++)
+      if (GameManager.Instance.Wave == 1)
       {
-        PlaceGem(x, 18);
-      }
+        // FIXME: Test place gem
+        for (int x = 16; x <= 20; x++)
+        {
+          PlaceGem(x, 18);
+        }
 
-      // FIXME: Test choose gem
-      ChooseGem(16, 18);
+        // FIXME: Test choose gem
+        ChooseGem(16, 18);
+      }
     }
   }
 
