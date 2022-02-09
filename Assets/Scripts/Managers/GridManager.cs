@@ -51,6 +51,11 @@ public class GridManager : MonoBehaviour
     return entityInstance;
   }
 
+  public Stone PlaceStone(int x, int y)
+  {
+    return Place(stonePrefab, x, y);
+  }
+
   void GenerateTiles()
   {
     tiles = new Dictionary<Vector2, Tile>();
@@ -89,15 +94,25 @@ public class GridManager : MonoBehaviour
       // Skip the middle position for the checkpoint
       if (i == 4) continue;
       // Left 8 stones
-      Place(stonePrefab, i, 18);
+      PlaceStone(i, 18);
       // Right 8 stones
-      Place(stonePrefab, width - 1 - i, 18);
+      PlaceStone(width - 1 - i, 18);
       // Top 8 stones
-      Place(stonePrefab, 18, height - 1 - i);
+      PlaceStone(18, height - 1 - i);
       // Bottom 8 stones
-      Place(stonePrefab, 18, i);
+      PlaceStone(18, i);
     }
 
     AstarPath.active.Scan();
+  }
+
+  public bool DestroyEntity(int x, int y)
+  {
+    var key = new Vector2(x, y);
+    if (!immobileEntities.ContainsKey(key)) return false;
+
+    Destroy(immobileEntities[key].gameObject);
+    immobileEntities.Remove(key);
+    return true;
   }
 }
