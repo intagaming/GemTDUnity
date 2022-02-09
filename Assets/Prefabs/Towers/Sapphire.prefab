@@ -71,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 2747690628134850419, guid: 16037dbd798344f57a526d53d48f5ead, type: 3}
   m_Color: {r: 0.6179246, g: 0.9556298, b: 1, a: 1}
   m_FlipX: 0
@@ -95,3 +95,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b11ed96f5a6e9d44989260963cb9626, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TowerBlueprint: {fileID: 0}
