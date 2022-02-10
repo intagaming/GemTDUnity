@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c870c1e716e17940bcd79b0d8718e6f, type: 3}
+  m_Name: Ruby 2
+  m_EditorClassIdentifier: 
+  stats:
+    damage: 0
+    range: 0
+  towerPrefab: {fileID: 284946820888794630, guid: ef1458ec1cf35414d92ca5aff02eb0ef, type: 3}
+  gemLevel: 2

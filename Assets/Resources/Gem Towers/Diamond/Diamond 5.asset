@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c870c1e716e17940bcd79b0d8718e6f, type: 3}
+  m_Name: Diamond 5
+  m_EditorClassIdentifier: 
+  stats:
+    damage: 0
+    range: 0
+  towerPrefab: {fileID: 6740694475701576856, guid: bb5ad609246b14d4f87e80203d46754b, type: 3}
+  gemLevel: 5
