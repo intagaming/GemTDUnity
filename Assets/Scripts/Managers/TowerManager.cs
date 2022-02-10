@@ -14,10 +14,14 @@ public class TowerManager : MonoBehaviour
   public static TowerManager Instance { get => instance; }
 
 
-  [SerializeField]
   private ScriptableGemTower[] gemTowers;
-  [SerializeField]
   private ScriptableTower[] advancedTowers;
+
+  void Start()
+  {
+    gemTowers = Resources.LoadAll<ScriptableGemTower>("Gem Towers");
+    advancedTowers = Resources.LoadAll<ScriptableTower>("Advanced Towers");
+  }
 
   public static float[] GetGemChance(int wave)
   {

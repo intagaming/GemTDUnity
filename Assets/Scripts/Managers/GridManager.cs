@@ -14,6 +14,13 @@ public class GridManager : MonoBehaviour
   private GameObject invisibleWallPrefab;
   [SerializeField]
   private Stone stonePrefab;
+  [SerializeField]
+  private Transform gridTilesParent;
+  [SerializeField]
+  private Transform invisibleWallsParent;
+  [SerializeField]
+  private Transform immobileEntitiesParent;
+
   private Dictionary<Vector2, Tile> tiles;
 
   // This stores Stones and Towers and such.
@@ -38,7 +45,7 @@ public class GridManager : MonoBehaviour
   }
 
   // Returns the object if placed successfully; null if the tile is occupied.
-  public T Place<T>(T immobileEntityPrefab, int x, int y) where T : GridImmobileEntity
+  public T Place<T>(T immobileEntityPrefab, int x, int y, Transform parent) where T : GridImmobileEntity
   {
     var key = new Vector2(x, y);
     if (immobileEntities.ContainsKey(key))
@@ -46,17 +53,22 @@ public class GridManager : MonoBehaviour
       print("Tile occupied.");
       return null;
     }
-    var entityInstance = Instantiate(immobileEntityPrefab, new Vector2(x, y), Quaternion.identity);
+    var entityInstance = Instantiate(immobileEntityPrefab, new Vector2(x, y), Quaternion.identity, parent);
     immobileEntities[key] = entityInstance;
     return entityInstance;
   }
 
   public Stone PlaceStone(int x, int y)
   {
-    return Place(stonePrefab, x, y);
+    return Place(stonePrefab, x, y, immobileEntitiesParent);
   }
 
-  void GenerateTiles()
+  public T PlaceImmobileEntity<T>(T immobileEntityPrefab, int x, int y) where T : GridImmobileEntity
+  {
+    return Place(immobileEntityPrefab, x, y, immobileEntitiesParent);
+  }
+
+  private void GenerateTiles()
   {
     tiles = new Dictionary<Vector2, Tile>();
 
@@ -64,7 +76,7 @@ public class GridManager : MonoBehaviour
     {
       for (int y = 0; y < height; y++)
       {
-        var spawnedTile = Instantiate(tilePrefab, new Vector3(x, y), Quaternion.identity);
+        var spawnedTile = Instantiate(tilePrefab, new Vector3(x, y), Quaternion.identity, gridTilesParent);
         spawnedTile.name = $"Tile {x} {y}";
         spawnedTile.Init(x, y);
         tiles[new Vector2(x, y)] = spawnedTile;
@@ -74,18 +86,23 @@ public class GridManager : MonoBehaviour
     camera.transform.position = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f, -10);
   }
 
-  void GenerateWallsAndStones()
+  private void PlaceInvisibleWall(int x, int y)
+  {
+    Instantiate(invisibleWallPrefab, new Vector2(x, y), Quaternion.identity, invisibleWallsParent);
+  }
+
+  private void GenerateWallsAndStones()
   {
     // 4 edge walls
     for (int x = 0; x < width; x++)
     {
-      Instantiate(invisibleWallPrefab, new Vector2(x, -1f), Quaternion.identity);
-      Instantiate(invisibleWallPrefab, new Vector2(x, height), Quaternion.identity);
+      PlaceInvisibleWall(x, -1);
+      PlaceInvisibleWall(x, height);
     }
     for (int y = 0; y < height; y++)
     {
-      Instantiate(invisibleWallPrefab, new Vector2(-1f, y), Quaternion.identity);
-      Instantiate(invisibleWallPrefab, new Vector2(width, y), Quaternion.identity);
+      PlaceInvisibleWall(-1, y);
+      PlaceInvisibleWall(width, y);
     }
 
     // Default stones

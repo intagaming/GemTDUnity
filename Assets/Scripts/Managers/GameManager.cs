@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
   [SerializeField]
   private GameObject checkpointPrefab;
+  [SerializeField]
+  private Transform checkpointsParent;
 
   private static GameManager instance;
 
@@ -76,12 +78,12 @@ public class GameManager : MonoBehaviour
 
     // Initialize checkpoints
     checkpoints = new Transform[6] {
-      Instantiate(checkpointPrefab, new Vector2(4f, 18f), Quaternion.identity).transform,
-      Instantiate(checkpointPrefab, new Vector2(32f, 18f), Quaternion.identity).transform,
-      Instantiate(checkpointPrefab, new Vector2(32f, 32f), Quaternion.identity).transform,
-      Instantiate(checkpointPrefab, new Vector2(18f, 32f), Quaternion.identity).transform,
-      Instantiate(checkpointPrefab, new Vector2(18f, 4f), Quaternion.identity).transform,
-      Instantiate(checkpointPrefab, new Vector2(32f, 4f), Quaternion.identity).transform,
+      Instantiate(checkpointPrefab, new Vector2(4f, 18f), Quaternion.identity, checkpointsParent).transform,
+      Instantiate(checkpointPrefab, new Vector2(32f, 18f), Quaternion.identity, checkpointsParent).transform,
+      Instantiate(checkpointPrefab, new Vector2(32f, 32f), Quaternion.identity, checkpointsParent).transform,
+      Instantiate(checkpointPrefab, new Vector2(18f, 32f), Quaternion.identity, checkpointsParent).transform,
+      Instantiate(checkpointPrefab, new Vector2(18f, 4f), Quaternion.identity, checkpointsParent).transform,
+      Instantiate(checkpointPrefab, new Vector2(32f, 4f), Quaternion.identity, checkpointsParent).transform,
     };
 
   }

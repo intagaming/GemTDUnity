@@ -47,7 +47,7 @@ public class BuildPhaseManager : MonoBehaviour
     gemsToPlace--;
 
     ScriptableGemTower gemBlueprint = TowerManager.Instance.GenerateRandomGem();
-    var gemTower = GridManager.Instance.Place(gemBlueprint.towerPrefab, x, y);
+    var gemTower = GridManager.Instance.PlaceImmobileEntity(gemBlueprint.towerPrefab, x, y);
     if (gemTower == null) return null;
 
     gemTower.SetTowerBlueprint(gemBlueprint);
