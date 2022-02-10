@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
     if (prevState == GameState.Defense && state == GameState.Building)
     {
       wave++;
+      Debug.Log("Wave " + wave);
     }
   }
 

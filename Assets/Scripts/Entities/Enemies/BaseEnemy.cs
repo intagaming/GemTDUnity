@@ -37,7 +37,7 @@ public class BaseEnemy : GridMobileEntity
     {
       if (currentCheckpointIndex >= GameManager.Instance.Checkpoints.Length - 1)
       {
-        Debug.Log("Reached the end");
+        DefensePhaseManager.Instance.HandleEnemyReachTheEnd(this);
         return;
       }
       currentCheckpointIndex++;

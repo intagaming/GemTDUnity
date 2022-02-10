@@ -40,18 +40,6 @@ public class DefensePhaseManager : MonoBehaviour
     {
       enemyLeft = 10;
       timer = SPAWN_INTERVAL;
-
-      // FIXME: Hard-ending wave
-      IEnumerator ForceEndWaveTask()
-      {
-        yield return new WaitForSeconds(11f);
-        Debug.Log("TESTING: Force ending wave...");
-        foreach (var enemy in waveEnemies)
-        {
-          Destroy(enemy.gameObject);
-        }
-      }
-      StartCoroutine(ForceEndWaveTask());
       return;
     }
 
@@ -96,5 +84,11 @@ public class DefensePhaseManager : MonoBehaviour
     {
       GameManager.Instance.SetState(GameState.Building);
     }
+  }
+
+  public void HandleEnemyReachTheEnd(BaseEnemy enemy)
+  {
+    // TODO: subtract health
+    Destroy(enemy.gameObject);
   }
 }
