@@ -43,7 +43,7 @@ public class GridManager : MonoBehaviour
     var key = new Vector2(x, y);
     if (immobileEntities.ContainsKey(key))
     {
-      Debug.Log("Tile occupied.");
+      print("Tile occupied.");
       return null;
     }
     var entityInstance = Instantiate(immobileEntityPrefab, new Vector2(x, y), Quaternion.identity);
