@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TowerManager : MonoBehaviour
@@ -39,9 +40,8 @@ public class TowerManager : MonoBehaviour
   {
     int wave = GameManager.Instance.Wave;
 
-    ScriptableGemTower gem = Instantiate(_gemTowers[Random.Range(0, _gemTowers.Length)]);
-
     // Determine gem level
+    int chosenLevel = 0;
     float[] changes = GetGemChance(wave);
     float roll = Random.Range(0f, 1.0f);
     float cumulativeChance = 0f;
@@ -49,12 +49,16 @@ public class TowerManager : MonoBehaviour
     {
       if (roll >= cumulativeChance && roll <= changes[i])
       {
-        gem.gemLevel = i + 1; // Set gem level in the blueprint
+        chosenLevel = i + 1;
         break;
       }
       cumulativeChance += changes[i];
     }
     if (cumulativeChance >= 1.0f) throw new System.Exception("Not proper gem chance distribution.");
+    if (chosenLevel == 0) throw new System.Exception("Invalid chosen gem level");
+
+    var levelGemTowers = _gemTowers.Where(t => t.gemLevel == chosenLevel).ToList();
+    ScriptableGemTower gem = Instantiate(levelGemTowers[Random.Range(0, levelGemTowers.Count)]);
 
     return gem;
   }
