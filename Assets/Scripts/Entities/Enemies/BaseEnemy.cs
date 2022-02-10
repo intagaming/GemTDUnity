@@ -13,35 +13,35 @@ public class BaseEnemy : GridMobileEntity
     get { return scriptableEnemy; }
   }
 
-  private int currentCheckpointIndex = 0;
+  private int _currentCheckpointIndex = 0;
   public Transform Checkpoint
   {
-    get { return GameManager.Instance.Checkpoints[currentCheckpointIndex]; }
+    get { return GameManager.Instance.Checkpoints[_currentCheckpointIndex]; }
   }
 
-  private AIDestinationSetter destinationSetter;
-  private AIPath aiPath;
+  private AIDestinationSetter _destinationSetter;
+  private AIPath _aiPath;
 
   protected override void Start()
   {
-    destinationSetter = GetComponent<AIDestinationSetter>();
-    destinationSetter.target = Checkpoint;
+    _destinationSetter = GetComponent<AIDestinationSetter>();
+    _destinationSetter.target = Checkpoint;
 
-    aiPath = GetComponent<AIPath>();
-    aiPath.maxSpeed = scriptableEnemy.movementSpeed;
+    _aiPath = GetComponent<AIPath>();
+    _aiPath.maxSpeed = scriptableEnemy.movementSpeed;
   }
 
   protected override void Update()
   {
     if (Vector2.Distance(Checkpoint.position, transform.position) <= CheckpointRadius)
     {
-      if (currentCheckpointIndex >= GameManager.Instance.Checkpoints.Length - 1)
+      if (_currentCheckpointIndex >= GameManager.Instance.Checkpoints.Length - 1)
       {
         DefensePhaseManager.Instance.HandleEnemyReachTheEnd(this);
         return;
       }
-      currentCheckpointIndex++;
-      destinationSetter.target = Checkpoint;
+      _currentCheckpointIndex++;
+      _destinationSetter.target = Checkpoint;
     }
   }
 

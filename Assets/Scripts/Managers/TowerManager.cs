@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class TowerManager : MonoBehaviour
 {
-  private static TowerManager instance;
+  private static TowerManager _instance;
 
   void Awake()
   {
-    instance = this;
+    _instance = this;
   }
 
-  public static TowerManager Instance { get => instance; }
+  public static TowerManager Instance { get => _instance; }
 
 
-  private ScriptableGemTower[] gemTowers;
-  private ScriptableTower[] advancedTowers;
+  private ScriptableGemTower[] _gemTowers;
+  private ScriptableTower[] _advancedTowers;
 
   void Start()
   {
-    gemTowers = Resources.LoadAll<ScriptableGemTower>("Gem Towers");
-    advancedTowers = Resources.LoadAll<ScriptableTower>("Advanced Towers");
+    _gemTowers = Resources.LoadAll<ScriptableGemTower>("Gem Towers");
+    _advancedTowers = Resources.LoadAll<ScriptableTower>("Advanced Towers");
   }
 
   public static float[] GetGemChance(int wave)
@@ -39,7 +39,7 @@ public class TowerManager : MonoBehaviour
   {
     int wave = GameManager.Instance.Wave;
 
-    ScriptableGemTower gem = Instantiate(gemTowers[Random.Range(0, gemTowers.Length)]);
+    ScriptableGemTower gem = Instantiate(_gemTowers[Random.Range(0, _gemTowers.Length)]);
 
     // Determine gem level
     float[] changes = GetGemChance(wave);

@@ -6,9 +6,9 @@ using UnityEngine;
 public class BuildPhaseManager : MonoBehaviour
 {
   public const int GEMS_EACH_WAVE = 5;
-  private int gemsToPlace = 0;
+  private int _gemsToPlace = 0;
 
-  private Dictionary<Vector2, GridImmobileEntity> currentWaveGems = new Dictionary<Vector2, GridImmobileEntity>();
+  private Dictionary<Vector2, GridImmobileEntity> _currentWaveGems = new Dictionary<Vector2, GridImmobileEntity>();
 
   void Awake()
   {
@@ -24,7 +24,7 @@ public class BuildPhaseManager : MonoBehaviour
   {
     if (state == GameState.Building)
     {
-      gemsToPlace = GEMS_EACH_WAVE;
+      _gemsToPlace = GEMS_EACH_WAVE;
 
       if (GameManager.Instance.Wave == 1)
       {
@@ -42,9 +42,9 @@ public class BuildPhaseManager : MonoBehaviour
 
   public GemTower PlaceGem(int x, int y)
   {
-    if (gemsToPlace <= 0) return null;
+    if (_gemsToPlace <= 0) return null;
 
-    gemsToPlace--;
+    _gemsToPlace--;
 
     ScriptableGemTower gemBlueprint = TowerManager.Instance.GenerateRandomGem();
     var gemTower = GridManager.Instance.PlaceImmobileEntity(gemBlueprint.towerPrefab, x, y);
@@ -52,29 +52,29 @@ public class BuildPhaseManager : MonoBehaviour
 
     gemTower.SetTowerBlueprint(gemBlueprint);
 
-    currentWaveGems[new Vector2(x, y)] = gemTower;
+    _currentWaveGems[new Vector2(x, y)] = gemTower;
 
     return gemTower;
   }
 
   public GridImmobileEntity ChooseGem(int x, int y)
   {
-    if (gemsToPlace > 0) return null;
+    if (_gemsToPlace > 0) return null;
 
     var key = new Vector2(x, y);
     // Find all other gems and turn into stone
-    currentWaveGems.Keys.ToList().ForEach(iKey =>
+    _currentWaveGems.Keys.ToList().ForEach(iKey =>
     {
       if (key == iKey) return;
 
       // Turns into stone
-      var gem = currentWaveGems[iKey];
+      var gem = _currentWaveGems[iKey];
       GridManager.Instance.DestroyEntity((int)iKey.x, (int)iKey.y);
       GridManager.Instance.PlaceStone((int)iKey.x, (int)iKey.y);
     });
 
-    var chosen = currentWaveGems[key];
-    currentWaveGems.Clear();
+    var chosen = _currentWaveGems[key];
+    _currentWaveGems.Clear();
 
     // Rescan the path
     AstarPath.active.Scan();

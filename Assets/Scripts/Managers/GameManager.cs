@@ -10,55 +10,55 @@ public class GameManager : MonoBehaviour
   [SerializeField]
   private Transform checkpointsParent;
 
-  private static GameManager instance;
+  private static GameManager _instance;
 
   public static GameManager Instance
   {
-    get { return instance; }
+    get { return _instance; }
   }
 
   void Awake()
   {
-    instance = this;
+    _instance = this;
   }
 
 
   public static event Action<GameState> OnGameStateChanged;
 
-  private GameState state = GameState.Initializing;
+  private GameState _state = GameState.Initializing;
   public GameState State
   {
-    get { return state; }
+    get { return _state; }
   }
   public void SetState(GameState state)
   {
     if (
-      state == this.state ||
-      (state == GameState.Building && !(this.state == GameState.Initializing || this.state == GameState.Defense))
+      state == this._state ||
+      (state == GameState.Building && !(this._state == GameState.Initializing || this._state == GameState.Defense))
       )
     {
-      Debug.LogError("Invalid SetState. Currently " + this.state.ToString() + ", but setting " + state.ToString());
+      Debug.LogError("Invalid SetState. Currently " + this._state.ToString() + ", but setting " + state.ToString());
       return;
     }
 
-    var prevState = this.state;
-    this.state = state;
+    var prevState = this._state;
+    this._state = state;
 
     HandleStateChanged(prevState, state);
 
     OnGameStateChanged?.Invoke(state);
   }
 
-  private int wave = 1;
+  private int _wave = 1;
   public int Wave
   {
-    get { return wave; }
+    get { return _wave; }
   }
 
-  private Transform[] checkpoints;
+  private Transform[] _checkpoints;
   public Transform[] Checkpoints
   {
-    get { return checkpoints; }
+    get { return _checkpoints; }
   }
 
 
@@ -66,8 +66,8 @@ public class GameManager : MonoBehaviour
   {
     if (prevState == GameState.Defense && state == GameState.Building)
     {
-      wave++;
-      print("Wave " + wave);
+      _wave++;
+      print("Wave " + _wave);
     }
   }
 
@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
     // SetState(GameState.Defense);
 
     // Initialize checkpoints
-    checkpoints = new Transform[6] {
+    _checkpoints = new Transform[6] {
       Instantiate(checkpointPrefab, new Vector2(4f, 18f), Quaternion.identity, checkpointsParent).transform,
       Instantiate(checkpointPrefab, new Vector2(32f, 18f), Quaternion.identity, checkpointsParent).transform,
       Instantiate(checkpointPrefab, new Vector2(32f, 32f), Quaternion.identity, checkpointsParent).transform,

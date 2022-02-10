@@ -21,17 +21,17 @@ public class GridManager : MonoBehaviour
   [SerializeField]
   private Transform immobileEntitiesParent;
 
-  private Dictionary<Vector2, Tile> tiles;
+  private Dictionary<Vector2, Tile> _tiles;
 
   // This stores Stones and Towers and such.
-  private Dictionary<Vector2, GridImmobileEntity> immobileEntities;
+  private Dictionary<Vector2, GridImmobileEntity> _immobileEntities;
 
-  private static GridManager instance;
-  public static GridManager Instance { get { return instance; } }
+  private static GridManager _instance;
+  public static GridManager Instance { get { return _instance; } }
 
   void Awake()
   {
-    instance = this;
+    _instance = this;
   }
 
   // Start is called before the first frame update
@@ -39,7 +39,7 @@ public class GridManager : MonoBehaviour
   {
     GenerateTiles();
 
-    immobileEntities = new Dictionary<Vector2, GridImmobileEntity>();
+    _immobileEntities = new Dictionary<Vector2, GridImmobileEntity>();
 
     GenerateWallsAndStones();
   }
@@ -48,13 +48,13 @@ public class GridManager : MonoBehaviour
   public T Place<T>(T immobileEntityPrefab, int x, int y, Transform parent) where T : GridImmobileEntity
   {
     var key = new Vector2(x, y);
-    if (immobileEntities.ContainsKey(key))
+    if (_immobileEntities.ContainsKey(key))
     {
       print("Tile occupied.");
       return null;
     }
     var entityInstance = Instantiate(immobileEntityPrefab, new Vector2(x, y), Quaternion.identity, parent);
-    immobileEntities[key] = entityInstance;
+    _immobileEntities[key] = entityInstance;
     return entityInstance;
   }
 
@@ -70,7 +70,7 @@ public class GridManager : MonoBehaviour
 
   private void GenerateTiles()
   {
-    tiles = new Dictionary<Vector2, Tile>();
+    _tiles = new Dictionary<Vector2, Tile>();
 
     for (int x = 0; x < width; x++)
     {
@@ -79,7 +79,7 @@ public class GridManager : MonoBehaviour
         var spawnedTile = Instantiate(tilePrefab, new Vector3(x, y), Quaternion.identity, gridTilesParent);
         spawnedTile.name = $"Tile {x} {y}";
         spawnedTile.Init(x, y);
-        tiles[new Vector2(x, y)] = spawnedTile;
+        _tiles[new Vector2(x, y)] = spawnedTile;
       }
     }
 
@@ -126,10 +126,10 @@ public class GridManager : MonoBehaviour
   public bool DestroyEntity(int x, int y)
   {
     var key = new Vector2(x, y);
-    if (!immobileEntities.ContainsKey(key)) return false;
+    if (!_immobileEntities.ContainsKey(key)) return false;
 
-    Destroy(immobileEntities[key].gameObject);
-    immobileEntities.Remove(key);
+    Destroy(_immobileEntities[key].gameObject);
+    _immobileEntities.Remove(key);
     return true;
   }
 }
