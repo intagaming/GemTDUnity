@@ -76,6 +76,9 @@ public class BuildPhaseManager : MonoBehaviour
     var chosen = currentWaveGems[key];
     currentWaveGems.Clear();
 
+    // Rescan the path
+    AstarPath.active.Scan();
+
     // Switch state
     GameManager.Instance.SetState(GameState.Defense);
 

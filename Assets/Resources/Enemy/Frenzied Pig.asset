@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Frenzied Pig
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 2846651924149693606, guid: d93e548c5a186374f863c53eab180a88, type: 3}
-  movementSpeed: 3
+  movementSpeed: 10
   hp: 3
