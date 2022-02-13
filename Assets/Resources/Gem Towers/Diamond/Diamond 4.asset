@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Diamond 4
   m_EditorClassIdentifier: 
   stats:
-    damage: 0
-    range: 0
+    damage: 1
+    range: 3
   towerPrefab: {fileID: 6740694475701576856, guid: bb5ad609246b14d4f87e80203d46754b, type: 3}
   gemLevel: 4

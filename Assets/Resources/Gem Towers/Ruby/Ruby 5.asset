@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ruby 5
   m_EditorClassIdentifier: 
   stats:
-    damage: 0
-    range: 0
+    damage: 1
+    range: 3
   towerPrefab: {fileID: 284946820888794630, guid: ef1458ec1cf35414d92ca5aff02eb0ef, type: 3}
   gemLevel: 5

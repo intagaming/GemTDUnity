@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sapphire 3
   m_EditorClassIdentifier: 
   stats:
-    damage: 0
-    range: 0
+    damage: 1
+    range: 3
   towerPrefab: {fileID: 6651102265586759139, guid: 287542067fc292443ac2b6695aec6621, type: 3}
   gemLevel: 3
