@@ -15,5 +15,6 @@ MonoBehaviour:
   stats:
     damage: 1
     range: 3
+    attackSpeed: 1
   towerPrefab: {fileID: 6354920366704743160, guid: 0aa155628c842524ea916d80d5ce01e6, type: 3}
   gemLevel: 3

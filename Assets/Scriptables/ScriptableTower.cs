@@ -15,4 +15,5 @@ public struct TowerStats
 {
   public int damage;
   public float range;
+  public float attackSpeed;
 }
