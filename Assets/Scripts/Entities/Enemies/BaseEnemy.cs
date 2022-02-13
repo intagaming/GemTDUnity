@@ -22,6 +22,8 @@ public class BaseEnemy : GridMobileEntity
   private AIDestinationSetter _destinationSetter;
   private AIPath _aiPath;
 
+  private int _health;
+
   protected override void Start()
   {
     _destinationSetter = GetComponent<AIDestinationSetter>();
@@ -29,6 +31,8 @@ public class BaseEnemy : GridMobileEntity
 
     _aiPath = GetComponent<AIPath>();
     _aiPath.maxSpeed = scriptableEnemy.movementSpeed;
+
+    _health = scriptableEnemy.hp;
   }
 
   protected override void Update()
@@ -48,5 +52,12 @@ public class BaseEnemy : GridMobileEntity
   void OnDestroy()
   {
     DefensePhaseManager.Instance.HandleEnemyDie(this);
+  }
+
+  public virtual void Damage(BaseTower attacker, int damage) {
+    _health -= damage;
+    if (_health <= 0) {
+      Destroy(gameObject);
+    }
   }
 }

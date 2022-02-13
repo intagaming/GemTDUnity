@@ -16,6 +16,7 @@ public class DefensePhaseManager : MonoBehaviour
   private float _timer = 0f;
 
   private HashSet<BaseEnemy> _waveEnemies = new HashSet<BaseEnemy>();
+  public HashSet<BaseEnemy> WaveEnemies { get => _waveEnemies; }
 
   private static DefensePhaseManager _instance;
   public static DefensePhaseManager Instance { get { return _instance; } }

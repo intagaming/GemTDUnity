@@ -8,6 +8,58 @@ public class BaseTower : GridImmobileEntity
   [SerializeField]
   protected ScriptableTower TowerBlueprint;
 
+  private float _cooldown = 0f;
+  private BaseEnemy _target = null;
+
+  protected override void Update()
+  {
+    base.Update();
+    _cooldown = Mathf.Max(0, _cooldown - Time.deltaTime);
+    if (_cooldown <= 0f) AttemptAttack();
+  }
+
+  protected virtual void AttemptAttack()
+  {
+    if (_cooldown > 0f) return;
+
+    var stats = TowerBlueprint.BaseStats;
+    var enemies = DefensePhaseManager.Instance.WaveEnemies;
+
+    // Check if target is dead or out of reach
+    if (!enemies.Contains(_target)
+      || Vector3.Distance(transform.position, _target.transform.position) > stats.range)
+    {
+      _target = null;
+    }
+
+    if (_target != null)
+    {
+      Attack(_target);
+      return;
+    }
+
+    // Find new target
+    foreach (var enemy in enemies)
+    {
+      var distance = Vector3.Distance(enemy.transform.position, transform.position);
+      if (distance <= stats.range)
+      {
+        _target = enemy;
+        Attack(enemy);
+        return;
+      }
+    }
+  }
+
+  protected virtual void Attack(BaseEnemy enemy)
+  {
+    if (_target != enemy) _target = enemy;
+
+    var stats = TowerBlueprint.BaseStats;
+    _cooldown = stats.attackSpeed;
+    enemy.Damage(this, stats.damage);
+  }
+
   public void SetTowerBlueprint(ScriptableTower blueprint)
   {
     TowerBlueprint = blueprint;
