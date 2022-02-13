@@ -9,9 +9,12 @@ public class BuildPhaseManager : MonoBehaviour
   private int _gemsToPlace = 0;
 
   private Dictionary<Vector2, GridImmobileEntity> _currentWaveGems = new Dictionary<Vector2, GridImmobileEntity>();
+  private static BuildPhaseManager _instance;
+  public static BuildPhaseManager Instance { get { return _instance; } }
 
   void Awake()
   {
+    _instance = this;
     GameManager.OnGameStateChanged += HandleOnGameStateChanged;
   }
 
@@ -26,7 +29,7 @@ public class BuildPhaseManager : MonoBehaviour
     {
       _gemsToPlace = GEMS_EACH_WAVE;
 
-      if (GameManager.Instance.Wave == 1)
+      /*if (GameManager.Instance.Wave == 1)
       {
         // FIXME: Test place gem
         for (int x = 16; x <= 20; x++)
@@ -36,7 +39,7 @@ public class BuildPhaseManager : MonoBehaviour
 
         // FIXME: Test choose gem
         ChooseGem(16, 18);
-      }
+      }*/
     }
   }
 
