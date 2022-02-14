@@ -21,10 +21,4 @@ public class GemTower : BaseTower
       Debug.LogWarning("Invalid gem tower level");
     }
   }
-
-  void OnMouseDown()
-  {
-    if (GameManager.Instance.State != GameState.Building) return;
-    BuildPhaseManager.Instance.ChooseGem((int)transform.position.x, (int)transform.position.y);
-  }
 }

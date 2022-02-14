@@ -152,4 +152,10 @@ public class GridManager : MonoBehaviour
   {
     return _immobileEntities.ContainsKey(new Vector2(x, y));
   }
+
+  public GridImmobileEntity GetGridImmobileEntity(int x, int y)
+  {
+    if (!IsTileOccupied(x, y)) return null;
+    return _immobileEntities[new Vector2(x, y)];
+  }
 }

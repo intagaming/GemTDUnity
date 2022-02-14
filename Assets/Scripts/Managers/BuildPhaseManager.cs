@@ -7,6 +7,7 @@ public class BuildPhaseManager : MonoBehaviour
 {
   public const int GEMS_EACH_WAVE = 5;
   private int _gemsToPlace = 0;
+  public int GemsToPlace { get => _gemsToPlace; }
 
   private Dictionary<Vector2, GridImmobileEntity> _currentWaveGems = new Dictionary<Vector2, GridImmobileEntity>();
   private static BuildPhaseManager _instance;
@@ -86,5 +87,10 @@ public class BuildPhaseManager : MonoBehaviour
     GameManager.Instance.SetState(GameState.Defense);
 
     return chosen;
+  }
+
+  public bool IsBuiltGem(int x, int y)
+  {
+    return _currentWaveGems.ContainsKey(new Vector2(x, y));
   }
 }
