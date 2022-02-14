@@ -184,15 +184,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71f5ee00f13125c48ad4136e37bdc98e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 37
-  height: 37
-  tilePrefab: {fileID: 7848071245751271715, guid: 487e652c8828c0548be74917caa5cccd, type: 3}
-  camera: {fileID: 519420031}
-  invisibleWallPrefab: {fileID: 3887151060966666310, guid: 6c99279e5bc8da4489d5632eac80c8ff, type: 3}
-  stonePrefab: {fileID: -3995052281516716966, guid: a0cfcfb325f8b864f8722202f1e0e392, type: 3}
-  gridTilesParent: {fileID: 579517234}
-  invisibleWallsParent: {fileID: 1789049765}
-  immobileEntitiesParent: {fileID: 1474278863}
+  _width: 37
+  _height: 37
+  _tilePrefab: {fileID: 7848071245751271715, guid: 487e652c8828c0548be74917caa5cccd, type: 3}
+  _camera: {fileID: 519420031}
+  _invisibleWallPrefab: {fileID: 3887151060966666310, guid: 6c99279e5bc8da4489d5632eac80c8ff, type: 3}
+  _stonePrefab: {fileID: -3995052281516716966, guid: a0cfcfb325f8b864f8722202f1e0e392, type: 3}
+  _gridTilesParent: {fileID: 579517234}
+  _invisibleWallsParent: {fileID: 1789049765}
+  _immobileEntitiesParent: {fileID: 1474278863}
+  _drawGizmos: 1
 --- !u!4 &276132609
 Transform:
   m_ObjectHideFlags: 0
@@ -500,9 +501,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd32d18821a32640b7da483d3b48ce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
+  _enemies:
   - {fileID: 11400000, guid: cb47416180e42a445b129adb8f451cff, type: 2}
-  enemiesParent: {fileID: 1149971088}
+  _enemiesParent: {fileID: 1149971088}
 --- !u!4 &1292064047
 Transform:
   m_ObjectHideFlags: 0
@@ -817,8 +818,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a6816430e63164ca8e9319f077d71e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkpointPrefab: {fileID: 2411547547268769216, guid: 4321fa4d125b8dc40866e3c200734c76, type: 3}
-  checkpointsParent: {fileID: 1972570564}
+  _checkpointPrefab: {fileID: 2411547547268769216, guid: 4321fa4d125b8dc40866e3c200734c76, type: 3}
+  _checkpointsParent: {fileID: 1972570564}
 --- !u!4 &2056120508
 Transform:
   m_ObjectHideFlags: 0

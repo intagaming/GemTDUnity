@@ -45,7 +45,7 @@ public class BuildPhaseManager : MonoBehaviour
 
   public GemTower PlaceGem(int x, int y)
   {
-    if (_gemsToPlace <= 0) return null;
+    if (_gemsToPlace <= 0 || GridManager.Instance.IsTileOccupied(x, y)) return null;
 
     _gemsToPlace--;
 

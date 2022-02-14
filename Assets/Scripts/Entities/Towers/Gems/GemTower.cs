@@ -24,6 +24,7 @@ public class GemTower : BaseTower
 
   void OnMouseDown()
   {
+    if (GameManager.Instance.State != GameState.Building) return;
     BuildPhaseManager.Instance.ChooseGem((int)transform.position.x, (int)transform.position.y);
   }
 }

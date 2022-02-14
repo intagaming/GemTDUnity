@@ -62,13 +62,13 @@ public class GridManager : MonoBehaviour
   // Returns the object if placed successfully; null if the tile is occupied.
   public T Place<T>(T immobileEntityPrefab, int x, int y, Transform parent) where T : GridImmobileEntity
   {
-    var key = new Vector2(x, y);
-    if (_immobileEntities.ContainsKey(key))
+    if (IsTileOccupied(x, y))
     {
       print("Tile occupied.");
       return null;
     }
-    var entityInstance = Instantiate(immobileEntityPrefab, new Vector2(x, y), Quaternion.identity, parent);
+    var key = new Vector2(x, y);
+    var entityInstance = Instantiate(immobileEntityPrefab, key, Quaternion.identity, parent);
     _immobileEntities[key] = entityInstance;
     return entityInstance;
   }
@@ -140,11 +140,16 @@ public class GridManager : MonoBehaviour
 
   public bool DestroyEntity(int x, int y)
   {
-    var key = new Vector2(x, y);
-    if (!_immobileEntities.ContainsKey(key)) return false;
+    if (!IsTileOccupied(x, y)) return false;
 
+    var key = new Vector2(x, y);
     Destroy(_immobileEntities[key].gameObject);
     _immobileEntities.Remove(key);
     return true;
+  }
+
+  public bool IsTileOccupied(int x, int y)
+  {
+    return _immobileEntities.ContainsKey(new Vector2(x, y));
   }
 }

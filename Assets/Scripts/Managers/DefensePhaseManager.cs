@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class DefensePhaseManager : MonoBehaviour
@@ -18,6 +20,8 @@ public class DefensePhaseManager : MonoBehaviour
   private HashSet<BaseEnemy> _waveEnemies = new HashSet<BaseEnemy>();
   public HashSet<BaseEnemy> WaveEnemies { get => _waveEnemies; }
 
+  private static bool _isExiting = false;
+
   private static DefensePhaseManager _instance;
   public static DefensePhaseManager Instance { get { return _instance; } }
 
@@ -25,11 +29,15 @@ public class DefensePhaseManager : MonoBehaviour
   {
     _instance = this;
     GameManager.OnGameStateChanged += HandleOnGameStateChanged;
+    EditorApplication.playModeStateChanged += HandlePlayModeStateChanged;
+    _isExiting = false;
   }
 
   void OnDestroy()
   {
     GameManager.OnGameStateChanged -= HandleOnGameStateChanged;
+    EditorApplication.playModeStateChanged -= HandlePlayModeStateChanged;
+    _waveEnemies.Clear();
   }
 
   private void Reset()
@@ -82,6 +90,8 @@ public class DefensePhaseManager : MonoBehaviour
 
   public void HandleEnemyDie(BaseEnemy enemy)
   {
+    if (_isExiting) return; // If exiting, ignore all enemy die events, thus the wave will not end.
+
     if (!_waveEnemies.Contains(enemy))
     {
       Debug.LogError("Dead enemy not found in waveEnemies.");
@@ -100,5 +110,13 @@ public class DefensePhaseManager : MonoBehaviour
   {
     // TODO: subtract health
     Destroy(enemy.gameObject);
+  }
+
+  private static void HandlePlayModeStateChanged(PlayModeStateChange state)
+  {
+    if (state == PlayModeStateChange.ExitingPlayMode)
+    {
+      _isExiting = true;
+    }
   }
 }

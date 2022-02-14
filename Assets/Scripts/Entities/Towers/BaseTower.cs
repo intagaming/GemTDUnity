@@ -26,8 +26,11 @@ public class BaseTower : GridImmobileEntity
     var enemies = DefensePhaseManager.Instance.WaveEnemies;
 
     // Check if target is dead or out of reach
-    if (!enemies.Contains(_target)
-      || Vector3.Distance(transform.position, _target.transform.position) > stats.range)
+    if (_target != null && (
+      _target.gameObject == null ||
+      !enemies.Contains(_target) ||
+      Vector3.Distance(transform.position, _target.transform.position) > stats.range)
+      )
     {
       _target = null;
     }
