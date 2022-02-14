@@ -7,9 +7,9 @@ public class DefensePhaseManager : MonoBehaviour
   const float SPAWN_INTERVAL = 1f;
 
   [SerializeField]
-  private ScriptableEnemy[] enemies;
+  private ScriptableEnemy[] _enemies;
   [SerializeField]
-  private Transform enemiesParent;
+  private Transform _enemiesParent;
 
   private Vector3 _spawnPoint = new Vector3(4f, 32f, 0);
   private int _enemyLeft = 0;
@@ -76,7 +76,7 @@ public class DefensePhaseManager : MonoBehaviour
   {
     if (_enemyLeft <= 0) return;
     _enemyLeft--;
-    var enemy = Instantiate(enemies[GameManager.Instance.Wave - 1].enemyPrefab, _spawnPoint, Quaternion.identity, enemiesParent);
+    var enemy = Instantiate(_enemies[GameManager.Instance.Wave - 1].enemyPrefab, _spawnPoint, Quaternion.identity, _enemiesParent);
     _waveEnemies.Add(enemy);
   }
 

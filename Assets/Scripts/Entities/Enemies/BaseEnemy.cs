@@ -7,10 +7,10 @@ public class BaseEnemy : GridMobileEntity
 {
   const float CheckpointRadius = 0.2f;
   [SerializeField]
-  private ScriptableEnemy scriptableEnemy;
+  private ScriptableEnemy _scriptableEnemy;
   public ScriptableEnemy ScriptableEnemy
   {
-    get { return scriptableEnemy; }
+    get { return _scriptableEnemy; }
   }
 
   private int _currentCheckpointIndex = 0;
@@ -30,9 +30,9 @@ public class BaseEnemy : GridMobileEntity
     _destinationSetter.target = Checkpoint;
 
     _aiPath = GetComponent<AIPath>();
-    _aiPath.maxSpeed = scriptableEnemy.movementSpeed;
+    _aiPath.maxSpeed = _scriptableEnemy.movementSpeed;
 
-    _health = scriptableEnemy.hp;
+    _health = _scriptableEnemy.hp;
   }
 
   protected override void Update()
@@ -54,9 +54,11 @@ public class BaseEnemy : GridMobileEntity
     DefensePhaseManager.Instance.HandleEnemyDie(this);
   }
 
-  public virtual void Damage(BaseTower attacker, int damage) {
+  public virtual void Damage(BaseTower attacker, int damage)
+  {
     _health -= damage;
-    if (_health <= 0) {
+    if (_health <= 0)
+    {
       Destroy(gameObject);
     }
   }

@@ -5,35 +5,35 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
   [SerializeField]
-  private Color baseColor, offsetColor;
+  private Color _baseColor, _offsetColor;
   [SerializeField]
-  private SpriteRenderer spriteRenderer;
+  private SpriteRenderer _spriteRenderer;
   [SerializeField]
-  private GameObject highlight;
-  private int x;
-  private int y;
+  private GameObject _highlight;
+  private int _x;
+  private int _y;
 
   public void Init(int x, int y)
   {
     bool isOffset = (x + y) % 2 == 1;
-    spriteRenderer.color = isOffset ? offsetColor : baseColor;
+    _spriteRenderer.color = isOffset ? _offsetColor : _baseColor;
 
-    this.x = x;
-    this.y = y;
+    this._x = x;
+    this._y = y;
   }
 
   void OnMouseDown()
   {
-    BuildPhaseManager.Instance.PlaceGem(x, y);
+    BuildPhaseManager.Instance.PlaceGem(_x, _y);
   }
 
   void OnMouseEnter()
   {
-    highlight.SetActive(true);
+    _highlight.SetActive(true);
   }
 
   void OnMouseExit()
   {
-    highlight.SetActive(false);
+    _highlight.SetActive(false);
   }
 }

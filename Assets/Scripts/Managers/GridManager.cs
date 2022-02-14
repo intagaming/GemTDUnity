@@ -5,23 +5,23 @@ using UnityEngine;
 public class GridManager : MonoBehaviour
 {
   [SerializeField]
-  private int width, height;
+  private int _width, _height;
   [SerializeField]
-  private Tile tilePrefab;
+  private Tile _tilePrefab;
   [SerializeField]
-  private new Camera camera;
+  private new Camera _camera;
   [SerializeField]
-  private GameObject invisibleWallPrefab;
+  private GameObject _invisibleWallPrefab;
   [SerializeField]
-  private Stone stonePrefab;
+  private Stone _stonePrefab;
   [SerializeField]
-  private Transform gridTilesParent;
+  private Transform _gridTilesParent;
   [SerializeField]
-  private Transform invisibleWallsParent;
+  private Transform _invisibleWallsParent;
   [SerializeField]
-  private Transform immobileEntitiesParent;
+  private Transform _immobileEntitiesParent;
   [SerializeField]
-  private bool drawGizmos;
+  private bool _drawGizmos;
 
   private Dictionary<Vector2, Tile> _tiles;
 
@@ -48,11 +48,11 @@ public class GridManager : MonoBehaviour
 
   void OnDrawGizmos()
   {
-    if (!drawGizmos || Application.isPlaying) return;
+    if (!_drawGizmos || Application.isPlaying) return;
 
-    for (int x = 0; x < width; x++)
+    for (int x = 0; x < _width; x++)
     {
-      for (int y = 0; y < height; y++)
+      for (int y = 0; y < _height; y++)
       {
         Gizmos.DrawWireCube(new Vector3(x, y), new Vector3(1, 1));
       }
@@ -75,49 +75,49 @@ public class GridManager : MonoBehaviour
 
   public Stone PlaceStone(int x, int y)
   {
-    return Place(stonePrefab, x, y, immobileEntitiesParent);
+    return Place(_stonePrefab, x, y, _immobileEntitiesParent);
   }
 
   public T PlaceImmobileEntity<T>(T immobileEntityPrefab, int x, int y) where T : GridImmobileEntity
   {
-    return Place(immobileEntityPrefab, x, y, immobileEntitiesParent);
+    return Place(immobileEntityPrefab, x, y, _immobileEntitiesParent);
   }
 
   private void GenerateTiles()
   {
     _tiles = new Dictionary<Vector2, Tile>();
 
-    for (int x = 0; x < width; x++)
+    for (int x = 0; x < _width; x++)
     {
-      for (int y = 0; y < height; y++)
+      for (int y = 0; y < _height; y++)
       {
-        var spawnedTile = Instantiate(tilePrefab, new Vector3(x, y), Quaternion.identity, gridTilesParent);
+        var spawnedTile = Instantiate(_tilePrefab, new Vector3(x, y), Quaternion.identity, _gridTilesParent);
         spawnedTile.name = $"Tile {x} {y}";
         spawnedTile.Init(x, y);
         _tiles[new Vector2(x, y)] = spawnedTile;
       }
     }
 
-    camera.transform.position = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f, -10);
+    _camera.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f, -10);
   }
 
   private void PlaceInvisibleWall(int x, int y)
   {
-    Instantiate(invisibleWallPrefab, new Vector2(x, y), Quaternion.identity, invisibleWallsParent);
+    Instantiate(_invisibleWallPrefab, new Vector2(x, y), Quaternion.identity, _invisibleWallsParent);
   }
 
   private void GenerateWallsAndStones()
   {
     // 4 edge walls
-    for (int x = 0; x < width; x++)
+    for (int x = 0; x < _width; x++)
     {
       PlaceInvisibleWall(x, -1);
-      PlaceInvisibleWall(x, height);
+      PlaceInvisibleWall(x, _height);
     }
-    for (int y = 0; y < height; y++)
+    for (int y = 0; y < _height; y++)
     {
       PlaceInvisibleWall(-1, y);
-      PlaceInvisibleWall(width, y);
+      PlaceInvisibleWall(_width, y);
     }
 
     // Default stones
@@ -128,9 +128,9 @@ public class GridManager : MonoBehaviour
       // Left 8 stones
       PlaceStone(i, 18);
       // Right 8 stones
-      PlaceStone(width - 1 - i, 18);
+      PlaceStone(_width - 1 - i, 18);
       // Top 8 stones
-      PlaceStone(18, height - 1 - i);
+      PlaceStone(18, _height - 1 - i);
       // Bottom 8 stones
       PlaceStone(18, i);
     }
