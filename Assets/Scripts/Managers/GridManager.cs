@@ -9,7 +9,7 @@ public class GridManager : MonoBehaviour
   [SerializeField]
   private Tile _tilePrefab;
   [SerializeField]
-  private new Camera _camera;
+  private Camera _camera;
   [SerializeField]
   private GameObject _invisibleWallPrefab;
   [SerializeField]
