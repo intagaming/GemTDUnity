@@ -26,10 +26,7 @@ public class HUDManager : MonoBehaviour
 
         if (GameManager.Instance.State == GameState.Building)
         {
-          if (BuildPhaseManager.Instance.IsBuiltGem(pos.x, pos.y))
-          {
-            _selectGemOnBuildCanvas.gameObject.SetActive(true);
-          }
+          _selectGemOnBuildCanvas.gameObject.SetActive(BuildPhaseManager.Instance.IsBuiltGem(pos.x, pos.y));
         }
       }
       else
