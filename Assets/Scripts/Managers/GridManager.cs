@@ -20,6 +20,8 @@ public class GridManager : MonoBehaviour
   private Transform invisibleWallsParent;
   [SerializeField]
   private Transform immobileEntitiesParent;
+  [SerializeField]
+  private bool drawGizmos;
 
   private Dictionary<Vector2, Tile> _tiles;
 
@@ -42,6 +44,19 @@ public class GridManager : MonoBehaviour
     _immobileEntities = new Dictionary<Vector2, GridImmobileEntity>();
 
     GenerateWallsAndStones();
+  }
+
+  void OnDrawGizmos()
+  {
+    if (!drawGizmos || Application.isPlaying) return;
+
+    for (int x = 0; x < width; x++)
+    {
+      for (int y = 0; y < height; y++)
+      {
+        Gizmos.DrawWireCube(new Vector3(x, y), new Vector3(1, 1));
+      }
+    }
   }
 
   // Returns the object if placed successfully; null if the tile is occupied.
