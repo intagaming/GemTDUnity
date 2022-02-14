@@ -14,6 +14,9 @@ public class BaseTower : GridImmobileEntity
   protected override void Update()
   {
     base.Update();
+
+    if (GameManager.Instance.State != GameState.Defense) return;
+
     _cooldown = Mathf.Max(0, _cooldown - Time.deltaTime);
     if (_cooldown <= 0f) AttemptAttack();
   }
