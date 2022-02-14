@@ -410,10 +410,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bc7255a0d8eb5a4ab937e33b6abd35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _zoomChange: 12
   _minSize: 10
   _maxSize: 19
-  _smoothChange: 3
+  _zoomChange: 4
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

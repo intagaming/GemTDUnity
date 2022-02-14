@@ -7,8 +7,12 @@ public class CameraMove : MonoBehaviour
     [SerializeField]
     private float _minSize = 6, _maxSize = 19;
     private Vector3 _start;
+    private Camera _camera;
+    [SerializeField]
+    private float _zoomChange = 4;
     private void Start()
     {
+        _camera = GetComponent<Camera>();
     }
     void Update()
     {   
@@ -20,14 +24,24 @@ public class CameraMove : MonoBehaviour
         {
             Vector3 direction = _start - Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Camera.main.transform.position += direction;
-            Debug.Log(direction);
         }
-        zoom(Input.GetAxis("Mouse ScrollWheel"));
+        Zoom();
+        
     }
-    void zoom(float increment)
+    void Zoom()
     {
-        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize - increment, _minSize,_maxSize);
+        if(Input.mouseScrollDelta.y > 0)
+        {
+            _camera.orthographicSize -= _zoomChange;
+        }
+        if(Input.mouseScrollDelta.y < 0)
+        {
+            _camera.orthographicSize += _zoomChange;
+        }
+        _camera.orthographicSize = Mathf.Clamp(_camera.orthographicSize, _minSize, _maxSize);
     }
+
+   
 
    
 }
