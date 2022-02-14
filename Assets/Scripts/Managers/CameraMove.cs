@@ -10,6 +10,8 @@ public class CameraMove : MonoBehaviour
     private Camera _camera;
     [SerializeField]
     private float _zoomChange = 4;
+    [SerializeField]
+    private float _smoothness = 8;
     private void Start()
     {
         _camera = GetComponent<Camera>();
@@ -32,11 +34,11 @@ public class CameraMove : MonoBehaviour
     {
         if(Input.mouseScrollDelta.y > 0)
         {
-            _camera.orthographicSize -= _zoomChange;
+            _camera.orthographicSize -= _zoomChange * Time.deltaTime * _smoothness;
         }
         if(Input.mouseScrollDelta.y < 0)
         {
-            _camera.orthographicSize += _zoomChange;
+            _camera.orthographicSize += _zoomChange * Time.deltaTime * _smoothness;
         }
         _camera.orthographicSize = Mathf.Clamp(_camera.orthographicSize, _minSize, _maxSize);
     }
