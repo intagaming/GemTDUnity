@@ -70,10 +70,4 @@ public class BaseTower : GridImmobileEntity
   {
     TowerBlueprint = blueprint;
   }
-
-
-  void OnMouseDown()
-  {
-    HUDManager.Instance.SelectTower((int)transform.position.x, (int)transform.position.y);
-  }
 }

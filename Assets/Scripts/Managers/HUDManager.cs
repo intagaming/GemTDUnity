@@ -12,7 +12,8 @@ public class HUDManager : MonoBehaviour
   private GridImmobileEntity _selectedImmobileEntity;
   private GridImmobileEntity _SelectedImmobileEntity
   {
-    get => _selectedImmobileEntity; set
+    get => _selectedImmobileEntity;
+    set
     {
       _selectedImmobileEntity = value;
 
@@ -21,18 +22,20 @@ public class HUDManager : MonoBehaviour
         _selectIndicator.SetActive(true);
         _selectIndicator.transform.position = _selectedImmobileEntity.transform.position;
 
+        var pos = value.GetGridPosition();
+
         if (GameManager.Instance.State == GameState.Building)
         {
-          _selectGemOnBuildCanvas.gameObject.SetActive(true);
+          if (BuildPhaseManager.Instance.IsBuiltGem(pos.x, pos.y))
+          {
+            _selectGemOnBuildCanvas.gameObject.SetActive(true);
+          }
         }
       }
       else
       {
         _selectIndicator.SetActive(false);
-        if (GameManager.Instance.State == GameState.Building)
-        {
-          _selectGemOnBuildCanvas.gameObject.SetActive(false);
-        }
+        _selectGemOnBuildCanvas.gameObject.SetActive(false);
       }
     }
   }
@@ -46,26 +49,17 @@ public class HUDManager : MonoBehaviour
     GameManager.OnGameStateChanged += HandleOnGameStateChanged;
   }
 
-  public void SelectTower(int x, int y)
+  public void SelectGridEntity(int x, int y)
   {
     var key = new Vector2(x, y);
 
-    if (GameManager.Instance.State == GameState.Building)
-    {
-      if (BuildPhaseManager.Instance.GemsToPlace > 0 || !BuildPhaseManager.Instance.IsBuiltGem(x, y)) return;
-      GemTower gem = (GemTower)GridManager.Instance.GetGridImmobileEntity(x, y);
-      _SelectedImmobileEntity = gem;
-    }
-
+    var entity = GridManager.Instance.GetGridImmobileEntity(x, y);
+    _SelectedImmobileEntity = entity;
   }
 
   private void HandleOnGameStateChanged(GameState state)
   {
-    if (state == GameState.Defense)
-    {
-      _selectGemOnBuildCanvas.gameObject.SetActive(false);
-      _SelectedImmobileEntity = null;
-    }
+    _SelectedImmobileEntity = null;
   }
 
   public void HandleChooseGemClick()
