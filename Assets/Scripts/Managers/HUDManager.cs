@@ -9,6 +9,15 @@ public class HUDManager : MonoBehaviour
   [SerializeField]
   private Canvas _selectGemOnBuildCanvas;
 
+  private static HUDManager _instance;
+  public static HUDManager Instance { get => _instance; }
+
+  void Awake()
+  {
+    _instance = this;
+    GameManager.OnGameStateChanged += HandleOnGameStateChanged;
+  }
+
   private GridImmobileEntity _selectedImmobileEntity;
   private GridImmobileEntity _SelectedImmobileEntity
   {
@@ -22,10 +31,9 @@ public class HUDManager : MonoBehaviour
         _selectIndicator.SetActive(true);
         _selectIndicator.transform.position = _selectedImmobileEntity.transform.position;
 
-        var pos = value.GetGridPosition();
-
         if (GameManager.Instance.State == GameState.Building)
         {
+          var pos = value.GetGridPosition();
           _selectGemOnBuildCanvas.gameObject.SetActive(BuildPhaseManager.Instance.IsBuiltGem(pos.x, pos.y));
         }
       }
@@ -37,14 +45,6 @@ public class HUDManager : MonoBehaviour
     }
   }
 
-  private static HUDManager _instance;
-  public static HUDManager Instance { get => _instance; }
-
-  void Awake()
-  {
-    _instance = this;
-    GameManager.OnGameStateChanged += HandleOnGameStateChanged;
-  }
 
   public void SelectGridEntity(int x, int y)
   {
