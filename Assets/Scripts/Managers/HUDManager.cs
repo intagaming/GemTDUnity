@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class HUDManager : MonoBehaviour
 {
@@ -15,9 +16,21 @@ public class HUDManager : MonoBehaviour
   void Awake()
   {
     _instance = this;
-    GameManager.OnGameStateChanged += HandleOnGameStateChanged;
   }
 
+  void Start()
+  {
+    GameManager.OnGameStateChanged += HandleOnGameStateChanged;
+    BuildPhaseManager.OnGemPlaced += UpdateBuildingPhaseObjective;
+  }
+
+  void OnDestroy()
+  {
+    GameManager.OnGameStateChanged -= HandleOnGameStateChanged;
+    BuildPhaseManager.OnGemPlaced -= UpdateBuildingPhaseObjective;
+  }
+
+  // Select immobile entity
   private GridImmobileEntity _selectedImmobileEntity;
   private GridImmobileEntity _SelectedImmobileEntity
   {
@@ -54,14 +67,49 @@ public class HUDManager : MonoBehaviour
     _SelectedImmobileEntity = entity;
   }
 
-  private void HandleOnGameStateChanged(GameState state)
-  {
-    _SelectedImmobileEntity = null;
-  }
-
   public void HandleChooseGemClick()
   {
     var pos = _selectedImmobileEntity.GetGridPosition();
     BuildPhaseManager.Instance.ChooseGem(pos.x, pos.y);
+  }
+
+  // Objective board
+  [SerializeField]
+  private Canvas _objectiveCanvas;
+
+  public void ChangeObjectiveText(string text)
+  {
+    _objectiveCanvas.GetComponentInChildren<TextMeshProUGUI>().text = text;
+  }
+
+  public void UpdateBuildingPhaseObjective()
+  {
+    var gemsLeft = BuildPhaseManager.Instance.GemsToPlace;
+    string text;
+    if (gemsLeft > 0)
+    {
+      text = $"Place {gemsLeft} more gems and select one to keep.";
+    }
+    else
+    {
+      text = "Select one of the gems to keep.";
+    }
+    ChangeObjectiveText(text);
+  }
+
+  // General
+  private void HandleOnGameStateChanged(GameState state)
+  {
+    _SelectedImmobileEntity = null;
+
+    // Objective text changing
+    switch (state)
+    {
+      case GameState.Building:
+        {
+          UpdateBuildingPhaseObjective();
+          break;
+        }
+    }
   }
 }

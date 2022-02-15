@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ public class BuildPhaseManager : MonoBehaviour
   private Dictionary<Vector2, GridImmobileEntity> _currentWaveGems = new Dictionary<Vector2, GridImmobileEntity>();
   private static BuildPhaseManager _instance;
   public static BuildPhaseManager Instance { get { return _instance; } }
+
+  public static event Action OnGemPlaced;
 
   void Awake()
   {
@@ -57,6 +60,8 @@ public class BuildPhaseManager : MonoBehaviour
     gemTower.SetTowerBlueprint(gemBlueprint);
 
     _currentWaveGems[new Vector2(x, y)] = gemTower;
+
+    OnGemPlaced?.Invoke();
 
     return gemTower;
   }
