@@ -65,13 +65,12 @@ public class BuildPhaseHUDManager : MonoBehaviour
 
   private void HandleSelectImmobileEntity(GridImmobileEntity entity)
   {
+    if (GameManager.Instance.State != GameState.Building) return;
+
     if (entity != null)
     {
-      if (GameManager.Instance.State == GameState.Building)
-      {
-        var pos = entity.GetGridPosition();
-        _selectGemOnBuildCanvas.gameObject.SetActive(BuildPhaseManager.Instance.IsBuiltGem(pos.x, pos.y));
-      }
+      var pos = entity.GetGridPosition();
+      _selectGemOnBuildCanvas.gameObject.SetActive(BuildPhaseManager.Instance.IsBuiltGem(pos.x, pos.y));
     }
     else
     {
