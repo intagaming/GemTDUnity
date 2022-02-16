@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5245243453567264068}
   - component: {fileID: 5772862043121812244}
+  - component: {fileID: -1145367236684840663}
   - component: {fileID: 2846651924149693606}
   - component: {fileID: 2461718274746604708}
   - component: {fileID: 3404130249187996235}
   - component: {fileID: -956169357997016689}
-  - component: {fileID: -1145367236684840663}
   m_Layer: 0
   m_Name: Frenzied Pig
   m_TagString: Untagged
@@ -87,6 +87,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &-1145367236684840663
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6961260671295722068}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.25
 --- !u!114 &2846651924149693606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,19 +200,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 0}
---- !u!58 &-1145367236684840663
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6961260671295722068}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5

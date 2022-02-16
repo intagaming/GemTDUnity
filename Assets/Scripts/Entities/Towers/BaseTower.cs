@@ -6,7 +6,8 @@ public class BaseTower : GridImmobileEntity
 {
   // This field is programmatically assigned if it's a ScriptableGemTower.
   [SerializeField]
-  protected ScriptableTower TowerBlueprint;
+  protected ScriptableTower _towerBlueprint;
+  public ScriptableTower TowerBlueprint { get => _towerBlueprint; }
 
   private float _cooldown = 0f;
   private BaseEnemy _target = null;
@@ -25,7 +26,7 @@ public class BaseTower : GridImmobileEntity
   {
     if (_cooldown > 0f) return;
 
-    var stats = TowerBlueprint.BaseStats;
+    var stats = _towerBlueprint.BaseStats;
     var enemies = DefensePhaseManager.Instance.WaveEnemies;
 
     // Check if target is dead or out of reach
@@ -61,13 +62,14 @@ public class BaseTower : GridImmobileEntity
   {
     if (_target != enemy) _target = enemy;
 
-    var stats = TowerBlueprint.BaseStats;
-    _cooldown = stats.attackSpeed;
-    enemy.Damage(this, stats.damage);
+    _cooldown = _towerBlueprint.BaseStats.attackSpeed;
+
+    var projectile = Instantiate(_towerBlueprint.projectile.prefab, transform.position, Quaternion.identity);
+    projectile.Init(this, enemy);
   }
 
   public void SetTowerBlueprint(ScriptableTower blueprint)
   {
-    TowerBlueprint = blueprint;
+    _towerBlueprint = blueprint;
   }
 }

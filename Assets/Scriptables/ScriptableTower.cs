@@ -8,6 +8,7 @@ public abstract class ScriptableTower : ScriptableObject
   [SerializeField]
   private TowerStats stats;
   public TowerStats BaseStats => stats;
+  public ScriptableProjectile projectile;
 }
 
 [Serializable]

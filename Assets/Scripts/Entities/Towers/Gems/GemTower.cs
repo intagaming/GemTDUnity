@@ -7,7 +7,7 @@ public class GemTower : BaseTower
 {
   protected ScriptableGemTower GemTowerBlueprint
   {
-    get { return (ScriptableGemTower)TowerBlueprint; }
+    get { return (ScriptableGemTower)_towerBlueprint; }
   }
 
   public int Level { get => GemTowerBlueprint.gemLevel; }
