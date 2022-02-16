@@ -7,6 +7,8 @@ public class BuildPhaseHUDManager : MonoBehaviour
 {
   [SerializeField]
   private Button _chooseGemButton;
+  [SerializeField]
+  private Canvas _selectGemOnBuildCanvas;
 
   private static BuildPhaseHUDManager _instance;
   public static BuildPhaseHUDManager Instance { get => _instance; }
@@ -20,12 +22,14 @@ public class BuildPhaseHUDManager : MonoBehaviour
   {
     BuildPhaseManager.OnGemPlaced += HandleOnGemPlaced;
     GameManager.OnGameStateChanged += HandleOnGameStateChanged;
+    HUDManager.OnSelectImmobileEntity += HandleSelectImmobileEntity;
   }
 
   void OnDestroy()
   {
     BuildPhaseManager.OnGemPlaced -= HandleOnGemPlaced;
     GameManager.OnGameStateChanged -= HandleOnGameStateChanged;
+    HUDManager.OnSelectImmobileEntity -= HandleSelectImmobileEntity;
   }
 
   private void HandleOnGameStateChanged(GameState state)
@@ -56,6 +60,22 @@ public class BuildPhaseHUDManager : MonoBehaviour
     if (gemsLeft == 0)
     {
       _chooseGemButton.interactable = true;
+    }
+  }
+
+  private void HandleSelectImmobileEntity(GridImmobileEntity entity)
+  {
+    if (entity != null)
+    {
+      if (GameManager.Instance.State == GameState.Building)
+      {
+        var pos = entity.GetGridPosition();
+        _selectGemOnBuildCanvas.gameObject.SetActive(BuildPhaseManager.Instance.IsBuiltGem(pos.x, pos.y));
+      }
+    }
+    else
+    {
+      _selectGemOnBuildCanvas.gameObject.SetActive(false);
     }
   }
 }

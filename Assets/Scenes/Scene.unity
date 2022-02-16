@@ -945,7 +945,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selectIndicator: {fileID: 1524694332}
-  _selectGemOnBuildCanvas: {fileID: 2140828517}
   _objectiveCanvas: {fileID: 88545612}
 --- !u!1 &1148979748
 GameObject:
@@ -1545,6 +1544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _chooseGemButton: {fileID: 33047457}
+  _selectGemOnBuildCanvas: {fileID: 2140828517}
 --- !u!1 &1789049764
 GameObject:
   m_ObjectHideFlags: 0
