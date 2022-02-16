@@ -1500,6 +1500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b178ec473803f5d4ea174949314ac357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _chooseGemButton: {fileID: 33047457}
 --- !u!1 &1789049764
 GameObject:
   m_ObjectHideFlags: 0
