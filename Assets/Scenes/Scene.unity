@@ -206,8 +206,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1060878592}
-        m_TargetAssemblyTypeName: HUDManager, Assembly-CSharp
+      - m_Target: {fileID: 1707721542}
+        m_TargetAssemblyTypeName: BuildPhaseHUDManager, Assembly-CSharp
         m_MethodName: HandleChooseGemClick
         m_Mode: 1
         m_Arguments:

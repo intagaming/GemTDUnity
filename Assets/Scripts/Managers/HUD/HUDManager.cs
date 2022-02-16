@@ -50,6 +50,7 @@ public class HUDManager : MonoBehaviour
       OnSelectImmobileEntity?.Invoke(value);
     }
   }
+  public GridImmobileEntity SelectedImmobileEntity { get => _SelectedImmobileEntity; }
 
 
   public void SelectGridEntity(int x, int y)
@@ -58,12 +59,6 @@ public class HUDManager : MonoBehaviour
 
     var entity = GridManager.Instance.GetGridImmobileEntity(x, y);
     _SelectedImmobileEntity = entity;
-  }
-
-  public void HandleChooseGemClick()
-  {
-    var pos = _selectedImmobileEntity.GetGridPosition();
-    BuildPhaseManager.Instance.ChooseGem(pos.x, pos.y);
   }
 
   // Objective board

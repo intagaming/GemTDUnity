@@ -78,4 +78,11 @@ public class BuildPhaseHUDManager : MonoBehaviour
       _selectGemOnBuildCanvas.gameObject.SetActive(false);
     }
   }
+
+  public void HandleChooseGemClick()
+  {
+    var pos = HUDManager.Instance.SelectedImmobileEntity.GetGridPosition();
+    BuildPhaseManager.Instance.ChooseGem(pos.x, pos.y);
+  }
+
 }
