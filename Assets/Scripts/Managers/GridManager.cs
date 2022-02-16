@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour
@@ -27,6 +28,10 @@ public class GridManager : MonoBehaviour
 
   // This stores Stones and Towers and such.
   private Dictionary<Vector2, GridImmobileEntity> _immobileEntities;
+  public IEnumerable<KeyValuePair<Vector2, GridImmobileEntity>> GridTowers
+  {
+    get => _immobileEntities.Where((pair) => pair.Value is BaseTower);
+  }
 
   private static GridManager _instance;
   public static GridManager Instance { get { return _instance; } }
