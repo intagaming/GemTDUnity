@@ -110,6 +110,11 @@ public class HUDManager : MonoBehaviour
           UpdateBuildingPhaseObjective();
           break;
         }
+      case GameState.Defense:
+        {
+          ChangeObjectiveText("Manage your towers to defeat all enemies!");
+          break;
+        }
     }
   }
 }
