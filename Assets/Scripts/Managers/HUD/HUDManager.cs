@@ -21,13 +21,11 @@ public class HUDManager : MonoBehaviour
   void Start()
   {
     GameManager.OnGameStateChanged += HandleOnGameStateChanged;
-    BuildPhaseManager.OnGemPlaced += UpdateBuildingPhaseObjective;
   }
 
   void OnDestroy()
   {
     GameManager.OnGameStateChanged -= HandleOnGameStateChanged;
-    BuildPhaseManager.OnGemPlaced -= UpdateBuildingPhaseObjective;
   }
 
   // Select immobile entity
@@ -82,39 +80,11 @@ public class HUDManager : MonoBehaviour
     _objectiveCanvas.GetComponentInChildren<TextMeshProUGUI>().text = text;
   }
 
-  public void UpdateBuildingPhaseObjective()
-  {
-    var gemsLeft = BuildPhaseManager.Instance.GemsToPlace;
-    string text;
-    if (gemsLeft > 0)
-    {
-      text = $"Place {gemsLeft} more gems and select one to keep.";
-    }
-    else
-    {
-      text = "Select one of the gems to keep.";
-    }
-    ChangeObjectiveText(text);
-  }
 
   // General
   private void HandleOnGameStateChanged(GameState state)
   {
+    // Deselect any entity selection
     _SelectedImmobileEntity = null;
-
-    // Objective text changing
-    switch (state)
-    {
-      case GameState.Building:
-        {
-          UpdateBuildingPhaseObjective();
-          break;
-        }
-      case GameState.Defense:
-        {
-          ChangeObjectiveText("Manage your towers to defeat all enemies!");
-          break;
-        }
-    }
   }
 }

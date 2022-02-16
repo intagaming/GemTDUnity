@@ -201,7 +201,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 33047458}
   m_OnClick:
     m_PersistentCalls:
@@ -1154,6 +1154,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1292064047}
   - component: {fileID: 1292064046}
+  - component: {fileID: 1292064048}
   m_Layer: 0
   m_Name: Defense Phase Manager
   m_TagString: Untagged
@@ -1190,6 +1191,18 @@ Transform:
   m_Father: {fileID: 590188433}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1292064048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292064045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af850af2ff9c3a548a5bb5023e7d4ecb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1304189791
 GameObject:
   m_ObjectHideFlags: 0
@@ -1441,6 +1454,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1707721541}
   - component: {fileID: 1707721540}
+  - component: {fileID: 1707721542}
   m_Layer: 0
   m_Name: Build Phase Manager
   m_TagString: Untagged
@@ -1474,6 +1488,18 @@ Transform:
   m_Father: {fileID: 590188433}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1707721542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707721539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b178ec473803f5d4ea174949314ac357, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1789049764
 GameObject:
   m_ObjectHideFlags: 0
