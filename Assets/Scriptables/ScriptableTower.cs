@@ -9,6 +9,7 @@ public abstract class ScriptableTower : ScriptableObject
   private TowerStats stats;
   public TowerStats BaseStats => stats;
   public ScriptableProjectile projectile;
+  public Sprite sprite;
 }
 
 [Serializable]

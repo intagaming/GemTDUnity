@@ -17,6 +17,7 @@ MonoBehaviour:
     range: 0
     attackSpeed: 0
   projectile: {fileID: 11400000, guid: 09da3d319d1309f44811eb0ab440daa5, type: 2}
+  sprite: {fileID: 2747690628134850419, guid: 16037dbd798344f57a526d53d48f5ead, type: 3}
   prefab: {fileID: 1688833705887063994, guid: 7a488f55274ee6b4b90cbca3716c89cb, type: 3}
   recipe:
   - {fileID: 11400000, guid: 68da6bbc456a9fd42a98f5f007e35029, type: 2}
