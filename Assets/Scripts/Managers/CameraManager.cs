@@ -9,10 +9,6 @@ public class CameraManager : MonoBehaviour
   private float _minSize = 6, _maxSize = 19;
   private Vector3? _start;
   private Camera _camera;
-  [SerializeField]
-  private float _zoomChange = 4;
-  [SerializeField]
-  private float _smoothness = 8;
   private UITester _uiTest;
 
   private void Start()

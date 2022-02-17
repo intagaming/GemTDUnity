@@ -697,8 +697,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _minSize: 10
   _maxSize: 19
-  _zoomChange: 4
-  _smoothness: 10
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
