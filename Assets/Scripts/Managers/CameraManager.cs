@@ -24,35 +24,52 @@ public class CameraManager : MonoBehaviour
   void Update()
   {
     var isOverUI = _uiTest.IsPointerOverUIElement();
-    if (Input.GetMouseButtonDown(0) && !isOverUI)
+
+    if (Input.touchCount == 2) // Pinching
     {
-      _start = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+      Touch touchZero = Input.GetTouch(0);
+      Touch touchOne = Input.GetTouch(1);
+
+      Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
+      Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
+
+      float prevMagnitude = (touchZeroPrevPos - touchOnePrevPos).magnitude;
+      float currentMagnitude = (touchZero.position - touchOne.position).magnitude;
+
+      float difference = currentMagnitude - prevMagnitude;
+
+      Zoom(difference * 0.01f);
     }
-    if (_start != null)
+    else
     {
-      if (Input.GetMouseButton(0))
+      // Dragging
+      if (Input.GetMouseButtonDown(0) && !isOverUI)
       {
-        Vector3 direction = (Vector3)_start - Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Camera.main.transform.position += direction;
+        _start = Camera.main.ScreenToWorldPoint(Input.mousePosition);
       }
-      else
+      if (_start != null)
       {
-        _start = null;
+        if (Input.GetMouseButton(0))
+        {
+          Vector3 direction = (Vector3)_start - Camera.main.ScreenToWorldPoint(Input.mousePosition);
+          Camera.main.transform.position += direction;
+        }
+        else
+        {
+          _start = null;
+        }
       }
     }
 
     // Zoom
     if (!isOverUI)
     {
-      if (Input.mouseScrollDelta.y > 0)
-      {
-        _camera.orthographicSize -= _zoomChange * Time.deltaTime * _smoothness;
-      }
-      if (Input.mouseScrollDelta.y < 0)
-      {
-        _camera.orthographicSize += _zoomChange * Time.deltaTime * _smoothness;
-      }
-      _camera.orthographicSize = Mathf.Clamp(_camera.orthographicSize, _minSize, _maxSize);
+      Zoom(Input.GetAxis("Mouse ScrollWheel"));
     }
+  }
+
+  private void Zoom(float increment)
+  {
+    Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize - increment, _minSize, _maxSize);
   }
 }
