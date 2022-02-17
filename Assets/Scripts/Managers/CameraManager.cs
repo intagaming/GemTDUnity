@@ -41,24 +41,18 @@ public class CameraManager : MonoBehaviour
       }
     }
 
-    Zoom();
-
-  }
-
-  void Zoom()
-  {
-    if (Input.mouseScrollDelta.y > 0)
+    // Zoom
+    if (!isOverUI)
     {
-      _camera.orthographicSize -= _zoomChange * Time.deltaTime * _smoothness;
+      if (Input.mouseScrollDelta.y > 0)
+      {
+        _camera.orthographicSize -= _zoomChange * Time.deltaTime * _smoothness;
+      }
+      if (Input.mouseScrollDelta.y < 0)
+      {
+        _camera.orthographicSize += _zoomChange * Time.deltaTime * _smoothness;
+      }
+      _camera.orthographicSize = Mathf.Clamp(_camera.orthographicSize, _minSize, _maxSize);
     }
-    if (Input.mouseScrollDelta.y < 0)
-    {
-      _camera.orthographicSize += _zoomChange * Time.deltaTime * _smoothness;
-    }
-    _camera.orthographicSize = Mathf.Clamp(_camera.orthographicSize, _minSize, _maxSize);
   }
-
-
-
-
 }
