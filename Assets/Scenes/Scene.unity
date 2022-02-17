@@ -936,7 +936,6 @@ GameObject:
   - component: {fileID: 766138389}
   - component: {fileID: 766138388}
   - component: {fileID: 766138387}
-  - component: {fileID: 766138390}
   m_Layer: 5
   m_Name: Combine Towers Canvas
   m_TagString: Untagged
@@ -1028,20 +1027,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &766138390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 766138385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f43ffb2fed642a64c9d78b8c588a0e55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _cardContainer: {fileID: 1277286636}
-  _combineCardPrefab: {fileID: 9052752077696599040, guid: 920b2004bcd6bcb429adba0d16fec55f, type: 3}
 --- !u!1 &924936928
 GameObject:
   m_ObjectHideFlags: 0
@@ -1183,6 +1168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1060878591}
   - component: {fileID: 1060878592}
+  - component: {fileID: 1060878593}
   m_Layer: 0
   m_Name: HUD Manager
   m_TagString: Untagged
@@ -1219,6 +1205,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _selectIndicator: {fileID: 1524694332}
   _objectiveCanvas: {fileID: 88545612}
+--- !u!114 &1060878593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1060878590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f43ffb2fed642a64c9d78b8c588a0e55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cardContainer: {fileID: 1277286636}
+  _combineCardPrefab: {fileID: 9052752077696599040, guid: 920b2004bcd6bcb429adba0d16fec55f, type: 3}
 --- !u!1 &1148979748
 GameObject:
   m_ObjectHideFlags: 0

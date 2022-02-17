@@ -20,11 +20,13 @@ public class HUDManager : MonoBehaviour
   void Start()
   {
     GameManager.OnGameStateChanged += HandleOnGameStateChanged;
+    GridManager.OnGridChange += HandleGridChange;
   }
 
   void OnDestroy()
   {
     GameManager.OnGameStateChanged -= HandleOnGameStateChanged;
+    GridManager.OnGridChange -= HandleGridChange;
   }
 
   // Select immobile entity
@@ -61,6 +63,14 @@ public class HUDManager : MonoBehaviour
     _SelectedImmobileEntity = entity;
   }
 
+  public void RefreshSelection()
+  {
+    if (_SelectedImmobileEntity == null) return;
+    var pos = _SelectedImmobileEntity.GetGridPosition();
+    var entity = GridManager.Instance.GetGridImmobileEntity(pos.x, pos.y);
+    _SelectedImmobileEntity = entity;
+  }
+
   // Objective board
   [SerializeField]
   private Canvas _objectiveCanvas;
@@ -76,5 +86,13 @@ public class HUDManager : MonoBehaviour
   {
     // Deselect any entity selection
     _SelectedImmobileEntity = null;
+  }
+
+  private void HandleGridChange(Vector2 pos, GridImmobileEntity entity)
+  {
+    if (_SelectedImmobileEntity != null && _SelectedImmobileEntity.GetGridPosition() == pos)
+    {
+      RefreshSelection();
+    }
   }
 }

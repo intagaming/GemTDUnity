@@ -67,4 +67,24 @@ public class CombineManager : MonoBehaviour
       return true;
     });
   }
+
+  public List<BaseTower> GetGridIngredientsFor(ScriptableAdvancedTower tower, BaseTower combineFrom)
+  {
+    var ingredients = new List<BaseTower>();
+    bool baseIngredientIncluded = false; // i.e. is combineFrom included
+    foreach (var ingredient in tower.recipe)
+    {
+      if (!baseIngredientIncluded && combineFrom.TowerBlueprint == ingredient)
+      {
+        baseIngredientIncluded = true;
+        ingredients.Add(combineFrom);
+        continue;
+      }
+      var found = GridManager.Instance.GridTowers.First(gridTowerPair => gridTowerPair.TowerBlueprint == ingredient);
+      if (found == null) return null;
+      ingredients.Add(found);
+    }
+    return ingredients;
+  }
+
 }

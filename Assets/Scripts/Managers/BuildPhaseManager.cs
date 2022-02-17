@@ -78,8 +78,7 @@ public class BuildPhaseManager : MonoBehaviour
 
       // Turns into stone
       var gem = _currentWaveGems[iKey];
-      GridManager.Instance.DestroyEntity((int)iKey.x, (int)iKey.y);
-      GridManager.Instance.PlaceStone((int)iKey.x, (int)iKey.y);
+      GridManager.Instance.PlaceStone((int)iKey.x, (int)iKey.y, true);
     });
 
     var chosen = _currentWaveGems[key];

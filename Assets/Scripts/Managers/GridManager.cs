@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,8 @@ public class GridManager : MonoBehaviour
   private Transform _immobileEntitiesParent;
   [SerializeField]
   private bool _drawGizmos;
+
+  public static event Action<Vector2, GridImmobileEntity> OnGridChange;
 
   private Dictionary<Vector2, Tile> _tiles;
 
@@ -67,27 +70,35 @@ public class GridManager : MonoBehaviour
   }
 
   // Returns the object if placed successfully; null if the tile is occupied.
-  public T Place<T>(T immobileEntityPrefab, int x, int y, Transform parent) where T : GridImmobileEntity
+  public T Place<T>(T immobileEntityPrefab, int x, int y, Transform parent, bool replace = false) where T : GridImmobileEntity
   {
     if (IsTileOccupied(x, y))
     {
-      print("Tile occupied.");
-      return null;
+      if (!replace)
+      {
+        print("Tile occupied.");
+        return null;
+      }
+      else
+      {
+        DestroyEntity(x, y, false);
+      }
     }
     var key = new Vector2(x, y);
     var entityInstance = Instantiate(immobileEntityPrefab, key, Quaternion.identity, parent);
     _immobileEntities[key] = entityInstance;
+    OnGridChange?.Invoke(key, entityInstance);
     return entityInstance;
   }
 
-  public Stone PlaceStone(int x, int y)
+  public Stone PlaceStone(int x, int y, bool replace = false)
   {
-    return Place(_stonePrefab, x, y, _immobileEntitiesParent);
+    return Place(_stonePrefab, x, y, _immobileEntitiesParent, replace);
   }
 
-  public T PlaceImmobileEntity<T>(T immobileEntityPrefab, int x, int y) where T : GridImmobileEntity
+  public T PlaceImmobileEntity<T>(T immobileEntityPrefab, int x, int y, bool replace = false) where T : GridImmobileEntity
   {
-    return Place(immobileEntityPrefab, x, y, _immobileEntitiesParent);
+    return Place(immobileEntityPrefab, x, y, _immobileEntitiesParent, replace);
   }
 
   private void GenerateTiles()
@@ -145,15 +156,17 @@ public class GridManager : MonoBehaviour
     AstarPath.active.Scan();
   }
 
-  public bool DestroyEntity(int x, int y)
+  public bool DestroyEntity(int x, int y, bool invokeEvent = true)
   {
     if (!IsTileOccupied(x, y)) return false;
 
     var key = new Vector2(x, y);
     Destroy(_immobileEntities[key].gameObject);
     _immobileEntities.Remove(key);
+    if (invokeEvent) OnGridChange?.Invoke(key, null);
     return true;
   }
+
 
   public bool IsTileOccupied(int x, int y)
   {
@@ -164,5 +177,24 @@ public class GridManager : MonoBehaviour
   {
     if (!IsTileOccupied(x, y)) return null;
     return _immobileEntities[new Vector2(x, y)];
+  }
+
+  public void Combine(BaseTower from, ScriptableAdvancedTower to)
+  {
+    var ingredients = CombineManager.Instance.GetGridIngredientsFor(to, from);
+    if (ingredients == null) return;
+    foreach (var ingredient in ingredients)
+    {
+      var x = (int)ingredient.transform.position.x;
+      var y = (int)ingredient.transform.position.y;
+      if (ingredient == from)
+      {
+        PlaceImmobileEntity(to.prefab, x, y, true);
+      }
+      else
+      {
+        PlaceStone(x, y, true);
+      }
+    }
   }
 }

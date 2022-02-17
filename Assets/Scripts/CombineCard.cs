@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class CombineCard : MonoBehaviour
 {
   [SerializeField]
-  public ScriptableTower Tower;
+  public ScriptableAdvancedTower Tower;
   [SerializeField]
   private Image _towerImage;
   [SerializeField]
@@ -17,5 +17,12 @@ public class CombineCard : MonoBehaviour
   {
     _towerImage.sprite = Tower.sprite;
     _towerName.text = Tower.name;
+  }
+
+  public void Commit()
+  {
+    var selectedTower = HUDManager.Instance.SelectedImmobileEntity.GetComponent<BaseTower>();
+    if (selectedTower == null) return;
+    GridManager.Instance.Combine(selectedTower, Tower);
   }
 }
