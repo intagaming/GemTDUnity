@@ -42,19 +42,18 @@ public class TowerManager : MonoBehaviour
 
     // Determine gem level
     int chosenLevel = 0;
-    float[] changes = GetGemChance(wave);
+    float[] chances = GetGemChance(wave);
     float roll = Random.Range(0f, 1.0f);
     float cumulativeChance = 0f;
-    for (int i = 0; i < changes.Length; i++)
+    for (int i = 0; i < chances.Length; i++)
     {
-      if (roll >= cumulativeChance && roll <= changes[i])
+      if (roll >= cumulativeChance && roll <= cumulativeChance + chances[i])
       {
         chosenLevel = i + 1;
         break;
       }
-      cumulativeChance += changes[i];
+      cumulativeChance += chances[i];
     }
-    if (cumulativeChance > 1.0f) throw new System.Exception("Not proper gem chance distribution.");
     if (chosenLevel == 0) throw new System.Exception("Invalid chosen gem level");
 
     var levelGemTowers = _gemTowers.Where(t => t.gemLevel == chosenLevel).ToList();
