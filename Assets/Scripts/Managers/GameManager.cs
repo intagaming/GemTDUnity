@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+  public const int INITIAL_HEALTH = 50;
+
   [SerializeField]
   private GameObject _checkpointPrefab;
   [SerializeField]
@@ -55,6 +57,10 @@ public class GameManager : MonoBehaviour
     get { return _wave; }
   }
 
+  private int _health;
+  public int Health { get => _health; }
+  public static event Action<int> OnHealthChanged;
+
   private Transform[] _checkpoints;
   public Transform[] Checkpoints
   {
@@ -86,6 +92,14 @@ public class GameManager : MonoBehaviour
       Instantiate(_checkpointPrefab, new Vector2(32f, 4f), Quaternion.identity, _checkpointsParent).transform,
     };
 
+    _health = INITIAL_HEALTH;
+  }
+
+  public void DamageCastle(int damage)
+  {
+    _health = Math.Max(0, _health - damage);
+    OnHealthChanged?.Invoke(_health);
+    Debug.Log($"Health: {_health}");
   }
 }
 

@@ -113,7 +113,7 @@ public class DefensePhaseManager : MonoBehaviour
 
   public void HandleEnemyReachTheEnd(BaseEnemy enemy)
   {
-    // TODO: subtract health
+    GameManager.Instance.DamageCastle(1); // TODO: castle damage in ScriptableEnemy
     Destroy(enemy.gameObject);
   }
 
