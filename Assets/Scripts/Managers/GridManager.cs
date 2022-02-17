@@ -35,7 +35,7 @@ public class GridManager : MonoBehaviour
   {
     get => _immobileEntities
       .Where((pair) => pair.Value.GetComponent<BaseTower>() != null)
-      .Select(pair => (BaseTower)pair.Value);
+      .Select(pair => pair.Value.GetComponent<BaseTower>());
   }
 
   private static GridManager _instance;
