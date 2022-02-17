@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.UI;
 
 public class CombineTowerHUDManager : MonoBehaviour
 {
+  [SerializeField]
+  private Canvas _combineCanvas;
   [SerializeField]
   private Transform _cardContainer;
   [SerializeField]
@@ -47,9 +50,13 @@ public class CombineTowerHUDManager : MonoBehaviour
   private void ShowCombineFor(GridImmobileEntity entity)
   {
     var lastCards = _cardContainer.GetComponentsInChildren<CombineCard>();
-    foreach (var lastCard in lastCards)
+    if (lastCards.Count() > 0)
     {
-      _combineCardPool.Release(lastCard);
+      foreach (var lastCard in lastCards)
+      {
+        _combineCardPool.Release(lastCard);
+      }
+      _combineCanvas.gameObject.SetActive(false);
     }
 
     var tower = entity != null ? entity.GetComponent<BaseTower>() : null;
@@ -65,11 +72,15 @@ public class CombineTowerHUDManager : MonoBehaviour
     }
 
     var combinables = CombineManager.Instance.GetCombinableAdvancedTowersFrom(tower.TowerBlueprint);
-    foreach (var combinable in combinables)
+    if (combinables.Any())
     {
-      var card = _combineCardPool.Get();
-      card.Tower = combinable;
-      card.transform.SetParent(_cardContainer, false);
+      foreach (var combinable in combinables)
+      {
+        var card = _combineCardPool.Get();
+        card.Tower = combinable;
+        card.transform.SetParent(_cardContainer, false);
+      }
+      _combineCanvas.gameObject.SetActive(true);
     }
   }
 
