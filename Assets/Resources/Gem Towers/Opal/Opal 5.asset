@@ -16,6 +16,8 @@ MonoBehaviour:
     damage: 1
     range: 3
     attackSpeed: 0.2
+  auras:
+    trueSight: 1
   projectile: {fileID: 11400000, guid: 09da3d319d1309f44811eb0ab440daa5, type: 2}
   sprite: {fileID: 0}
   towerPrefab: {fileID: 7307559336865207458, guid: 6dc75ea87b22e54458f7983fe0c91cac, type: 3}

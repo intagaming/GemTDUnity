@@ -16,6 +16,9 @@ MonoBehaviour:
     damage: 1
     range: 3
     attackSpeed: 0.2
+  auras:
+    trueSight: 1
   projectile: {fileID: 11400000, guid: 09da3d319d1309f44811eb0ab440daa5, type: 2}
+  sprite: {fileID: 0}
   towerPrefab: {fileID: 7307559336865207458, guid: 6f477f2a04030ec4e9cdda802da3033e, type: 3}
   gemLevel: 1
