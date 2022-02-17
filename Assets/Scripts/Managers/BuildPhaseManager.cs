@@ -57,8 +57,6 @@ public class BuildPhaseManager : MonoBehaviour
     var gemTower = GridManager.Instance.PlaceImmobileEntity(gemBlueprint.towerPrefab, x, y);
     if (gemTower == null) return null;
 
-    gemTower.SetTowerBlueprint(gemBlueprint);
-
     _currentWaveGems[new Vector2(x, y)] = gemTower;
 
     OnGemPlaced?.Invoke();

@@ -17,5 +17,6 @@ MonoBehaviour:
     range: 3
     attackSpeed: 0.2
   projectile: {fileID: 11400000, guid: 09da3d319d1309f44811eb0ab440daa5, type: 2}
-  towerPrefab: {fileID: 6651102265586759139, guid: 287542067fc292443ac2b6695aec6621, type: 3}
+  sprite: {fileID: 0}
+  towerPrefab: {fileID: 6651102265586759139, guid: e91bfb09eb6f7ac4d88e1a2494029e7b, type: 3}
   gemLevel: 4
