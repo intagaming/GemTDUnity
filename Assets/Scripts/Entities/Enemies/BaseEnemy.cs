@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Pathfinding;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class BaseEnemy : GridMobileEntity
 {
   public const float CheckpointRadius = 0.2f;
   public const float InvisibleAfter = 1.5f;
+  public const float TrueSightRange = 5f;
 
 
   [SerializeField]
@@ -94,7 +96,7 @@ public class BaseEnemy : GridMobileEntity
 
   public bool IsUnderTrueSightAura()
   {
-    // TODO: Check if under influence of true sight aura
-    return false;
+    return GridManager.Instance.GridTowers
+      .Any(tower => tower.TowerBlueprint.BaseAuras.trueSight && Vector3.Distance(transform.position, tower.transform.position) < TrueSightRange);
   }
 }
