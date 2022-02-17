@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 5245243453567264068}
   - component: {fileID: 5772862043121812244}
   - component: {fileID: -1145367236684840663}
-  - component: {fileID: 2846651924149693606}
+  - component: {fileID: 6991108191320213717}
   - component: {fileID: 2461718274746604708}
   - component: {fileID: 3404130249187996235}
   - component: {fileID: -956169357997016689}
   m_Layer: 0
-  m_Name: Frenzied Pig
+  m_Name: Flying Pig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 3625043607559282579, guid: 045b15ec09bba42448d89db77fa6f20a, type: 3}
-  m_Color: {r: 0.8207547, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.7830189, g: 0.4629168, b: 0.4629168, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -103,7 +103,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.25
---- !u!114 &2846651924149693606
+--- !u!114 &6991108191320213717
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,10 +112,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6961260671295722068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c61420c76cc021e40b6cfb8496a8f6bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 104e7edd682e2004e9369074e674de46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scriptableEnemy: {fileID: 11400000, guid: cb47416180e42a445b129adb8f451cff, type: 2}
+  _scriptableEnemy: {fileID: 11400000, guid: 2e2234e0be925974ab7bf5ab3655ca87, type: 2}
 --- !u!114 &2461718274746604708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,7 +143,7 @@ MonoBehaviour:
   traversableTags: -1
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
-    value: 1
+    value: 2
 --- !u!114 &3404130249187996235
 MonoBehaviour:
   m_ObjectHideFlags: 0
