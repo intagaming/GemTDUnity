@@ -54,7 +54,7 @@ public class TowerManager : MonoBehaviour
       }
       cumulativeChance += changes[i];
     }
-    if (cumulativeChance >= 1.0f) throw new System.Exception("Not proper gem chance distribution.");
+    if (cumulativeChance > 1.0f) throw new System.Exception("Not proper gem chance distribution.");
     if (chosenLevel == 0) throw new System.Exception("Invalid chosen gem level");
 
     var levelGemTowers = _gemTowers.Where(t => t.gemLevel == chosenLevel).ToList();
