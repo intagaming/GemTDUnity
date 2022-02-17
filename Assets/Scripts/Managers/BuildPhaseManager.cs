@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class BuildPhaseManager : MonoBehaviour
 {
-  public const int GEMS_EACH_WAVE = 500;
+  public const int GEMS_EACH_WAVE = 5;
   private int _gemsToPlace = 0;
   public int GemsToPlace { get => _gemsToPlace; }
 

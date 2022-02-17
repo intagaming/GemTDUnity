@@ -50,6 +50,13 @@ public class CombineTowerHUDManager : MonoBehaviour
     {
       return;
     }
+    // don't allow combining for towers other than this wave's towers in Build phase
+    var pos = tower.GetGridPosition();
+    if (GameManager.Instance.State == GameState.Building && !BuildPhaseManager.Instance.IsBuiltGem(pos.x, pos.y))
+    {
+      return;
+    }
+
     var combinables = CombineManager.Instance.GetCombinableAdvancedTowersFrom(tower.TowerBlueprint);
     foreach (var combinable in combinables)
     {
