@@ -30,14 +30,21 @@ public class CombineTowerHUDManager : MonoBehaviour
     }, false, 4, 100);
 
     HUDManager.OnSelectImmobileEntity += HandleSelectImmobileEntity;
+    GridManager.OnGridChange += HandleGridChange;
   }
 
   void OnDestroy()
   {
     HUDManager.OnSelectImmobileEntity -= HandleSelectImmobileEntity;
+    GridManager.OnGridChange -= HandleGridChange;
   }
 
   private void HandleSelectImmobileEntity(GridImmobileEntity entity)
+  {
+    ShowCombineFor(entity);
+  }
+
+  private void ShowCombineFor(GridImmobileEntity entity)
   {
     var lastCards = _cardContainer.GetComponentsInChildren<CombineCard>();
     foreach (var lastCard in lastCards)
@@ -63,6 +70,14 @@ public class CombineTowerHUDManager : MonoBehaviour
       var card = _combineCardPool.Get();
       card.Tower = combinable;
       card.transform.SetParent(_cardContainer, false);
+    }
+  }
+
+  private void HandleGridChange(Vector2 pos, GridImmobileEntity entity)
+  {
+    if (HUDManager.Instance.SelectedImmobileEntity != null)
+    {
+      ShowCombineFor(HUDManager.Instance.SelectedImmobileEntity);
     }
   }
 }
