@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3404130249187996235}
   - component: {fileID: -956169357997016689}
   m_Layer: 0
-  m_Name: Flying Pig
+  m_Name: Cat And Dog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 3625043607559282579, guid: 045b15ec09bba42448d89db77fa6f20a, type: 3}
-  m_Color: {r: 0.7830189, g: 0.4629168, b: 0.4629168, a: 1}
+  m_Color: {r: 0.6886792, g: 0.3194402, b: 0.17974956, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -112,10 +112,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6961260671295722068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 104e7edd682e2004e9369074e674de46, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ca7613740428ce49afb7c2f4f1caa25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scriptableEnemy: {fileID: 11400000, guid: 2e2234e0be925974ab7bf5ab3655ca87, type: 2}
+  _scriptableEnemy: {fileID: 11400000, guid: 0e8f9bac73d64e742af524e2e54e814a, type: 2}
 --- !u!114 &2461718274746604708
 MonoBehaviour:
   m_ObjectHideFlags: 0

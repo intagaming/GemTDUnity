@@ -2393,7 +2393,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemies:
   - {fileID: 11400000, guid: cb47416180e42a445b129adb8f451cff, type: 2}
-  - {fileID: 11400000, guid: 2e2234e0be925974ab7bf5ab3655ca87, type: 2}
+  - {fileID: 11400000, guid: d155570806f117f449f3c94b7d1f8a28, type: 2}
+  - {fileID: 11400000, guid: 61973633182f8f94ea89c3fceb6c4154, type: 2}
   _enemiesParent: {fileID: 1149971088}
 --- !u!4 &1292064047
 Transform:

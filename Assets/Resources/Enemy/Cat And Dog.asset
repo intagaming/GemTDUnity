@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 68ef2afef7119ac4bb595d9852714b44, type: 3}
-  m_Name: Flying Pig
+  m_Name: Cat And Dog
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 6991108191320213717, guid: 890af8b8070a14749ad88809065eecd2, type: 3}
+  enemyPrefab: {fileID: 6991108191320213717, guid: 13c094d344ae37e48b857cdbc4054ed8, type: 3}
   movementSpeed: 10
-  hp: 3
+  hp: 240
