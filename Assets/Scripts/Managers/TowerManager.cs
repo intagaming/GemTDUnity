@@ -58,7 +58,7 @@ public class TowerManager : MonoBehaviour
     if (chosenLevel == 0) throw new System.Exception("Invalid chosen gem level");
 
     var levelGemTowers = _gemTowers.Where(t => t.gemLevel == chosenLevel).ToList();
-    ScriptableGemTower gem = Instantiate(levelGemTowers[Random.Range(0, levelGemTowers.Count)]);
+    ScriptableGemTower gem = levelGemTowers[Random.Range(0, levelGemTowers.Count)];
 
     return gem;
   }

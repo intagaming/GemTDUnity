@@ -28,9 +28,11 @@ public class GridManager : MonoBehaviour
 
   // This stores Stones and Towers and such.
   private Dictionary<Vector2, GridImmobileEntity> _immobileEntities;
-  public IEnumerable<KeyValuePair<Vector2, GridImmobileEntity>> GridTowers
+  public IEnumerable<BaseTower> GridTowers
   {
-    get => _immobileEntities.Where((pair) => pair.Value is BaseTower);
+    get => _immobileEntities
+      .Where((pair) => pair.Value.GetComponent<BaseTower>() != null)
+      .Select(pair => (BaseTower)pair.Value);
   }
 
   private static GridManager _instance;

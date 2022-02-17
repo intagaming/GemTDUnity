@@ -38,14 +38,13 @@ public class CombineManager : MonoBehaviour
 
   public HashSet<ScriptableAdvancedTower> GetAdvancedTowersFrom(ScriptableTower tower)
   {
-    if (!_ingredientToAdvancedDict.ContainsKey(tower)) return null;
+    if (!_ingredientToAdvancedDict.ContainsKey(tower)) return new HashSet<ScriptableAdvancedTower>();
     return _ingredientToAdvancedDict[tower];
   }
 
   public IEnumerable<ScriptableAdvancedTower> GetCombinableAdvancedTowersFrom(ScriptableTower tower)
   {
     var gridTowers = GridManager.Instance.GridTowers;
-
     return GetAdvancedTowersFrom(tower).Where((advanced) =>
     {
       var lookup = new Dictionary<ScriptableTower, int>();
@@ -59,7 +58,7 @@ public class CombineManager : MonoBehaviour
       }
       foreach (var lookupPair in lookup)
       {
-        var found = gridTowers.Count(gridTowerPair => gridTowerPair.Value.GetType() == lookupPair.Key.GetType());
+        var found = gridTowers.Count(gridTowerPair => gridTowerPair.TowerBlueprint == lookupPair.Key);
         if (found < lookupPair.Value)
         {
           return false;
