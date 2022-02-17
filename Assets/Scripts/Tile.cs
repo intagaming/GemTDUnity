@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Tile : MonoBehaviour
+public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler, IDragHandler
 {
   [SerializeField]
   private Color _baseColor, _offsetColor;
@@ -10,6 +11,8 @@ public class Tile : MonoBehaviour
   private GameObject _highlight;
   private int _x;
   private int _y;
+
+  public static Tile MouseDownTile;
 
   public void Init(int x, int y)
   {
@@ -21,18 +24,31 @@ public class Tile : MonoBehaviour
     this._y = y;
   }
 
-  void OnMouseDown()
+  public void OnPointerDown(PointerEventData eventData)
   {
-    BuildPhaseManager.Instance.PlaceGem(_x, _y);
+    MouseDownTile = this;
   }
 
-  void OnMouseEnter()
+  public void OnPointerUp(PointerEventData eventData)
+  {
+    if (MouseDownTile == this)
+    {
+      BuildPhaseManager.Instance.PlaceGem(_x, _y);
+    }
+  }
+
+  public void OnPointerEnter(PointerEventData eventData)
   {
     _highlight.SetActive(true);
   }
 
-  void OnMouseExit()
+  public void OnPointerExit(PointerEventData eventData)
   {
     _highlight.SetActive(false);
+  }
+
+  public void OnDrag(PointerEventData eventData)
+  {
+    MouseDownTile = null;
   }
 }

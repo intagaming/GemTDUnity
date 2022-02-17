@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class GridImmobileEntity : Entity
+public class GridImmobileEntity : Entity, IPointerClickHandler
 {
-  void OnMouseDown()
+  public void OnPointerClick(PointerEventData eventData)
   {
     HUDManager.Instance.SelectGridEntity((int)transform.position.x, (int)transform.position.y);
   }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CameraManager : MonoBehaviour
 {
@@ -12,17 +13,19 @@ public class CameraManager : MonoBehaviour
   private float _zoomChange = 4;
   [SerializeField]
   private float _smoothness = 8;
+
   private void Start()
   {
     _camera = GetComponent<Camera>();
   }
+
   void Update()
   {
-    if (Input.GetMouseButtonDown(1))
+    if (Input.GetMouseButtonDown(0))
     {
       _start = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
-    if (Input.GetMouseButton(1))
+    if (Input.GetMouseButton(0))
     {
       Vector3 direction = _start - Camera.main.ScreenToWorldPoint(Input.mousePosition);
       Camera.main.transform.position += direction;
@@ -30,6 +33,7 @@ public class CameraManager : MonoBehaviour
     Zoom();
 
   }
+
   void Zoom()
   {
     if (Input.mouseScrollDelta.y > 0)
