@@ -84,9 +84,6 @@ public class BuildPhaseManager : MonoBehaviour
     var chosen = _currentWaveGems[key];
     _currentWaveGems.Clear();
 
-    // Rescan the path
-    AstarPath.active.Scan();
-
     // Switch state
     GameManager.Instance.SetState(GameState.Defense);
 
@@ -96,5 +93,25 @@ public class BuildPhaseManager : MonoBehaviour
   public bool IsBuiltGem(int x, int y)
   {
     return _currentWaveGems.ContainsKey(new Vector2(x, y));
+  }
+
+  public void UseWaveGem(Vector2 pos)
+  {
+    _currentWaveGems.Remove(pos);
+  }
+
+  public void ProceedToDefense()
+  {
+    // Turn all wave gems into stone
+    _currentWaveGems.Values.ToList().ForEach(gem =>
+    {
+      var pos = gem.GetGridPosition();
+      GridManager.Instance.PlaceStone(pos.x, pos.y, true);
+    });
+
+    _currentWaveGems.Clear();
+
+    // Switch state
+    GameManager.Instance.SetState(GameState.Defense);
   }
 }

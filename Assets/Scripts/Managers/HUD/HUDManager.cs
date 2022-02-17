@@ -84,8 +84,6 @@ public class HUDManager : MonoBehaviour
   // General
   private void HandleOnGameStateChanged(GameState state)
   {
-    // Deselect any entity selection
-    _SelectedImmobileEntity = null;
   }
 
   private void HandleGridChange(Vector2 pos, GridImmobileEntity entity)

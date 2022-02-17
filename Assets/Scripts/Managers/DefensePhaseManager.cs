@@ -52,6 +52,9 @@ public class DefensePhaseManager : MonoBehaviour
     {
       _enemyLeft = 10;
       _timer = SPAWN_INTERVAL;
+
+      // Rescan the path
+      AstarPath.active.Scan();
       return;
     }
 

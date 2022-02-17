@@ -185,16 +185,26 @@ public class GridManager : MonoBehaviour
     if (ingredients == null) return;
     foreach (var ingredient in ingredients)
     {
-      var x = (int)ingredient.transform.position.x;
-      var y = (int)ingredient.transform.position.y;
+      var pos = ingredient.GetGridPosition();
       if (ingredient == from)
       {
-        PlaceImmobileEntity(to.prefab, x, y, true);
+        PlaceImmobileEntity(to.prefab, pos.x, pos.y, true);
       }
       else
       {
-        PlaceStone(x, y, true);
+        PlaceStone(pos.x, pos.y, true);
       }
+
+      if (BuildPhaseManager.Instance.IsBuiltGem(pos.x, pos.y))
+      {
+        BuildPhaseManager.Instance.UseWaveGem(pos);
+      }
+    }
+
+    if (GameManager.Instance.State == GameState.Building)
+    {
+      var pos = from.GetGridPosition();
+      BuildPhaseManager.Instance.ProceedToDefense();
     }
   }
 }
