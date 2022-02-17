@@ -66,9 +66,4 @@ public class BaseTower : GridImmobileEntity
 
     DefensePhaseManager.Instance.SpawnProjectile(this, enemy);
   }
-
-  public void SetTowerBlueprint(ScriptableTower blueprint)
-  {
-    _towerBlueprint = blueprint;
-  }
 }
