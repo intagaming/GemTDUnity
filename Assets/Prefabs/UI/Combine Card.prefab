@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4256330903531431256}
   - component: {fileID: 4657510943619447485}
   - component: {fileID: 4399833264684543235}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Image Backdrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 9052752077326062026}
   - component: {fileID: 9052752077326062020}
   - component: {fileID: 9052752077326062021}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +244,7 @@ GameObject:
   - component: {fileID: 9052752077696599046}
   - component: {fileID: 9052752077696599041}
   - component: {fileID: 9052752077696599040}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Combine Card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,7 +326,7 @@ GameObject:
   - component: {fileID: 9052752078362125124}
   - component: {fileID: 9052752078362125125}
   - component: {fileID: 7388314910027653771}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text Backdrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -423,7 +423,7 @@ GameObject:
   - component: {fileID: 9052752078460625702}
   - component: {fileID: 9052752078460625699}
   - component: {fileID: 9052752078460625696}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Tower Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}

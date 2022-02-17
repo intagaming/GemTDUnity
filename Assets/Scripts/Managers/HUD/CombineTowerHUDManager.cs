@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class CombineTowerHUDManager : MonoBehaviour
 {
   [SerializeField]
-  private GridLayoutGroup _grid;
+  private Transform _cardContainer;
   [SerializeField]
   private CombineCard _combineCardPrefab;
 
@@ -39,7 +39,7 @@ public class CombineTowerHUDManager : MonoBehaviour
 
   private void HandleSelectImmobileEntity(GridImmobileEntity entity)
   {
-    var lastCards = _grid.GetComponentsInChildren<CombineCard>();
+    var lastCards = _cardContainer.GetComponentsInChildren<CombineCard>();
     foreach (var lastCard in lastCards)
     {
       _combineCardPool.Release(lastCard);
@@ -55,7 +55,7 @@ public class CombineTowerHUDManager : MonoBehaviour
     {
       var card = _combineCardPool.Get();
       card.Tower = combinable;
-      card.transform.SetParent(_grid.transform, false);
+      card.transform.SetParent(_cardContainer, false);
     }
   }
 }
