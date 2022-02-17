@@ -12,6 +12,8 @@ public class DefensePhaseManager : MonoBehaviour
   private ScriptableEnemy[] _enemies;
   [SerializeField]
   private Transform _enemiesParent;
+  [SerializeField]
+  private Transform _projectilesParent;
 
   private Vector3 _spawnPoint = new Vector3(4f, 32f, 0);
   private int _enemyLeft = 0;
@@ -121,5 +123,11 @@ public class DefensePhaseManager : MonoBehaviour
     {
       _isExiting = true;
     }
+  }
+
+  public void SpawnProjectile(BaseTower tower, BaseEnemy enemy)
+  {
+    var projectile = Instantiate(tower.TowerBlueprint.projectile.prefab, tower.transform.position, Quaternion.identity, _projectilesParent);
+    projectile.Init(tower, enemy);
   }
 }

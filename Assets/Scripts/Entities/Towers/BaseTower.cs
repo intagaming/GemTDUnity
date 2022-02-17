@@ -64,8 +64,7 @@ public class BaseTower : GridImmobileEntity
 
     _cooldown = _towerBlueprint.BaseStats.attackSpeed;
 
-    var projectile = Instantiate(_towerBlueprint.projectile.prefab, transform.position, Quaternion.identity);
-    projectile.Init(this, enemy);
+    DefensePhaseManager.Instance.SpawnProjectile(this, enemy);
   }
 
   public void SetTowerBlueprint(ScriptableTower blueprint)

@@ -1634,6 +1634,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4628d9a286490f543ab372add19ad506, type: 2}
   - {fileID: 11400000, guid: 3198b7cd328d3ec4d898aaaec009b86e, type: 2}
   _enemiesParent: {fileID: 1149971088}
+  _projectilesParent: {fileID: 1461824505}
 --- !u!4 &1292064047
 Transform:
   m_ObjectHideFlags: 0
