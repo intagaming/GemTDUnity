@@ -7,5 +7,6 @@ public class ScriptableEnemy : ScriptableObject
 {
   public BaseEnemy enemyPrefab;
   public float movementSpeed = 3f;
-  public int hp;
+  public int hp = 1;
+  public bool invisible = false;
 }

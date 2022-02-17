@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class BaseEnemy : GridMobileEntity
 {
-  const float CheckpointRadius = 0.2f;
+  public const float CheckpointRadius = 0.2f;
+  public const float InvisibleAfter = 1.5f;
+
+
   [SerializeField]
   private ScriptableEnemy _scriptableEnemy;
   public ScriptableEnemy ScriptableEnemy
@@ -21,8 +24,13 @@ public class BaseEnemy : GridMobileEntity
 
   private AIDestinationSetter _destinationSetter;
   private AIPath _aiPath;
+  private SpriteRenderer _spriteRenderer;
 
   private int _health;
+  private bool _invisible = false;
+  public bool Invisible { get => _invisible; }
+
+  private float _aliveTime = 0f;
 
   protected override void Start()
   {
@@ -32,11 +40,15 @@ public class BaseEnemy : GridMobileEntity
     _aiPath = GetComponent<AIPath>();
     _aiPath.maxSpeed = _scriptableEnemy.movementSpeed;
 
+    _spriteRenderer = GetComponent<SpriteRenderer>();
+
     _health = _scriptableEnemy.hp;
   }
 
   protected override void Update()
   {
+    _aliveTime += Time.deltaTime;
+
     if (Vector2.Distance(Checkpoint.position, transform.position) <= CheckpointRadius)
     {
       if (_currentCheckpointIndex >= GameManager.Instance.Checkpoints.Length - 1)
@@ -46,6 +58,23 @@ public class BaseEnemy : GridMobileEntity
       }
       _currentCheckpointIndex++;
       _destinationSetter.target = Checkpoint;
+    }
+
+    if (_aliveTime >= InvisibleAfter)
+    {
+      if (IsUnderTrueSightAura())
+      {
+        if (_invisible)
+        {
+          _invisible = false;
+          _spriteRenderer.enabled = true;
+        }
+      }
+      else if (!_invisible)
+      {
+        _invisible = true;
+        _spriteRenderer.enabled = false;
+      }
     }
   }
 
@@ -61,5 +90,11 @@ public class BaseEnemy : GridMobileEntity
     {
       Destroy(gameObject);
     }
+  }
+
+  public bool IsUnderTrueSightAura()
+  {
+    // TODO: Check if under influence of true sight aura
+    return false;
   }
 }

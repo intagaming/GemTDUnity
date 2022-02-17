@@ -29,11 +29,13 @@ public class BaseTower : GridImmobileEntity
     var stats = _towerBlueprint.BaseStats;
     var enemies = DefensePhaseManager.Instance.WaveEnemies;
 
-    // Check if target is dead or out of reach
+    // Check if target is dead, out of reach, or invisible
     if (_target != null && (
-      _target.gameObject == null ||
-      !enemies.Contains(_target) ||
-      Vector3.Distance(transform.position, _target.transform.position) > stats.range)
+        _target.gameObject == null ||
+        !enemies.Contains(_target) ||
+        Vector3.Distance(transform.position, _target.transform.position) > stats.range ||
+        _target.Invisible
+        )
       )
     {
       _target = null;
@@ -48,6 +50,8 @@ public class BaseTower : GridImmobileEntity
     // Find new target
     foreach (var enemy in enemies)
     {
+      if (enemy.Invisible) continue;
+
       var distance = Vector3.Distance(enemy.transform.position, transform.position);
       if (distance <= stats.range)
       {

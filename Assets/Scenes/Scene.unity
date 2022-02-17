@@ -981,7 +981,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &766138386
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1254,6 +1254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f43ffb2fed642a64c9d78b8c588a0e55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _combineCanvas: {fileID: 766138389}
   _cardContainer: {fileID: 1277286636}
   _combineCardPrefab: {fileID: 9052752077696599040, guid: 920b2004bcd6bcb429adba0d16fec55f, type: 3}
 --- !u!1 &1148979748
@@ -2035,6 +2036,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34896449a4c83b41b85fb6a970d03d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _towerPlaceCheat: []
+  _gemsToPlace: 0
 --- !u!4 &1707721541
 Transform:
   m_ObjectHideFlags: 0
