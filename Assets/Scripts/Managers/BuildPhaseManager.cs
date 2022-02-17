@@ -7,6 +7,11 @@ using UnityEngine;
 public class BuildPhaseManager : MonoBehaviour
 {
   public const int GEMS_EACH_WAVE = 5;
+
+  [SerializeField]
+  private List<ScriptableTower> _towerPlaceCheat;
+
+  [SerializeField]
   private int _gemsToPlace = 0;
   public int GemsToPlace { get => _gemsToPlace; }
 
@@ -47,21 +52,40 @@ public class BuildPhaseManager : MonoBehaviour
     }
   }
 
-  public GemTower PlaceGem(int x, int y)
+  public void PlaceGem(int x, int y)
   {
-    if (_gemsToPlace <= 0 || GridManager.Instance.IsTileOccupied(x, y)) return null;
+    if (_gemsToPlace <= 0 || GridManager.Instance.IsTileOccupied(x, y)) return;
 
     _gemsToPlace--;
 
-    ScriptableGemTower gemBlueprint = TowerManager.Instance.GenerateRandomGem();
-    var gemTower = GridManager.Instance.PlaceImmobileEntity(gemBlueprint.towerPrefab, x, y);
-    if (gemTower == null) return null;
+    ScriptableTower blueprint;
+    if (_towerPlaceCheat.Count > 0)
+    {
+      blueprint = _towerPlaceCheat[0];
+      _towerPlaceCheat.RemoveAt(0);
+    }
+    else
+    {
+      blueprint = TowerManager.Instance.GenerateRandomGem();
+    }
 
-    _currentWaveGems[new Vector2(x, y)] = gemTower;
+    BaseTower prefab;
+    if (blueprint is ScriptableGemTower)
+    {
+      prefab = (blueprint as ScriptableGemTower).towerPrefab;
+    }
+    else if (blueprint is ScriptableAdvancedTower)
+    {
+      prefab = (blueprint as ScriptableAdvancedTower).prefab;
+    }
+    else return;
+
+    var spawnedTower = GridManager.Instance.PlaceImmobileEntity(prefab, x, y);
+    if (spawnedTower == null) return;
+
+    _currentWaveGems[new Vector2(x, y)] = spawnedTower;
 
     OnGemPlaced?.Invoke();
-
-    return gemTower;
   }
 
   public GridImmobileEntity ChooseGem(int x, int y)
