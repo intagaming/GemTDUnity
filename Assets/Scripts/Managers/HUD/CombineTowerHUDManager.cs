@@ -64,9 +64,12 @@ public class CombineTowerHUDManager : MonoBehaviour
     {
       return;
     }
-    // don't allow combining for towers other than this wave's towers in Build phase
+    // Don't allow combining for towers other than this wave's towers in Build phase.
+    // Also don't show when not finished building.
     var pos = tower.GetGridPosition();
-    if (GameManager.Instance.State == GameState.Building && !BuildPhaseManager.Instance.IsBuiltGem(pos.x, pos.y))
+    if (GameManager.Instance.State == GameState.Building && (
+        BuildPhaseManager.Instance.GemsToPlace > 0 || !BuildPhaseManager.Instance.IsBuiltGem(pos.x, pos.y)
+        ))
     {
       return;
     }
