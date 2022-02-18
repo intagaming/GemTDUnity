@@ -2531,10 +2531,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grid Select Indicator
       objectReference: {fileID: 0}
-    - target: {fileID: 6844073613222718764, guid: 49d331f9b64ae5f4e8c96dbdee97af2d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49d331f9b64ae5f4e8c96dbdee97af2d, type: 3}
 --- !u!4 &1524694331 stripped
