@@ -9,7 +9,7 @@ public class CombineManager : MonoBehaviour
   [SerializeField]
   private GridLayoutGroup _lookupGrid;
   [SerializeField]
-  private CombinationLookupCard _combinationCardPrefab;
+  private GameObject _combinationCardPrefab;
 
   private static CombineManager _instance;
 
@@ -100,7 +100,7 @@ public class CombineManager : MonoBehaviour
     foreach (var advanced in _advancedTowers)
     {
       var card = Instantiate(_combinationCardPrefab, _lookupGrid.transform);
-      var cardScript = card.GetComponent<CombinationLookupCard>();
+      var cardScript = card.GetComponentInChildren<ResultCard>();
       cardScript.Tower = advanced;
     }
   }

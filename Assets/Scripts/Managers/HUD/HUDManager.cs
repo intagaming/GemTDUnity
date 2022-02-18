@@ -98,6 +98,18 @@ public class HUDManager : MonoBehaviour
 
   public void ToggleCombineLookup()
   {
-    _combineLookup.gameObject.SetActive(!_combineLookup.gameObject.activeSelf);
+    var currentActiveStatus = _combineLookup.gameObject.activeSelf;
+    _combineLookup.gameObject.SetActive(!currentActiveStatus);
+    if (!currentActiveStatus)
+    {
+      foreach (var resultCard in _combineLookup.GetComponentsInChildren<ResultCard>())
+      {
+        resultCard.UpdateInfo();
+      }
+      foreach (var ingredientCard in _combineLookup.GetComponentsInChildren<IngredientCard>())
+      {
+        ingredientCard.UpdateInfo();
+      }
+    }
   }
 }

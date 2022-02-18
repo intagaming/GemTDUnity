@@ -736,7 +736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lookupGrid: {fileID: 1109598675}
-  _combinationCardPrefab: {fileID: 2804323051844385488, guid: 53ee052c05c08184f8dc19e2c54035ca, type: 3}
+  _combinationCardPrefab: {fileID: 2903719871030324590, guid: 53ee052c05c08184f8dc19e2c54035ca, type: 3}
 --- !u!1 &276132607
 GameObject:
   m_ObjectHideFlags: 0
