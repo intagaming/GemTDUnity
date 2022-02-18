@@ -8,6 +8,8 @@ public class HUDManager : MonoBehaviour
 {
   [SerializeField]
   private GameObject _selectIndicator;
+  [SerializeField]
+  private RectTransform _combineLookup;
 
   private static HUDManager _instance;
   public static HUDManager Instance { get => _instance; }
@@ -73,11 +75,11 @@ public class HUDManager : MonoBehaviour
 
   // Objective board
   [SerializeField]
-  private Canvas _objectiveCanvas;
+  private TextMeshProUGUI _objectiveText;
 
   public void ChangeObjectiveText(string text)
   {
-    _objectiveCanvas.GetComponentInChildren<TextMeshProUGUI>().text = text;
+    _objectiveText.text = text;
   }
 
 
@@ -92,5 +94,10 @@ public class HUDManager : MonoBehaviour
     {
       RefreshSelection();
     }
+  }
+
+  public void ToggleCombineLookup()
+  {
+    _combineLookup.gameObject.SetActive(!_combineLookup.gameObject.activeSelf);
   }
 }
