@@ -2,9 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CombineManager : MonoBehaviour
 {
+  [SerializeField]
+  private GridLayoutGroup _lookupGrid;
+  [SerializeField]
+  private CombinationLookupCard _combinationCardPrefab;
+
   private static CombineManager _instance;
 
   public static CombineManager Instance
@@ -34,6 +40,8 @@ public class CombineManager : MonoBehaviour
         set.Add(advanced);
       }
     }
+
+    PopulateCombinationLookupHUD();
   }
 
   public HashSet<ScriptableAdvancedTower> GetAdvancedTowersFrom(ScriptableTower tower)
@@ -87,4 +95,13 @@ public class CombineManager : MonoBehaviour
     return ingredients;
   }
 
+  public void PopulateCombinationLookupHUD()
+  {
+    foreach (var advanced in _advancedTowers)
+    {
+      var card = Instantiate(_combinationCardPrefab, _lookupGrid.transform);
+      var cardScript = card.GetComponent<CombinationLookupCard>();
+      cardScript.Tower = advanced;
+    }
+  }
 }

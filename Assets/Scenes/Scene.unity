@@ -599,6 +599,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04ae4a41bb1a3ee4d8a3e0c65ba45eba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _lookupGrid: {fileID: 1109598675}
+  _combinationCardPrefab: {fileID: 2804323051844385488, guid: 53ee052c05c08184f8dc19e2c54035ca, type: 3}
 --- !u!1 &276132607
 GameObject:
   m_ObjectHideFlags: 0
