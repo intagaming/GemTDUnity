@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class CombineTowerHUDManager : MonoBehaviour
 {
   [SerializeField]
-  private Canvas _combineCanvas;
+  private RectTransform _combineBoard;
   [SerializeField]
   private Transform _cardContainer;
   [SerializeField]
@@ -56,7 +56,7 @@ public class CombineTowerHUDManager : MonoBehaviour
       {
         _combineCardPool.Release(lastCard);
       }
-      _combineCanvas.gameObject.SetActive(false);
+      _combineBoard.gameObject.SetActive(false);
     }
 
     var tower = entity != null ? entity.GetComponent<BaseTower>() : null;
@@ -80,7 +80,7 @@ public class CombineTowerHUDManager : MonoBehaviour
         card.Tower = combinable;
         card.transform.SetParent(_cardContainer, false);
       }
-      _combineCanvas.gameObject.SetActive(true);
+      _combineBoard.gameObject.SetActive(true);
     }
   }
 

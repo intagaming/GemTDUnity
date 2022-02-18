@@ -7,8 +7,6 @@ public class BuildPhaseHUDManager : MonoBehaviour
 {
   [SerializeField]
   private Button _chooseGemButton;
-  [SerializeField]
-  private Canvas _selectGemOnBuildCanvas;
 
   private static BuildPhaseHUDManager _instance;
   public static BuildPhaseHUDManager Instance { get => _instance; }
@@ -70,11 +68,11 @@ public class BuildPhaseHUDManager : MonoBehaviour
     if (entity != null)
     {
       var pos = entity.GetGridPosition();
-      _selectGemOnBuildCanvas.gameObject.SetActive(BuildPhaseManager.Instance.IsBuiltGem(pos.x, pos.y));
+      _chooseGemButton.gameObject.SetActive(BuildPhaseManager.Instance.IsBuiltGem(pos.x, pos.y));
     }
     else
     {
-      _selectGemOnBuildCanvas.gameObject.SetActive(false);
+      _chooseGemButton.gameObject.SetActive(false);
     }
   }
 
