@@ -62,7 +62,7 @@ public class BaseEnemy : GridMobileEntity
       _destinationSetter.target = Checkpoint;
     }
 
-    if (_aliveTime >= InvisibleAfter)
+    if (_scriptableEnemy.invisible && _aliveTime >= InvisibleAfter)
     {
       if (IsUnderTrueSightAura())
       {
