@@ -6,6 +6,6 @@ public class NewGameButton : MonoBehaviour
 {
   public void GoToScene(string sceneName)
   {
-    LevelManager.Instance.LoadScene(sceneName);
+    LevelManager.Instance.LoadSceneSync(sceneName);
   }
 }
