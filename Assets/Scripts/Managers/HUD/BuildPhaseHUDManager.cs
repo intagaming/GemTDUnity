@@ -41,6 +41,7 @@ public class BuildPhaseHUDManager : MonoBehaviour
         }
       case GameState.Defense:
         {
+          _chooseGemButton.gameObject.SetActive(false);
           _chooseGemButton.interactable = false;
           break;
         }
