@@ -43,6 +43,8 @@ public class LevelManager : MonoBehaviour
   // We are currently using artificial wait time for visual purposes.
   private async void LoadScene(string sceneName)
   {
+    _progressBarForeground.fillAmount = 0;
+
     var scene = SceneManager.LoadSceneAsync(sceneName);
     scene.allowSceneActivation = false;
 

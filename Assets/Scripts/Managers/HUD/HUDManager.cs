@@ -18,6 +18,8 @@ public class HUDManager : MonoBehaviour
   private Image _healthForeground;
   [SerializeField]
   private TextMeshProUGUI _healthText;
+  [SerializeField]
+  private Canvas _pauseMenuCanvas;
 
   private static HUDManager _instance;
   public static HUDManager Instance { get => _instance; }
@@ -137,5 +139,11 @@ public class HUDManager : MonoBehaviour
   private void HandleHealthChanged(int health)
   {
     UpdateHealthHUD();
+  }
+
+  public void TogglePauseMenu()
+  {
+    var currentActiveStatus = _pauseMenuCanvas.gameObject.activeSelf;
+    _pauseMenuCanvas.gameObject.SetActive(!currentActiveStatus);
   }
 }
