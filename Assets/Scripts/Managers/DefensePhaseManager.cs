@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class DefensePhaseManager : MonoBehaviour
 {
-  const float SPAWN_INTERVAL = 1f;
+  public const float SPAWN_INTERVAL = 1f;
+  public const int ENEMIES_TO_SPAWN = 10;
 
   [SerializeField]
   private ScriptableEnemy[] _enemies;
@@ -16,13 +17,18 @@ public class DefensePhaseManager : MonoBehaviour
   private Transform _projectilesParent;
 
   private Vector3 _spawnPoint = new Vector3(4f, 32f, 0);
-  private int _enemyLeft = 0;
+  private int _enemyLeftToSpawn = 0;
+  public int EnemiesLeftToSpawn { get => _enemyLeftToSpawn; }
   private float _timer = 0f;
 
   private HashSet<BaseEnemy> _waveEnemies = new HashSet<BaseEnemy>();
   public HashSet<BaseEnemy> WaveEnemies { get => _waveEnemies; }
 
   private static bool _isExiting = false;
+
+  public int EnemiesRemaining { get => _enemyLeftToSpawn + _waveEnemies.Count; }
+
+  public static event Action<BaseEnemy> OnEnemyDie;
 
   private static DefensePhaseManager _instance;
   public static DefensePhaseManager Instance { get { return _instance; } }
@@ -44,7 +50,7 @@ public class DefensePhaseManager : MonoBehaviour
 
   private void Reset()
   {
-    _enemyLeft = 0;
+    _enemyLeftToSpawn = 0;
     _timer = 0f;
   }
 
@@ -52,7 +58,7 @@ public class DefensePhaseManager : MonoBehaviour
   {
     if (state == GameState.Defense)
     {
-      _enemyLeft = 10;
+      _enemyLeftToSpawn = ENEMIES_TO_SPAWN;
       _timer = SPAWN_INTERVAL;
 
       // Rescan the path
@@ -69,13 +75,13 @@ public class DefensePhaseManager : MonoBehaviour
 
   void Update()
   {
-    if (_enemyLeft <= 0) return;
+    if (_enemyLeftToSpawn <= 0) return;
     _timer -= Time.deltaTime;
     if (_timer > 0) return;
 
     SpawnEnemy();
 
-    if (_enemyLeft > 0)
+    if (_enemyLeftToSpawn > 0)
     {
       _timer = SPAWN_INTERVAL;
     }
@@ -87,8 +93,8 @@ public class DefensePhaseManager : MonoBehaviour
 
   private void SpawnEnemy()
   {
-    if (_enemyLeft <= 0) return;
-    _enemyLeft--;
+    if (_enemyLeftToSpawn <= 0) return;
+    _enemyLeftToSpawn--;
     var enemy = Instantiate(_enemies[GameManager.Instance.Wave - 1].enemyPrefab, _spawnPoint, Quaternion.identity, _enemiesParent);
     _waveEnemies.Add(enemy);
   }
@@ -105,6 +111,8 @@ public class DefensePhaseManager : MonoBehaviour
 
     _waveEnemies.Remove(enemy);
 
+    OnEnemyDie?.Invoke(enemy);
+
     if (_waveEnemies.Count == 0)
     {
       GameManager.Instance.SetState(GameState.Building);
@@ -115,6 +123,8 @@ public class DefensePhaseManager : MonoBehaviour
   {
     GameManager.Instance.DamageCastle(1); // TODO: castle damage in ScriptableEnemy
     Destroy(enemy.gameObject);
+
+    OnEnemyDie?.Invoke(enemy);
   }
 
   private static void HandlePlayModeStateChanged(PlayModeStateChange state)
