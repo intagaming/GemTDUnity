@@ -10,6 +10,8 @@ public class HUDManager : MonoBehaviour
   private GameObject _selectIndicator;
   [SerializeField]
   private RectTransform _combineLookup;
+  [SerializeField]
+  private TextMeshProUGUI _waveText;
 
   private static HUDManager _instance;
   public static HUDManager Instance { get => _instance; }
@@ -86,6 +88,10 @@ public class HUDManager : MonoBehaviour
   // General
   private void HandleOnGameStateChanged(GameState state)
   {
+    if (state == GameState.Building)
+    {
+      _waveText.text = $"Wave {GameManager.Instance.Wave}";
+    }
   }
 
   private void HandleGridChange(Vector2 pos, GridImmobileEntity entity)
