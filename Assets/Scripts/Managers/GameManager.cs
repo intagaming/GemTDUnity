@@ -99,7 +99,6 @@ public class GameManager : MonoBehaviour
   {
     _health = Math.Max(0, _health - damage);
     OnHealthChanged?.Invoke(_health);
-    Debug.Log($"Health: {_health}");
   }
 }
 

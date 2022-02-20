@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.UI;
 
 public class HUDManager : MonoBehaviour
 {
@@ -12,6 +13,11 @@ public class HUDManager : MonoBehaviour
   private RectTransform _combineLookup;
   [SerializeField]
   private TextMeshProUGUI _waveText;
+
+  [SerializeField]
+  private Image _healthForeground;
+  [SerializeField]
+  private TextMeshProUGUI _healthText;
 
   private static HUDManager _instance;
   public static HUDManager Instance { get => _instance; }
@@ -25,12 +31,14 @@ public class HUDManager : MonoBehaviour
   {
     GameManager.OnGameStateChanged += HandleOnGameStateChanged;
     GridManager.OnGridChange += HandleGridChange;
+    GameManager.OnHealthChanged += HandleHealthChanged;
   }
 
   void OnDestroy()
   {
     GameManager.OnGameStateChanged -= HandleOnGameStateChanged;
     GridManager.OnGridChange -= HandleGridChange;
+    GameManager.OnHealthChanged -= HandleHealthChanged;
   }
 
   // Select immobile entity
@@ -117,5 +125,17 @@ public class HUDManager : MonoBehaviour
         ingredientCard.UpdateInfo();
       }
     }
+  }
+
+  public void UpdateHealthHUD()
+  {
+    float percentage = (float)GameManager.Instance.Health / GameManager.INITIAL_HEALTH;
+    _healthForeground.fillAmount = percentage;
+    _healthText.text = $"{(int)(percentage * 100)}%";
+  }
+
+  private void HandleHealthChanged(int health)
+  {
+    UpdateHealthHUD();
   }
 }
