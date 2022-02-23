@@ -24,7 +24,7 @@ public class HUDManager : MonoBehaviour
   private static HUDManager _instance;
   public static HUDManager Instance { get => _instance; }
 
-  void Awake()
+    void Awake()
   {
     _instance = this;
   }

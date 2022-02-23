@@ -29,12 +29,15 @@ public class BaseEnemy : GridMobileEntity
   private SpriteRenderer _spriteRenderer;
 
   private int _health;
+  public int Health { get => _health;  }
   private bool _invisible = false;
   public bool Invisible { get => _invisible; }
 
   private float _aliveTime = 0f;
+  
+  private bool _isFinished = false;
 
-  protected override void Start()
+    protected override void Start()
   {
     _destinationSetter = GetComponent<AIDestinationSetter>();
     _destinationSetter.target = Checkpoint;
@@ -45,17 +48,23 @@ public class BaseEnemy : GridMobileEntity
     _spriteRenderer = GetComponent<SpriteRenderer>();
 
     _health = _scriptableEnemy.hp;
+
+    
   }
 
   protected override void Update()
   {
     _aliveTime += Time.deltaTime;
 
+    EnemyHealthBarManager.Instance.UpdateHealthBar(this, _isFinished);
+
     if (Vector2.Distance(Checkpoint.position, transform.position) <= CheckpointRadius)
     {
       if (_currentCheckpointIndex >= GameManager.Instance.Checkpoints.Length - 1)
       {
+        _isFinished = true;
         DefensePhaseManager.Instance.HandleEnemyReachTheEnd(this);
+        EnemyHealthBarManager.Instance.UpdateHealthBar(this, _isFinished);
         return;
       }
       _currentCheckpointIndex++;
@@ -83,11 +92,13 @@ public class BaseEnemy : GridMobileEntity
   void OnDestroy()
   {
     DefensePhaseManager.Instance.HandleEnemyDie(this);
+    EnemyHealthBarManager.Instance.UpdateHealthBar(this, _isFinished);
   }
 
   public virtual void Damage(BaseTower attacker, int damage)
   {
     _health -= damage;
+    
     if (_health <= 0)
     {
       Destroy(gameObject);
