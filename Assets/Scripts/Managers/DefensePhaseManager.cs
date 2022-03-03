@@ -37,14 +37,18 @@ public class DefensePhaseManager : MonoBehaviour
   {
     _instance = this;
     GameManager.OnGameStateChanged += HandleOnGameStateChanged;
+#if UNITY_EDITOR
     EditorApplication.playModeStateChanged += HandlePlayModeStateChanged;
+#endif
     _isExiting = false;
   }
 
   void OnDestroy()
   {
     GameManager.OnGameStateChanged -= HandleOnGameStateChanged;
+#if UNITY_EDITOR
     EditorApplication.playModeStateChanged -= HandlePlayModeStateChanged;
+#endif
     _waveEnemies.Clear();
   }
 
@@ -127,6 +131,7 @@ public class DefensePhaseManager : MonoBehaviour
     OnEnemyDie?.Invoke(enemy);
   }
 
+#if UNITY_EDITOR
   private static void HandlePlayModeStateChanged(PlayModeStateChange state)
   {
     if (state == PlayModeStateChange.ExitingPlayMode)
@@ -134,6 +139,7 @@ public class DefensePhaseManager : MonoBehaviour
       _isExiting = true;
     }
   }
+#endif
 
   public void SpawnProjectile(BaseTower tower, BaseEnemy enemy)
   {
