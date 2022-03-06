@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf49ef354820dbc4bb53ead85e008d2d, type: 3}
+  m_Name: Silver Knight
+  m_EditorClassIdentifier: 
+  stats:
+    damage: 5
+    range: 5
+    attackSpeed: 0.2
+  auras:
+    trueSight: 0
+  projectile: {fileID: 11400000, guid: 09da3d319d1309f44811eb0ab440daa5, type: 2}
+  sprite: {fileID: 21300000, guid: 4e3984a878326034fb5005d7d7a12a45, type: 3}
+  prefab: {fileID: 5429958587095541114, guid: b9ef0123aee679a4a905076febb27e5b, type: 3}
+  recipe:
+  - {fileID: 11400000, guid: 68da6bbc456a9fd42a98f5f007e35029, type: 2}
+  - {fileID: 11400000, guid: c37b588fc60f8f549a79e7fdd22f068d, type: 2}
+  - {fileID: 11400000, guid: 122bc16ef31aa394c84088271e8fc808, type: 2}
