@@ -22,6 +22,6 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 4e3984a878326034fb5005d7d7a12a45, type: 3}
   prefab: {fileID: -8138817240616165107, guid: ece6df27b916f15409aa8c54ead301f6, type: 3}
   recipe:
-  - {fileID: 11400000, guid: 68da6bbc456a9fd42a98f5f007e35029, type: 2}
-  - {fileID: 11400000, guid: c37b588fc60f8f549a79e7fdd22f068d, type: 2}
-  - {fileID: 11400000, guid: 122bc16ef31aa394c84088271e8fc808, type: 2}
+  - {fileID: 11400000, guid: dc8c8a69e58a818439d9f58746a5448a, type: 2}
+  - {fileID: 11400000, guid: b267dae307f213449b1e9c6d6c538d08, type: 2}
+  - {fileID: 11400000, guid: dbbccfb6ccf259447a0ded129baaa2d8, type: 2}
