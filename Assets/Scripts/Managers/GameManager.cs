@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -11,8 +12,9 @@ public class GameManager : MonoBehaviour
   private GameObject _checkpointPrefab;
   [SerializeField]
   private Transform _checkpointsParent;
-
-  private static GameManager _instance;
+    private Vector3[] _checkPoints;
+    public Vector3[] CheckPoints { get { return _checkPoints; } }
+    private static GameManager _instance;
 
   public static GameManager Instance
   {
@@ -22,7 +24,16 @@ public class GameManager : MonoBehaviour
   void Awake()
   {
     _instance = this;
-  }
+    _checkPoints = new Vector3[7];
+    _checkPoints[0] = new Vector3(4f, 32f, 0);
+    _checkPoints[1] = new Vector3(4f, 18f, 0);
+    _checkPoints[2] = new Vector3(32f, 18f, 0);
+    _checkPoints[3] = new Vector3(32f, 32f, 0);
+    _checkPoints[4] = new Vector3(18f, 32f, 0);
+    _checkPoints[5] = new Vector3(18f, 4f, 0);
+    _checkPoints[6] = new Vector3(32f, 4f, 0);
+
+    }
 
 
   public static event Action<GameState> OnGameStateChanged;

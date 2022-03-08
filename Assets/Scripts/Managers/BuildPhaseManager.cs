@@ -1,3 +1,4 @@
+using Pathfinding;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,13 +22,16 @@ public class BuildPhaseManager : MonoBehaviour
 
   public static event Action OnGemPlaced;
 
+    
+    
+         
   void Awake()
   {
     _instance = this;
     GameManager.OnGameStateChanged += HandleOnGameStateChanged;
   }
 
-  void OnDestroy()
+    void OnDestroy()
   {
     GameManager.OnGameStateChanged -= HandleOnGameStateChanged;
   }
@@ -56,8 +60,6 @@ public class BuildPhaseManager : MonoBehaviour
   {
     if (_gemsToPlace <= 0 || GridManager.Instance.IsTileOccupied(x, y)) return;
 
-    _gemsToPlace--;
-
     ScriptableTower blueprint;
     if (_towerPlaceCheat.Count > 0)
     {
@@ -82,8 +84,9 @@ public class BuildPhaseManager : MonoBehaviour
 
     var spawnedTower = GridManager.Instance.PlaceImmobileEntity(prefab, x, y);
     if (spawnedTower == null) return;
+        _gemsToPlace--;
 
-    _currentWaveGems[new Vector2(x, y)] = spawnedTower;
+        _currentWaveGems[new Vector2(x, y)] = spawnedTower;
 
     OnGemPlaced?.Invoke();
   }
