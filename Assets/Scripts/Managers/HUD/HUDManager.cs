@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HUDManager : MonoBehaviour
 {
@@ -135,6 +136,13 @@ public class HUDManager : MonoBehaviour
     float percentage = (float)GameManager.Instance.Health / GameManager.INITIAL_HEALTH;
     _healthForeground.fillAmount = percentage;
     _healthText.text = $"{(int)(percentage * 100)}%";
+
+    if(percentage <= 0.8f)
+    {
+      Console.WriteLine("set state");
+      GameManager.Instance.SetState(GameState.GameOver);
+      SceneManager.LoadScene("Game Over", LoadSceneMode.Additive);
+    }
   }
 
   private void HandleHealthChanged(int health)

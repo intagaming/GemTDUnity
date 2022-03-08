@@ -19,7 +19,7 @@ MonoBehaviour:
   auras:
     trueSight: 0
   projectile: {fileID: 11400000, guid: 09da3d319d1309f44811eb0ab440daa5, type: 2}
-  sprite: {fileID: 21300000, guid: 4e3984a878326034fb5005d7d7a12a45, type: 3}
+  sprite: {fileID: 21300000, guid: a9675ab48d77db44d8dd3ced7792d62a, type: 3}
   prefab: {fileID: -8138817240616165107, guid: ece6df27b916f15409aa8c54ead301f6, type: 3}
   recipe:
   - {fileID: 11400000, guid: dc8c8a69e58a818439d9f58746a5448a, type: 2}

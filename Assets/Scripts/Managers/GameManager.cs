@@ -117,5 +117,6 @@ public enum GameState
 {
   Initializing,
   Building,
-  Defense
+  Defense,
+  GameOver
 }

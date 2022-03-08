@@ -107,6 +107,11 @@ public class DefensePhaseManager : MonoBehaviour
   {
     if (_isExiting) return; // If exiting, ignore all enemy die events, thus the wave will not end.
 
+    if(GameManager.Instance.State == GameState.GameOver)
+    {
+      return;
+    }
+
     if (!_waveEnemies.Contains(enemy))
     {
       Debug.LogError("Dead enemy not found in waveEnemies.");
