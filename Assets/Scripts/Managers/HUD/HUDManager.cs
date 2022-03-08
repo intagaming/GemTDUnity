@@ -23,6 +23,7 @@ public class HUDManager : MonoBehaviour
 
   private static HUDManager _instance;
   public static HUDManager Instance { get => _instance; }
+  private bool _isGamePaused;
 
     void Awake()
   {
@@ -143,7 +144,27 @@ public class HUDManager : MonoBehaviour
 
   public void TogglePauseMenu()
   {
+    if (_isGamePaused)
+    {
+        Resume();
+    }
+    else
+    {
+        Pause();
+    }
     var currentActiveStatus = _pauseMenuCanvas.gameObject.activeSelf;
     _pauseMenuCanvas.gameObject.SetActive(!currentActiveStatus);
   }
+
+   void Pause()
+    {
+        Time.timeScale = 0f;
+        _isGamePaused = true;
+    }
+
+    void Resume()
+    {
+        Time.timeScale = 1f;
+        _isGamePaused = false;
+    }
 }
