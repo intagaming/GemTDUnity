@@ -7,10 +7,10 @@ using UnityEngine;
 public class DefensePhaseManager : MonoBehaviour
 {
   public const float SPAWN_INTERVAL = 1f;
-  public const int ENEMIES_TO_SPAWN = 10;
 
   [SerializeField]
   private ScriptableEnemy[] _enemies;
+  public ScriptableEnemy[] Enemies {get => _enemies;}
   [SerializeField]
   private Transform _enemiesParent;
   [SerializeField]
@@ -62,7 +62,7 @@ public class DefensePhaseManager : MonoBehaviour
   {
     if (state == GameState.Defense)
     {
-      _enemyLeftToSpawn = ENEMIES_TO_SPAWN;
+      _enemyLeftToSpawn = _enemies[GameManager.Instance.Wave - 1].waveAmount;
       _timer = SPAWN_INTERVAL;
 
       // Rescan the path

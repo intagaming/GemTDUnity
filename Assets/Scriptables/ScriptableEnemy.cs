@@ -9,4 +9,6 @@ public class ScriptableEnemy : ScriptableObject
   public float movementSpeed = 3f;
   public int hp = 1;
   public bool invisible = false;
+
+  public int waveAmount = 10;
 }

@@ -55,7 +55,7 @@ public class DefensePhaseHUDManager : MonoBehaviour
   private void UpdateEnemiesRemaining()
   {
     var remaining = DefensePhaseManager.Instance.EnemiesRemaining;
-    _enemiesRemainingForeground.fillAmount = (float)remaining / DefensePhaseManager.ENEMIES_TO_SPAWN;
+    _enemiesRemainingForeground.fillAmount = (float)remaining / DefensePhaseManager.Instance.Enemies[GameManager.Instance.Wave - 1].waveAmount;
     _enemiesRemainingText.text = $"Enemies remaining: {remaining}";
   }
 
