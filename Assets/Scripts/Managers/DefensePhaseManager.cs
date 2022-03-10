@@ -160,7 +160,7 @@ public class DefensePhaseManager : MonoBehaviour
         if (health == 0)
         {
             GameManager.Instance.SetState(GameState.GameOver);
-            SceneManager.LoadScene("Game Over", LoadSceneMode.Additive);
+            SceneManager.LoadScene("Game Over");
         }
     }
 }
