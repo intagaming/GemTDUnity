@@ -124,4 +124,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2d8658100baa240bbd6092a45f4a46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _towerBlueprint: {fileID: 0}
+  _towerBlueprint: {fileID: 11400000, guid: 31ea29105cb108a45a802b8249e61754, type: 2}
