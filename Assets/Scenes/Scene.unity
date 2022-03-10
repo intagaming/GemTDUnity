@@ -1172,6 +1172,8 @@ MonoBehaviour:
   _invisibleWallsParent: {fileID: 1789049765}
   _immobileEntitiesParent: {fileID: 1474278863}
   _drawGizmos: 1
+  _spawnPlacePrefab: {fileID: 6916300072076485778, guid: 9ac6247d64c1cc14f8fff41ce5447698, type: 3}
+  _finalPrefab: {fileID: 5307679199520538991, guid: cbe8b28355cfec447aaa61d0469f217b, type: 3}
 --- !u!4 &276132609
 Transform:
   m_ObjectHideFlags: 0
@@ -2708,7 +2710,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -14.000916}
+  m_AnchoredPosition: {x: 0, y: -14.000977}
   m_SizeDelta: {x: -297.402, y: -145.074}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &803202085
@@ -4642,7 +4644,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5685927843509102241, guid: 49d331f9b64ae5f4e8c96dbdee97af2d, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5685927843509102241, guid: 49d331f9b64ae5f4e8c96dbdee97af2d, type: 3}
       propertyPath: m_LocalPosition.x

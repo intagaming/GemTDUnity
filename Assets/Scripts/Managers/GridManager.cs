@@ -25,6 +25,10 @@ public class GridManager : MonoBehaviour
   private Transform _immobileEntitiesParent;
   [SerializeField]
   private bool _drawGizmos;
+  [SerializeField]
+  private GameObject _spawnPlacePrefab;
+  [SerializeField]
+  private GameObject _finalPrefab;
 
   public static event Action<Vector2, GridImmobileEntity> OnGridChange;
 
@@ -146,6 +150,11 @@ public class GridManager : MonoBehaviour
     Instantiate(_invisibleWallPrefab, new Vector2(x, y), Quaternion.identity, _invisibleWallsParent);
   }
 
+  private void PlaceChecker(GameObject prefab, float x, float y)
+  {
+        Instantiate(prefab, new Vector2(x, y), Quaternion.identity);
+  }
+
   private void GenerateWallsAndStones()
   {
     // 4 edge walls
@@ -174,6 +183,8 @@ public class GridManager : MonoBehaviour
       // Bottom 8 stones
       PlaceStone(18, i);
     }
+      PlaceChecker(_spawnPlacePrefab, 4f, 32f);
+      PlaceChecker(_finalPrefab, 32f, 4f);
 
     AstarPath.active.Scan();
   }
