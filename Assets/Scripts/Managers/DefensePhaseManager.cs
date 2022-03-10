@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DefensePhaseManager : MonoBehaviour
 {
@@ -41,6 +42,7 @@ public class DefensePhaseManager : MonoBehaviour
     EditorApplication.playModeStateChanged += HandlePlayModeStateChanged;
 #endif
     _isExiting = false;
+    GameManager.OnHealthChanged += HandleHealthChanged;
   }
 
   void OnDestroy()
@@ -50,7 +52,8 @@ public class DefensePhaseManager : MonoBehaviour
     EditorApplication.playModeStateChanged -= HandlePlayModeStateChanged;
 #endif
     _waveEnemies.Clear();
-  }
+     GameManager.OnHealthChanged -= HandleHealthChanged;
+    }
 
   private void Reset()
   {
@@ -151,4 +154,13 @@ public class DefensePhaseManager : MonoBehaviour
     var projectile = Instantiate(tower.TowerBlueprint.projectile.prefab, tower.transform.position, Quaternion.identity, _projectilesParent);
     projectile.Init(tower, enemy);
   }
+
+  private void HandleHealthChanged(int health)
+    {
+        if (health == 0)
+        {
+            GameManager.Instance.SetState(GameState.GameOver);
+            SceneManager.LoadScene("Game Over", LoadSceneMode.Additive);
+        }
+    }
 }
