@@ -54,6 +54,7 @@ public class BaseEnemy : GridMobileEntity
 
   protected override void Update()
   {
+    if (GameManager.Instance.State == GameState.GameOver) return;
     _aliveTime += Time.deltaTime;
 
     EnemyHealthBarManager.Instance.UpdateHealthBar(this, _isFinished);
@@ -91,6 +92,8 @@ public class BaseEnemy : GridMobileEntity
 
   void OnDestroy()
   {
+    if (GameManager.Instance.State == GameState.GameOver) return;
+    DefensePhaseManager.Instance.HandleEnemyDie(this);
     DefensePhaseManager.Instance.HandleEnemyDie(this);
     EnemyHealthBarManager.Instance.UpdateHealthBar(this, _isFinished);
   }
