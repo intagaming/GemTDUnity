@@ -7,8 +7,8 @@ public class Projectile : Entity
   [SerializeField]
   protected ScriptableProjectile _blueprint;
 
-  private BaseTower Attacker { get; set; }
-  private BaseEnemy Target { get; set; }
+  protected BaseTower Attacker { get; set; }
+  protected BaseEnemy Target { get; set; }
 
   public void Init(BaseTower attacker, BaseEnemy target)
   {
@@ -28,7 +28,7 @@ public class Projectile : Entity
     transform.position = Vector2.MoveTowards(transform.position, Target.transform.position, step);
   }
 
-  private void HurtTargetAndTerminate()
+  protected virtual void HurtTargetAndTerminate()
   {
     Target.Damage(Attacker, Attacker.TowerBlueprint.BaseStats.damage);
     Destroy(gameObject);

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb635889d259d7479da45a5644922ab, type: 3}
   m_Name: Spread Projectile
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2713167387223959205, guid: 3a342d30559ff60449b3e07e6fe1223d, type: 3}
+  prefab: {fileID: -1068556966683418951, guid: ff5f426d05ae82e48b3e847ef3716af0, type: 3}
   _stats:
     speed: 15

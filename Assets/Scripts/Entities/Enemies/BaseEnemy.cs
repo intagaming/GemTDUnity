@@ -35,6 +35,7 @@ public class BaseEnemy : GridMobileEntity
 
   private float _aliveTime = 0f;
   
+  private float _slowTime = 0f;
   private bool _isFinished = false;
 
     protected override void Start()
@@ -55,6 +56,10 @@ public class BaseEnemy : GridMobileEntity
   protected override void Update()
   {
     if (GameManager.Instance.State == GameState.GameOver) return;
+    if(_aliveTime > _slowTime)
+    {
+      _aiPath.maxSpeed = _scriptableEnemy.movementSpeed;
+    }
     _aliveTime += Time.deltaTime;
 
     EnemyHealthBarManager.Instance.UpdateHealthBar(this, _isFinished);
@@ -106,6 +111,12 @@ public class BaseEnemy : GridMobileEntity
     {
       Destroy(gameObject);
     }
+  }
+
+  public virtual void DamageMovement(float speed)
+  {
+    _slowTime = _aliveTime + 1f;
+    _aiPath.maxSpeed = speed;
   }
 
   public bool IsUnderTrueSightAura()

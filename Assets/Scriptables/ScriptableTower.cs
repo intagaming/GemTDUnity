@@ -19,6 +19,7 @@ public abstract class ScriptableTower : ScriptableObject
 public struct TowerStats
 {
   public int damage;
+  public int numberOfProjectile;
   public float range;
   public float attackSpeed;
 }
