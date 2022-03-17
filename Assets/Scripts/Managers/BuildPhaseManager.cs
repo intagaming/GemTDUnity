@@ -22,16 +22,16 @@ public class BuildPhaseManager : MonoBehaviour
 
   public static event Action OnGemPlaced;
 
-    
-    
-         
+
+
+
   void Awake()
   {
     _instance = this;
     GameManager.OnGameStateChanged += HandleOnGameStateChanged;
   }
 
-    void OnDestroy()
+  void OnDestroy()
   {
     GameManager.OnGameStateChanged -= HandleOnGameStateChanged;
   }
@@ -54,6 +54,11 @@ public class BuildPhaseManager : MonoBehaviour
         ChooseGem(16, 18);
       }*/
     }
+  }
+
+  public void PlaceGem(Vector2 at)
+  {
+    PlaceGem((int)at.x, (int)at.y);
   }
 
   public void PlaceGem(int x, int y)
@@ -84,9 +89,9 @@ public class BuildPhaseManager : MonoBehaviour
 
     var spawnedTower = GridManager.Instance.PlaceImmobileEntity(prefab, x, y);
     if (spawnedTower == null) return;
-        _gemsToPlace--;
+    _gemsToPlace--;
 
-        _currentWaveGems[new Vector2(x, y)] = spawnedTower;
+    _currentWaveGems[new Vector2(x, y)] = spawnedTower;
 
     OnGemPlaced?.Invoke();
   }

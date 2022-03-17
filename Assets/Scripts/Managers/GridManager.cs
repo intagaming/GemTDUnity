@@ -33,9 +33,10 @@ public class GridManager : MonoBehaviour
   public static event Action<Vector2, GridImmobileEntity> OnGridChange;
 
   private Dictionary<Vector2, Tile> _tiles;
+  public Dictionary<Vector2, Tile> Tiles { get => _tiles; }
 
-    // This stores Stones and Towers and such.
-    private Dictionary<Vector2, GridImmobileEntity> _immobileEntities;
+  // This stores Stones and Towers and such.
+  private Dictionary<Vector2, GridImmobileEntity> _immobileEntities;
   public IEnumerable<BaseTower> GridTowers
   {
     get => _immobileEntities
@@ -48,18 +49,18 @@ public class GridManager : MonoBehaviour
 
   void Awake()
   {
-        _instance = this;
-}
+    _instance = this;
+  }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        GenerateTiles();
+  // Start is called before the first frame update
+  void Start()
+  {
+    GenerateTiles();
 
-        _immobileEntities = new Dictionary<Vector2, GridImmobileEntity>();
+    _immobileEntities = new Dictionary<Vector2, GridImmobileEntity>();
 
-        GenerateWallsAndStones();
-    }
+    GenerateWallsAndStones();
+  }
   void OnDrawGizmos()
   {
     if (!_drawGizmos || Application.isPlaying) return;
@@ -91,27 +92,27 @@ public class GridManager : MonoBehaviour
     var key = new Vector2(x, y);
     var keyCheck = new Vector3(x, y, 0);
 
-    foreach(var checkPoint in GameManager.Instance.CheckPoints)
+    foreach (var checkPoint in GameManager.Instance.CheckPoints)
     {
-        if (checkPoint == keyCheck) return null;
+      if (checkPoint == keyCheck) return null;
     }
     var entityInstance = Instantiate(immobileEntityPrefab, key, Quaternion.identity, parent);
-        AstarPath.active.Scan();
-        if (checkGraphBlock)
+    AstarPath.active.Scan();
+    if (checkGraphBlock)
+    {
+      for (int i = 0; i < 6; i++)
+      {
+        GraphNode node = AstarPath.active.GetNearest(GameManager.Instance.CheckPoints[i], NNConstraint.Default).node;
+        GraphNode node1 = AstarPath.active.GetNearest(GameManager.Instance.CheckPoints[i + 1], NNConstraint.Default).node;
+        if (!PathUtilities.IsPathPossible(node, node1))
         {
-            for (int i = 0; i < 6; i++)
-            { 
-                GraphNode node = AstarPath.active.GetNearest(GameManager.Instance.CheckPoints[i], NNConstraint.Default).node;
-                GraphNode node1 = AstarPath.active.GetNearest(GameManager.Instance.CheckPoints[i + 1], NNConstraint.Default).node;
-                if(!PathUtilities.IsPathPossible(node, node1))
-                {
-                    Destroy(entityInstance.gameObject);
-                    AstarPath.active.Scan();
-                    return null;
-                }
-                
-            }
+          Destroy(entityInstance.gameObject);
+          AstarPath.active.Scan();
+          return null;
         }
+
+      }
+    }
     _immobileEntities[key] = entityInstance;
     OnGridChange?.Invoke(key, entityInstance);
     return entityInstance;
@@ -152,7 +153,7 @@ public class GridManager : MonoBehaviour
 
   private void PlaceChecker(GameObject prefab, float x, float y)
   {
-        Instantiate(prefab, new Vector2(x, y), Quaternion.identity);
+    Instantiate(prefab, new Vector2(x, y), Quaternion.identity);
   }
 
   private void GenerateWallsAndStones()
@@ -183,8 +184,8 @@ public class GridManager : MonoBehaviour
       // Bottom 8 stones
       PlaceStone(18, i);
     }
-      PlaceChecker(_spawnPlacePrefab, 4f, 32f);
-      PlaceChecker(_finalPrefab, 32f, 4f);
+    PlaceChecker(_spawnPlacePrefab, 4f, 32f);
+    PlaceChecker(_finalPrefab, 32f, 4f);
 
     AstarPath.active.Scan();
   }
@@ -201,6 +202,10 @@ public class GridManager : MonoBehaviour
   }
 
 
+  public bool IsTileOccupied(Vector2 pos)
+  {
+    return IsTileOccupied((int)pos.x, (int)pos.y);
+  }
   public bool IsTileOccupied(int x, int y)
   {
     return _immobileEntities.ContainsKey(new Vector2(x, y));

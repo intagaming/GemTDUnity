@@ -7,6 +7,6 @@ public class GridImmobileEntity : Entity, IPointerClickHandler
 {
   public void OnPointerClick(PointerEventData eventData)
   {
-    HUDManager.Instance.SelectGridEntity((int)transform.position.x, (int)transform.position.y);
+    HUDManager.Instance.SelectGridPosition((int)transform.position.x, (int)transform.position.y);
   }
 }

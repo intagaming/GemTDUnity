@@ -4,4 +4,6 @@ using UnityEngine;
 
 public class Stone : GridImmobileEntity
 {
+    
+    public Sprite Image;
 }

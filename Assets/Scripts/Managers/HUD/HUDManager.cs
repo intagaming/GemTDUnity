@@ -5,6 +5,7 @@ using TMPro;
 using System;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class HUDManager : MonoBehaviour
 {
@@ -21,12 +22,14 @@ public class HUDManager : MonoBehaviour
   private TextMeshProUGUI _healthText;
   [SerializeField]
   private Canvas _pauseMenuCanvas;
+  [SerializeField]
+  private TowerInfo _towerInfo;
 
   private static HUDManager _instance;
   public static HUDManager Instance { get => _instance; }
   private bool _isGamePaused;
 
-    void Awake()
+  void Awake()
   {
     _instance = this;
   }
@@ -36,6 +39,7 @@ public class HUDManager : MonoBehaviour
     GameManager.OnGameStateChanged += HandleOnGameStateChanged;
     GridManager.OnGridChange += HandleGridChange;
     GameManager.OnHealthChanged += HandleHealthChanged;
+    OnSelectImmobileEntity += HandleSelectImmobileEntity;
   }
 
   void OnDestroy()
@@ -43,6 +47,7 @@ public class HUDManager : MonoBehaviour
     GameManager.OnGameStateChanged -= HandleOnGameStateChanged;
     GridManager.OnGridChange -= HandleGridChange;
     GameManager.OnHealthChanged -= HandleHealthChanged;
+    OnSelectImmobileEntity -= HandleSelectImmobileEntity;
   }
 
   // Select immobile entity
@@ -50,33 +55,53 @@ public class HUDManager : MonoBehaviour
   public static event Action<GridImmobileEntity> OnSelectImmobileEntity;
   private GridImmobileEntity _SelectedImmobileEntity
   {
+    
     get => _selectedImmobileEntity;
     set
     {
       _selectedImmobileEntity = value;
-
-      if (value != null)
-      {
-        _selectIndicator.SetActive(true);
-        _selectIndicator.transform.position = _selectedImmobileEntity.transform.position;
-      }
-      else
-      {
-        _selectIndicator.SetActive(false);
-      }
 
       OnSelectImmobileEntity?.Invoke(value);
     }
   }
   public GridImmobileEntity SelectedImmobileEntity { get => _SelectedImmobileEntity; }
 
+  public static event Action<Vector2> OnSelectPositionChanged;
+  public Vector3 SelectedPosition
+  {
+    get => _selectIndicator.transform.position;
+    set
+    {
+      var v2 = (Vector2)value;
+      if (!GridManager.Instance.Tiles.ContainsKey(v2)) return;
+
+      if (value == null) {
+        _selectIndicator.SetActive(false);
+      } else {
+        _selectIndicator.SetActive(true);
+        _selectIndicator.transform.position = v2;
+      }
+
+      OnSelectPositionChanged?.Invoke(v2);
+    }
+  }
 
   public void SelectGridEntity(int x, int y)
   {
-    var key = new Vector2(x, y);
-
     var entity = GridManager.Instance.GetGridImmobileEntity(x, y);
     _SelectedImmobileEntity = entity;
+  }
+
+  public void SelectGridPosition(int x, int y)
+  {
+    SelectGridPosition(new Vector2(x, y));
+  }
+
+  public void SelectGridPosition(Vector2 pos)
+  {
+    SelectedPosition = pos;
+
+    SelectGridEntity((int)pos.x, (int)pos.y);
   }
 
   public void RefreshSelection()
@@ -147,25 +172,46 @@ public class HUDManager : MonoBehaviour
   {
     if (_isGamePaused)
     {
-        Resume();
+      Resume();
     }
     else
     {
-        Pause();
+      Pause();
     }
     var currentActiveStatus = _pauseMenuCanvas.gameObject.activeSelf;
     _pauseMenuCanvas.gameObject.SetActive(!currentActiveStatus);
   }
 
-   void Pause()
-    {
-        Time.timeScale = 0f;
-        _isGamePaused = true;
-    }
+  void Pause()
+  {
+    Time.timeScale = 0f;
+    _isGamePaused = true;
+  }
 
-    void Resume()
+  void Resume()
+  {
+    Time.timeScale = 1f;
+    _isGamePaused = false;
+  }
+
+  private void HandleSelectImmobileEntity(GridImmobileEntity entity)
+  {
+
+    if (entity != null)
     {
-        Time.timeScale = 1f;
-        _isGamePaused = false;
+      _towerInfo.Entity = entity;
+      _towerInfo.gameObject.SetActive(true);
+
     }
+    else
+    {
+      _towerInfo.gameObject.SetActive(false);
+    }
+  }
+
+
+  public void MoveCursor(Vector2 offset)
+  {
+    SelectedPosition += new Vector3(offset.x, offset.y);
+  }
 }

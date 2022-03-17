@@ -33,7 +33,8 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
   {
     if (MouseDownTile == this)
     {
-      BuildPhaseManager.Instance.PlaceGem(_x, _y);
+      //BuildPhaseManager.Instance.PlaceGem(_x, _y);
+      HUDManager.Instance.SelectGridPosition(_x, _y);
     }
   }
 

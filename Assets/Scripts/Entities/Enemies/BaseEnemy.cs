@@ -99,7 +99,6 @@ public class BaseEnemy : GridMobileEntity
   {
     if (GameManager.Instance.State == GameState.GameOver) return;
     DefensePhaseManager.Instance.HandleEnemyDie(this);
-    DefensePhaseManager.Instance.HandleEnemyDie(this);
     EnemyHealthBarManager.Instance.UpdateHealthBar(this, _isFinished);
   }
 
