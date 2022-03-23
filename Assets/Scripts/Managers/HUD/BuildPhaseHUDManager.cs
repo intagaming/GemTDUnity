@@ -10,6 +10,7 @@ public class BuildPhaseHUDManager : MonoBehaviour
   [SerializeField]
   private GameObject _placeGemButtons;
 
+  private GameState _previousState;
   private static BuildPhaseHUDManager _instance;
   public static BuildPhaseHUDManager Instance { get => _instance; }
 
@@ -24,6 +25,7 @@ public class BuildPhaseHUDManager : MonoBehaviour
     GameManager.OnGameStateChanged += HandleOnGameStateChanged;
     HUDManager.OnSelectImmobileEntity += HandleSelectImmobileEntity;
     HUDManager.OnSelectPositionChanged += HandleSelectPositionChanged;
+    GameManager.OnBeforeGameStateChanged += HandleBeforeGameStateChanged;
   }
 
   void OnDestroy()
@@ -32,10 +34,12 @@ public class BuildPhaseHUDManager : MonoBehaviour
     GameManager.OnGameStateChanged -= HandleOnGameStateChanged;
     HUDManager.OnSelectImmobileEntity -= HandleSelectImmobileEntity;
     HUDManager.OnSelectPositionChanged -= HandleSelectPositionChanged;
+    GameManager.OnBeforeGameStateChanged -= HandleBeforeGameStateChanged;
   }
 
   private void HandleOnGameStateChanged(GameState state)
   {
+    //GameManager.Instance.State
     switch (state)
     {
       case GameState.Building:
@@ -161,9 +165,16 @@ public class BuildPhaseHUDManager : MonoBehaviour
     UpdatePlaceGemButtonsHUD();
   }
 
+  public void HandleBeforeGameStateChanged(GameState state){
+    _previousState = state;
+  }
   public void UpdatePlaceGemButtonsHUD() {
     var gemsLeft = BuildPhaseManager.Instance.GemsToPlace;
     var pos = HUDManager.Instance.SelectedPosition;
+    if(_previousState == GameState.Initializing && pos == Vector3.zero){
+      _placeGemButtons.SetActive(false);
+      return;
+    }
     // TODO: if HUDManager._selectIndicator not active, then always SetActive false
     _placeGemButtons.SetActive(gemsLeft > 0 && pos != null && !GridManager.Instance.IsTileOccupied(pos));
   }

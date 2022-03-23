@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
 
 
   public static event Action<GameState> OnGameStateChanged;
+  public static event Action<GameState> OnBeforeGameStateChanged;
 
   private GameState _state = GameState.Initializing;
   public GameState State
@@ -56,7 +57,7 @@ public class GameManager : MonoBehaviour
 
     var prevState = this._state;
     this._state = state;
-
+    OnBeforeGameStateChanged?.Invoke(prevState);
     HandleStateChanged(prevState, state);
 
     OnGameStateChanged?.Invoke(state);
