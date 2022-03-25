@@ -47,6 +47,7 @@ public class LevelManager : MonoBehaviour
 
     var scene = SceneManager.LoadSceneAsync(sceneName);
     scene.allowSceneActivation = false;
+    Time.timeScale = 1;
 
     _transitionAnimator.SetTrigger("Start");
     await Task.Delay(1000);
