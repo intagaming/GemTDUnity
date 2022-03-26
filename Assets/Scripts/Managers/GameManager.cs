@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
   {
     if (prevState == GameState.Defense && state == GameState.Building)
     {
-      if (Wave == 1)
+      if (Wave == DefensePhaseManager.Instance.WaveCount)
       {
         LevelManager.Instance.LoadSceneSync("Winner", false);
         return;
