@@ -141,6 +141,7 @@ public class HUDManager : MonoBehaviour
 
   public void ToggleCombineLookup()
   {
+    _towerInfo.gameObject.SetActive(false);
     var currentActiveStatus = _combineLookup.gameObject.activeSelf;
     _combineLookup.gameObject.SetActive(!currentActiveStatus);
     if (!currentActiveStatus)

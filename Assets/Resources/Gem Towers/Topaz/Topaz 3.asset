@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats:
     damage: 1
+    numberOfProjectile: 0
     range: 3
     attackSpeed: 0.2
+  auras:
+    trueSight: 0
   projectile: {fileID: 11400000, guid: 09da3d319d1309f44811eb0ab440daa5, type: 2}
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 288a3c60677cf2c47b256266c60beb4d, type: 3}
   towerPrefab: {fileID: 3524786440385804614, guid: 85e48e2b9ca03fb41ab27ededfe308a4, type: 3}
   gemLevel: 3

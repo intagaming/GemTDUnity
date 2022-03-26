@@ -13,6 +13,16 @@ public abstract class ScriptableTower : ScriptableObject
   public TowerAuras BaseAuras => auras;
   public ScriptableProjectile projectile;
   public Sprite sprite;
+  [SerializeField]
+  private String attackSound;
+  public String AttackSound{
+    get{
+      if (attackSound == null || attackSound ==""){
+        return "TowerFire";
+      }
+      return attackSound;
+    }
+  }
 }
 
 [Serializable]
@@ -29,3 +39,4 @@ public struct TowerAuras
 {
   public bool trueSight;
 }
+

@@ -12,6 +12,7 @@ public class DefensePhaseManager : MonoBehaviour
   [SerializeField]
   private ScriptableEnemy[] _enemies;
   public ScriptableEnemy[] Enemies {get => _enemies;}
+  public int WaveCount => Enemies.Length;
   [SerializeField]
   private Transform _enemiesParent;
   [SerializeField]
@@ -135,7 +136,7 @@ public class DefensePhaseManager : MonoBehaviour
   {
     GameManager.Instance.DamageCastle(1); // TODO: castle damage in ScriptableEnemy
     Destroy(enemy.gameObject);
-
+    FindObjectOfType<SoundManager>().Play("ReachTheEnd");
     OnEnemyDie?.Invoke(enemy);
   }
 

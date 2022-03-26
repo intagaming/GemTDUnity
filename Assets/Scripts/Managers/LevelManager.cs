@@ -1,4 +1,4 @@
- using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -33,15 +33,22 @@ public class LevelManager : MonoBehaviour
     }
   }
 
-  public void LoadSceneSync(string sceneName)
+  public void LoadSceneSync(string sceneName){
+    LoadSceneSync(sceneName, true);
+  }
+
+  public void LoadSceneSync(string sceneName, bool load)
   {
     if (_transitioning) return;
     _transitioning = true;
-    LoadScene(sceneName);
+    LoadScene(sceneName,load);
   }
 
   // We are currently using artificial wait time for visual purposes.
-  private async void LoadScene(string sceneName)
+  private void LoadScene(string sceneName){
+    LoadScene(sceneName, true);
+  }
+  private async void LoadScene(string sceneName, bool load)
   {
     _progressBarForeground.fillAmount = 0;
 
@@ -51,21 +58,31 @@ public class LevelManager : MonoBehaviour
 
     _transitionAnimator.SetTrigger("Start");
     await Task.Delay(1000);
-    _loadingCanvas.gameObject.SetActive(true);
-    _transitionAnimator.SetTrigger("Stop");
-    do
-    {
-      await Task.Delay(500);
-      _progressBarForeground.fillAmount = scene.progress;
-    } while (scene.progress < 0.9f);
 
-    scene.allowSceneActivation = true;
-    await Task.Delay(500);
-    _progressBarForeground.fillAmount = 1f;
-    _transitionAnimator.SetTrigger("Start");
-    await Task.Delay(1000);
-    _loadingCanvas.gameObject.SetActive(false);
-    _transitionAnimator.SetTrigger("Stop");
+    if (load)
+    {
+      _loadingCanvas.gameObject.SetActive(true);
+      _transitionAnimator.SetTrigger("Stop");
+      do
+      {
+        await Task.Delay(500);
+        _progressBarForeground.fillAmount = scene.progress;
+      } while (scene.progress < 0.9f);
+
+      scene.allowSceneActivation = true;
+      await Task.Delay(500);
+      _progressBarForeground.fillAmount = 1f;
+      _transitionAnimator.SetTrigger("Start");
+      await Task.Delay(1000);
+      _loadingCanvas.gameObject.SetActive(false);
+      _transitionAnimator.SetTrigger("Stop");
+    }
+    else
+    {
+      scene.allowSceneActivation = true;
+      _transitionAnimator.SetTrigger("Stop");
+    }
+
     _transitioning = false;
   }
 }

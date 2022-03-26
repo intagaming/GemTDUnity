@@ -67,7 +67,7 @@ public class BaseTower : GridImmobileEntity
     if (_target != enemy) _target = enemy;
 
     _cooldown = _towerBlueprint.BaseStats.attackSpeed;
-
     DefensePhaseManager.Instance.SpawnProjectile(this, enemy);
+    FindObjectOfType<SoundManager>().Play(_towerBlueprint.AttackSound);
   }
 }

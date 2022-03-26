@@ -42,6 +42,7 @@ public class EnemyHealthBarManager : MonoBehaviour
         if (enemy.Health <= 0)
         {
             Destroy(healthBar.gameObject);
+            FindObjectOfType<SoundManager>().Play("EnemyDeath");
             _tracking.Remove(enemy);
             return;
         }

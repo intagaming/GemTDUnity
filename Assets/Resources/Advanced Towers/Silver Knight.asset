@@ -14,12 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats:
     damage: 5
+    numberOfProjectile: 0
     range: 5
     attackSpeed: 0.2
   auras:
     trueSight: 0
   projectile: {fileID: 11400000, guid: 09da3d319d1309f44811eb0ab440daa5, type: 2}
   sprite: {fileID: 21300000, guid: b0de463e04d67a94ebe0ce42149a0ec9, type: 3}
+  attackSound: AdvancedTowerAttack
   prefab: {fileID: 5429958587095541114, guid: b9ef0123aee679a4a905076febb27e5b, type: 3}
   recipe:
   - {fileID: 11400000, guid: fd96b269ddff399459c877face206609, type: 2}

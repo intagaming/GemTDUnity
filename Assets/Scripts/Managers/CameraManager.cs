@@ -10,6 +10,14 @@ public class CameraManager : MonoBehaviour
   private Vector3? _start;
   private Camera _camera;
   private UITester _uiTest;
+  [SerializeField]
+  private float leftLimit;
+  [SerializeField]
+  private float rightLimit;
+  [SerializeField]
+  private float bottomLimit;
+  [SerializeField]
+  private float topLimit;
 
   private void Start()
   {

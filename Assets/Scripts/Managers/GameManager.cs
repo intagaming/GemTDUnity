@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,9 +13,9 @@ public class GameManager : MonoBehaviour
   private GameObject _checkpointPrefab;
   [SerializeField]
   private Transform _checkpointsParent;
-    private Vector3[] _checkPoints;
-    public Vector3[] CheckPoints { get { return _checkPoints; } }
-    private static GameManager _instance;
+  private Vector3[] _checkPoints;
+  public Vector3[] CheckPoints { get { return _checkPoints; } }
+  private static GameManager _instance;
 
   public static GameManager Instance
   {
@@ -33,7 +34,7 @@ public class GameManager : MonoBehaviour
     _checkPoints[5] = new Vector3(18f, 4f, 0);
     _checkPoints[6] = new Vector3(32f, 4f, 0);
 
-    }
+  }
 
 
   public static event Action<GameState> OnGameStateChanged;
@@ -84,6 +85,11 @@ public class GameManager : MonoBehaviour
   {
     if (prevState == GameState.Defense && state == GameState.Building)
     {
+      if (Wave == 1)
+      {
+        LevelManager.Instance.LoadSceneSync("Winner", false);
+        return;
+      }
       _wave++;
       print("Wave " + _wave);
     }
