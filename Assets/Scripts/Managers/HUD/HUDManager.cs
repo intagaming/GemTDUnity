@@ -24,6 +24,8 @@ public class HUDManager : MonoBehaviour
   private Canvas _pauseMenuCanvas;
   [SerializeField]
   private TowerInfo _towerInfo;
+  [SerializeField]
+  private Button _destroyStoneButton;
 
   private static HUDManager _instance;
   public static HUDManager Instance { get => _instance; }
@@ -55,7 +57,7 @@ public class HUDManager : MonoBehaviour
   public static event Action<GridImmobileEntity> OnSelectImmobileEntity;
   private GridImmobileEntity _SelectedImmobileEntity
   {
-    
+
     get => _selectedImmobileEntity;
     set
     {
@@ -75,9 +77,12 @@ public class HUDManager : MonoBehaviour
       var v2 = (Vector2)value;
       if (!GridManager.Instance.Tiles.ContainsKey(v2)) return;
 
-      if (value == null) {
+      if (value == null)
+      {
         _selectIndicator.SetActive(false);
-      } else {
+      }
+      else
+      {
         _selectIndicator.SetActive(true);
         _selectIndicator.transform.position = v2;
       }
@@ -202,17 +207,24 @@ public class HUDManager : MonoBehaviour
     {
       _towerInfo.Entity = entity;
       _towerInfo.gameObject.SetActive(true);
-
+      _destroyStoneButton.gameObject.SetActive(entity is Stone);
     }
     else
     {
       _towerInfo.gameObject.SetActive(false);
+      _destroyStoneButton.gameObject.SetActive(false);
     }
   }
-
 
   public void MoveCursor(Vector2 offset)
   {
     SelectedPosition += new Vector3(offset.x, offset.y);
+  }
+
+  public void HandleDestroyStoneClick()
+  {
+    var pos = HUDManager.Instance.SelectedImmobileEntity.GetGridPosition();
+    BuildPhaseManager.Instance.ChooseGem(pos.x, pos.y);
+    GridManager.Instance.DestroyEntity(pos.x, pos.y);
   }
 }
