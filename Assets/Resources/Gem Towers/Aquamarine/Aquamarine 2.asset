@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Aquamarine 2
   m_EditorClassIdentifier: 
   stats:
-    damage: 1
+    damage: 4
     numberOfProjectile: 0
     range: 3
     attackSpeed: 0.2
@@ -21,5 +21,6 @@ MonoBehaviour:
     trueSight: 0
   projectile: {fileID: 11400000, guid: 09da3d319d1309f44811eb0ab440daa5, type: 2}
   sprite: {fileID: 21300000, guid: 2974051e2c539394b83e975d21d6aa16, type: 3}
+  attackSound: 
   towerPrefab: {fileID: 593041097116925961, guid: 17314d759eb31fb4ea8865a6880dbe14, type: 3}
   gemLevel: 2

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68ef2afef7119ac4bb595d9852714b44, type: 3}
   m_Name: Belted Chicken
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 6991108191320213717, guid: fe5865dfe7e099e45996d60aea2a1724, type: 3}
+  enemyPrefab: {fileID: 6991108191320213717, guid: b65c010673cd2f148bf89cc46edf471e, type: 3}
   movementSpeed: 10
   hp: 960
+  invisible: 0
+  waveAmount: 10

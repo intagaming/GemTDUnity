@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Silver
   m_EditorClassIdentifier: 
   stats:
-    damage: 5
+    damage: 30
     numberOfProjectile: 0
     range: 5
-    attackSpeed: 0.2
+    attackSpeed: 0.8
   auras:
     trueSight: 0
   projectile: {fileID: 11400000, guid: 09da3d319d1309f44811eb0ab440daa5, type: 2}
