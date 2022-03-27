@@ -1126,7 +1126,7 @@ MonoBehaviour:
   _gridTilesParent: {fileID: 579517234}
   _invisibleWallsParent: {fileID: 1789049765}
   _immobileEntitiesParent: {fileID: 1474278863}
-  _drawGizmos: 0
+  _drawGizmos: 1
   _spawnPlacePrefab: {fileID: 6916300072076485778, guid: 9ac6247d64c1cc14f8fff41ce5447698, type: 3}
   _finalPrefab: {fileID: 5307679199520538991, guid: cbe8b28355cfec447aaa61d0469f217b, type: 3}
 --- !u!4 &276132609
@@ -1142,7 +1142,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 590188433}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &285611449
 GameObject:
@@ -2586,8 +2586,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 276132609}
   - {fileID: 2056120508}
+  - {fileID: 276132609}
   - {fileID: 1707721541}
   - {fileID: 1292064047}
   - {fileID: 1423322304}
@@ -7049,7 +7049,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 590188433}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2073532511
 GameObject:

@@ -34,6 +34,15 @@ public class GameManager : MonoBehaviour
     _checkPoints[5] = new Vector3(18f, 4f, 0);
     _checkPoints[6] = new Vector3(32f, 4f, 0);
 
+    // Initialize checkpoints
+    _checkpoints = new Transform[6] {
+      Instantiate(_checkpointPrefab, new Vector2(4f, 18f), Quaternion.identity, _checkpointsParent).transform,
+      Instantiate(_checkpointPrefab, new Vector2(32f, 18f), Quaternion.identity, _checkpointsParent).transform,
+      Instantiate(_checkpointPrefab, new Vector2(32f, 32f), Quaternion.identity, _checkpointsParent).transform,
+      Instantiate(_checkpointPrefab, new Vector2(18f, 32f), Quaternion.identity, _checkpointsParent).transform,
+      Instantiate(_checkpointPrefab, new Vector2(18f, 4f), Quaternion.identity, _checkpointsParent).transform,
+      Instantiate(_checkpointPrefab, new Vector2(32f, 4f), Quaternion.identity, _checkpointsParent).transform,
+    };
   }
 
 
@@ -98,17 +107,6 @@ public class GameManager : MonoBehaviour
   void Start()
   {
     SetState(GameState.Building);
-    // SetState(GameState.Defense);
-
-    // Initialize checkpoints
-    _checkpoints = new Transform[6] {
-      Instantiate(_checkpointPrefab, new Vector2(4f, 18f), Quaternion.identity, _checkpointsParent).transform,
-      Instantiate(_checkpointPrefab, new Vector2(32f, 18f), Quaternion.identity, _checkpointsParent).transform,
-      Instantiate(_checkpointPrefab, new Vector2(32f, 32f), Quaternion.identity, _checkpointsParent).transform,
-      Instantiate(_checkpointPrefab, new Vector2(18f, 32f), Quaternion.identity, _checkpointsParent).transform,
-      Instantiate(_checkpointPrefab, new Vector2(18f, 4f), Quaternion.identity, _checkpointsParent).transform,
-      Instantiate(_checkpointPrefab, new Vector2(32f, 4f), Quaternion.identity, _checkpointsParent).transform,
-    };
 
     _health = INITIAL_HEALTH;
   }

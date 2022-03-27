@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour
@@ -60,6 +61,7 @@ public class GridManager : MonoBehaviour
     _immobileEntities = new Dictionary<Vector2, GridImmobileEntity>();
 
     GenerateWallsAndStones();
+    RetextCheckpointsText();
   }
   void OnDrawGizmos()
   {
@@ -243,6 +245,22 @@ public class GridManager : MonoBehaviour
     {
       var pos = from.GetGridPosition();
       BuildPhaseManager.Instance.ProceedToDefense();
+    }
+  }
+
+  public void RetextCheckpointsText() {
+    var checkpoints = GameManager.Instance.Checkpoints;
+
+    for (var i = 0; i < checkpoints.Length; i++) {
+      var cp = checkpoints[i];
+
+      if (i == checkpoints.Length - 1) {
+        cp.GetComponentInChildren<Canvas>().enabled = false;
+        continue;
+      }
+
+      var text = cp.GetComponentInChildren<TextMeshProUGUI>();
+      text.SetText($"{i+1}");
     }
   }
 }
