@@ -14,6 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 6991108191320213717, guid: 3bd51f22cedf64c4d9d1f0c045cd0128, type: 3}
   movementSpeed: 10
-  hp: 400
-  invisible: 0
-  waveAmount: 10
+  hp: 480
