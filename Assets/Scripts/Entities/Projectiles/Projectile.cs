@@ -2,49 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : Entity
+public abstract class Projectile : Entity
 {
   [SerializeField]
   protected ScriptableProjectile _blueprint;
+  public ScriptableProjectile Blueprint { get => _blueprint; }
 
-  protected BaseTower Attacker { get; set; }
-  protected BaseEnemy Target { get; set; }
-
-  public void Init(BaseTower attacker, BaseEnemy target)
-  {
-    Attacker = attacker;
-    Target = target;
-  }
+  public ProjectileCore core;
 
   protected override void Update()
   {
-    if (Target == null || Target.gameObject == null)
-    {
-      DefensePhaseManager.Instance.GetProjectilePool(_blueprint).Release(this);
-      return;
-    }
-
-    float step = _blueprint.BaseStats.speed * Time.deltaTime;
-    transform.position = Vector2.MoveTowards(transform.position, Target.transform.position, step);
+    core.Update();
   }
 
-  protected virtual void HurtTargetAndTerminate()
+  public void OnTriggerEnter2D(Collider2D collider)
   {
-    Target.Damage(Attacker, Attacker.TowerBlueprint.BaseStats.damage);
-    DefensePhaseManager.Instance.GetProjectilePool(_blueprint).Release(this);
-  }
-
-  void OnTriggerEnter2D(Collider2D collider)
-  {
-    if (Target == null || Target.gameObject == null)
-    {
-      DefensePhaseManager.Instance.GetProjectilePool(_blueprint).Release(this);
-      return;
-    }
-
-    var baseEnemy = collider.GetComponent<BaseEnemy>();
-    if (baseEnemy == null || baseEnemy != Target) return;
-
-    HurtTargetAndTerminate();
+    core.OnTriggerEnter2D(collider);
   }
 }

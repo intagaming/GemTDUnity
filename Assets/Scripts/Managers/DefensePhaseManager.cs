@@ -178,8 +178,26 @@ public class DefensePhaseManager : MonoBehaviour
     var pool = GetProjectilePool(tower.TowerBlueprint.projectile);
 
     var projectile = pool.Get();
+    projectile.core.Init(tower, enemy);
+
+    // wrap core with decorators
+    foreach (var d in tower.TowerBlueprint.projectile.decorators)
+    {
+      var newCore = projectile.core;
+      switch (d.id)
+      {
+        case "slow":
+          newCore = new SlowProjectileDecorator(projectile, newCore);
+          break;
+        case "spread":
+          newCore = new SpreadProjectileDecorator(projectile, newCore);
+          break;
+      }
+      newCore.Init(tower, enemy);
+      projectile.core = newCore;
+    }
+
     projectile.transform.position = tower.transform.position;
-    projectile.Init(tower, enemy);
   }
 
   private void HandleHealthChanged(int health)

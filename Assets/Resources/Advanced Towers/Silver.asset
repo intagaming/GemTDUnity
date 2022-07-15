@@ -19,7 +19,7 @@ MonoBehaviour:
     attackSpeed: 0.8
   auras:
     trueSight: 0
-  projectile: {fileID: 11400000, guid: 6e793c0752aa36947927f99e8adb1810, type: 2}
+  projectile: {fileID: 11400000, guid: bdf883ba50e667f48bdcf1fa1838ad6e, type: 2}
   sprite: {fileID: 21300000, guid: 4e3984a878326034fb5005d7d7a12a45, type: 3}
   attackSound: AdvancedTowerAttack
   prefab: {fileID: 483940517477699121, guid: 7a488f55274ee6b4b90cbca3716c89cb, type: 3}

@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fcb635889d259d7479da45a5644922ab, type: 3}
-  m_Name: Basic Projectile
+  m_Name: Silver Projectile
   m_EditorClassIdentifier: 
   prefab: {fileID: 8317690928169823168, guid: 98d828e577660db4dba824b33a0bf525, type: 3}
   _stats:
     speed: 15
-  decorators: []
+  decorators:
+  - {fileID: 11400000, guid: 521374668f328e74eb5a78456290aee2, type: 2}

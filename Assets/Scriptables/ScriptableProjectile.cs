@@ -10,6 +10,8 @@ public class ScriptableProjectile : ScriptableObject
   [SerializeField]
   private ProjectileStats _stats;
   public ProjectileStats BaseStats { get => _stats; }
+
+  public ScriptableProjectileDecorator[] decorators;
 }
 
 [Serializable]
