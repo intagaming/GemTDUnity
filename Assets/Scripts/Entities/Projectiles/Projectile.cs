@@ -20,7 +20,7 @@ public class Projectile : Entity
   {
     if (Target == null || Target.gameObject == null)
     {
-      Destroy(gameObject);
+      DefensePhaseManager.Instance.GetProjectilePool(_blueprint).Release(this);
       return;
     }
 
@@ -31,14 +31,14 @@ public class Projectile : Entity
   protected virtual void HurtTargetAndTerminate()
   {
     Target.Damage(Attacker, Attacker.TowerBlueprint.BaseStats.damage);
-    Destroy(gameObject);
+    DefensePhaseManager.Instance.GetProjectilePool(_blueprint).Release(this);
   }
 
   void OnTriggerEnter2D(Collider2D collider)
   {
     if (Target == null || Target.gameObject == null)
     {
-      Destroy(gameObject);
+      DefensePhaseManager.Instance.GetProjectilePool(_blueprint).Release(this);
       return;
     }
 

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Pool;
 using UnityEngine.SceneManagement;
 
 public class DefensePhaseManager : MonoBehaviour
@@ -11,7 +12,7 @@ public class DefensePhaseManager : MonoBehaviour
 
   [SerializeField]
   private ScriptableEnemy[] _enemies;
-  public ScriptableEnemy[] Enemies {get => _enemies;}
+  public ScriptableEnemy[] Enemies { get => _enemies; }
   public int WaveCount => Enemies.Length;
   [SerializeField]
   private Transform _enemiesParent;
@@ -31,6 +32,28 @@ public class DefensePhaseManager : MonoBehaviour
   public int EnemiesRemaining { get => _enemyLeftToSpawn + _waveEnemies.Count; }
 
   public static event Action<BaseEnemy> OnEnemyDie;
+
+  private Dictionary<ScriptableProjectile, ObjectPool<Projectile>> _projectilePools = new Dictionary<ScriptableProjectile, ObjectPool<Projectile>>();
+  public ObjectPool<Projectile> GetProjectilePool(ScriptableProjectile blueprint)
+  {
+    if (!_projectilePools.ContainsKey(blueprint))
+    {
+      _projectilePools.Add(blueprint, new ObjectPool<Projectile>(() =>
+      {
+        return Instantiate(blueprint.prefab, Vector3.zero, Quaternion.identity, _projectilesParent);
+      }, prj =>
+      {
+        prj.gameObject.SetActive(true);
+      }, prj =>
+      {
+        prj.gameObject.SetActive(false);
+      }, prj =>
+      {
+        Destroy(prj.gameObject);
+      }, false, 20, 10000));
+    }
+    return _projectilePools[blueprint];
+  }
 
   private static DefensePhaseManager _instance;
   public static DefensePhaseManager Instance { get { return _instance; } }
@@ -53,8 +76,8 @@ public class DefensePhaseManager : MonoBehaviour
     EditorApplication.playModeStateChanged -= HandlePlayModeStateChanged;
 #endif
     _waveEnemies.Clear();
-     GameManager.OnHealthChanged -= HandleHealthChanged;
-    }
+    GameManager.OnHealthChanged -= HandleHealthChanged;
+  }
 
   private void Reset()
   {
@@ -111,7 +134,7 @@ public class DefensePhaseManager : MonoBehaviour
   {
     if (_isExiting) return; // If exiting, ignore all enemy die events, thus the wave will not end.
 
-    if(GameManager.Instance.State == GameState.GameOver)
+    if (GameManager.Instance.State == GameState.GameOver)
     {
       return;
     }
@@ -152,16 +175,19 @@ public class DefensePhaseManager : MonoBehaviour
 
   public void SpawnProjectile(BaseTower tower, BaseEnemy enemy)
   {
-    var projectile = Instantiate(tower.TowerBlueprint.projectile.prefab, tower.transform.position, Quaternion.identity, _projectilesParent);
+    var pool = GetProjectilePool(tower.TowerBlueprint.projectile);
+
+    var projectile = pool.Get();
+    projectile.transform.position = tower.transform.position;
     projectile.Init(tower, enemy);
   }
 
   private void HandleHealthChanged(int health)
+  {
+    if (health == 0)
     {
-        if (health == 0)
-        {
-            GameManager.Instance.SetState(GameState.GameOver);
-            SceneManager.LoadScene("Game Over");
-        }
+      GameManager.Instance.SetState(GameState.GameOver);
+      SceneManager.LoadScene("Game Over");
     }
+  }
 }
